@@ -1,5 +1,268 @@
 {
   "courses": {
+    "985e8ba5-059a-43eb-ab2e-6a1abfd3a9b2": {
+      "id": "985e8ba5-059a-43eb-ab2e-6a1abfd3a9b2",
+      "title": "NeetCode - Advanced Algorithms",
+      "root_path": "D:\\courses\\NeetCode - Advanced Algorithms",
+      "sections": [
+        {
+          "id": "sec_1",
+          "title": "1. Arrays",
+          "order": 1,
+          "lectures": [
+            {
+              "id": "1_1_81cb53ac87c5487fb1aad8ed0417303a",
+              "title": "0. Kadanes Algo",
+              "file_name": "0. Kadanes Algo.mp4",
+              "relative_path": "1. Arrays/0. Kadanes Algo.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\1. Arrays\\0. Kadanes Algo.mp4",
+              "duration_seconds": 1302,
+              "order": 1
+            },
+            {
+              "id": "1_2_de3722ff00b54ee2987dd9a3e4f79ab2",
+              "title": "1. Sliding Window Fixed",
+              "file_name": "1. Sliding Window Fixed.mp4",
+              "relative_path": "1. Arrays/1. Sliding Window Fixed.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\1. Arrays\\1. Sliding Window Fixed.mp4",
+              "duration_seconds": 506,
+              "order": 2
+            },
+            {
+              "id": "1_3_f7e65512ba3042f0b48e6bb6583913d8",
+              "title": "2. Sliding Window Variable",
+              "file_name": "2. Sliding Window Variable.mp4",
+              "relative_path": "1. Arrays/2. Sliding Window Variable.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\1. Arrays\\2. Sliding Window Variable.mp4",
+              "duration_seconds": 963,
+              "order": 3
+            },
+            {
+              "id": "1_4_4a49f7f807964750845ab6790fb52f1b",
+              "title": "3. Two Pointers",
+              "file_name": "3. Two Pointers.mp4",
+              "relative_path": "1. Arrays/3. Two Pointers.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\1. Arrays\\3. Two Pointers.mp4",
+              "duration_seconds": 614,
+              "order": 4
+            },
+            {
+              "id": "1_5_17bd5ba5caae4109a3ee6bd7128d7ed5",
+              "title": "4. Prefix Sums",
+              "file_name": "4. Prefix Sums.mp4",
+              "relative_path": "1. Arrays/4. Prefix Sums.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\1. Arrays\\4. Prefix Sums.mp4",
+              "duration_seconds": 754,
+              "order": 5
+            }
+          ],
+          "duration_seconds": 4139
+        },
+        {
+          "id": "sec_2",
+          "title": "2. Linked Lists",
+          "order": 2,
+          "lectures": [
+            {
+              "id": "2_1_c7f1c812189044aabbb5142486f0d395",
+              "title": "1. Fast and Slow Pointers",
+              "file_name": "1. Fast and Slow Pointers.mp4",
+              "relative_path": "2. Linked Lists/1. Fast and Slow Pointers.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\2. Linked Lists\\1. Fast and Slow Pointers.mp4",
+              "duration_seconds": 1465,
+              "order": 1
+            }
+          ],
+          "duration_seconds": 1465
+        },
+        {
+          "id": "sec_3",
+          "title": "3. Tries",
+          "order": 3,
+          "lectures": [
+            {
+              "id": "3_1_532a8966a3ec4afe9d10b09fb1fa0134",
+              "title": "1. Trie",
+              "file_name": "1. Trie.mp4",
+              "relative_path": "3. Tries/1. Trie.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\3. Tries\\1. Trie.mp4",
+              "duration_seconds": 969,
+              "order": 1
+            },
+            {
+              "id": "3_2_760703a7becc47529845336b50ac2c4c",
+              "title": "2. Union Find",
+              "file_name": "2. Union Find.mp4",
+              "relative_path": "3. Tries/2. Union Find.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\3. Tries\\2. Union Find.mp4",
+              "duration_seconds": 1222,
+              "order": 2
+            },
+            {
+              "id": "3_3_d9e97827f84847fb9003daaf2f9c1c70",
+              "title": "3. Segment Tree",
+              "file_name": "3. Segment Tree.mp4",
+              "relative_path": "3. Tries/3. Segment Tree.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\3. Tries\\3. Segment Tree.mp4",
+              "duration_seconds": 1634,
+              "order": 3
+            },
+            {
+              "id": "3_4_87c05aaff1e941398e351412754d3016",
+              "title": "4. Iterative DFS",
+              "file_name": "4. Iterative DFS.mp4",
+              "relative_path": "3. Tries/4. Iterative DFS.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\3. Tries\\4. Iterative DFS.mp4",
+              "duration_seconds": 1445,
+              "order": 4
+            }
+          ],
+          "duration_seconds": 5270
+        },
+        {
+          "id": "sec_4",
+          "title": "4. Heaps",
+          "order": 4,
+          "lectures": [
+            {
+              "id": "4_1_3dd8f2ff09d24c79a67fc764f061d97b",
+              "title": "1. Heaps",
+              "file_name": "1. Heaps.mp4",
+              "relative_path": "4. Heaps/1. Heaps.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\4. Heaps\\1. Heaps.mp4",
+              "duration_seconds": 1344,
+              "order": 1
+            }
+          ],
+          "duration_seconds": 1344
+        },
+        {
+          "id": "sec_5",
+          "title": "5. Backtracking",
+          "order": 5,
+          "lectures": [
+            {
+              "id": "5_1_395eb869464f4360951e11bdcf1666cd",
+              "title": "1. Subsets",
+              "file_name": "1. Subsets.mp4",
+              "relative_path": "5. Backtracking/1. Subsets.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\5. Backtracking\\1. Subsets.mp4",
+              "duration_seconds": 1335,
+              "order": 1
+            },
+            {
+              "id": "5_2_242fb8834c8441f5bcfafa8c31fc5937",
+              "title": "2. Combinations",
+              "file_name": "2. Combinations.mp4",
+              "relative_path": "5. Backtracking/2. Combinations.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\5. Backtracking\\2. Combinations.mp4",
+              "duration_seconds": 1021,
+              "order": 2
+            },
+            {
+              "id": "5_3_0b518dc6b46341f2ae83af0c8f64a7ee",
+              "title": "3. Permutation",
+              "file_name": "3. Permutation.mp4",
+              "relative_path": "5. Backtracking/3. Permutation.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\5. Backtracking\\3. Permutation.mp4",
+              "duration_seconds": 1053,
+              "order": 3
+            }
+          ],
+          "duration_seconds": 3409
+        },
+        {
+          "id": "sec_6",
+          "title": "6. Graphs",
+          "order": 6,
+          "lectures": [
+            {
+              "id": "6_1_4d79b3c9a07042d48207bbc0d3b7f406",
+              "title": "1. Dijkstra",
+              "file_name": "1. Dijkstra.mp4",
+              "relative_path": "6. Graphs/1. Dijkstra.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\6. Graphs\\1. Dijkstra.mp4",
+              "duration_seconds": 1365,
+              "order": 1
+            },
+            {
+              "id": "6_2_31000a95c2c94056ae151da9f2b2f82f",
+              "title": "2. Prim s",
+              "file_name": "2. Prim_s.mp4",
+              "relative_path": "6. Graphs/2. Prim_s.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\6. Graphs\\2. Prim_s.mp4",
+              "duration_seconds": 1432,
+              "order": 2
+            },
+            {
+              "id": "6_3_71cca76a61eb48eb942d341993bbfeee",
+              "title": "3. Kruskal s",
+              "file_name": "3. Kruskal_s.mp4",
+              "relative_path": "6. Graphs/3. Kruskal_s.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\6. Graphs\\3. Kruskal_s.mp4",
+              "duration_seconds": 680,
+              "order": 3
+            },
+            {
+              "id": "6_4_4b23b6e515e34b6db32d007b30e318a6",
+              "title": "4. Topological Sort",
+              "file_name": "4. Topological Sort.mp4",
+              "relative_path": "6. Graphs/4. Topological Sort.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\6. Graphs\\4. Topological Sort.mp4",
+              "duration_seconds": 1804,
+              "order": 4
+            }
+          ],
+          "duration_seconds": 5281
+        },
+        {
+          "id": "sec_7",
+          "title": "7. Dynamic Programming",
+          "order": 7,
+          "lectures": [
+            {
+              "id": "7_1_80fd6df6a5cf480687f064880750e5b1",
+              "title": "1. 0-1 Knapsack",
+              "file_name": "1. 0-1 Knapsack.mp4",
+              "relative_path": "7. Dynamic Programming/1. 0-1 Knapsack.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\7. Dynamic Programming\\1. 0-1 Knapsack.mp4",
+              "duration_seconds": 1694,
+              "order": 1
+            },
+            {
+              "id": "7_2_b7a3be4a35a94bf9a3575336c6a57507",
+              "title": "2. Unbounded Knapsack",
+              "file_name": "2. Unbounded Knapsack.mp4",
+              "relative_path": "7. Dynamic Programming/2. Unbounded Knapsack.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\7. Dynamic Programming\\2. Unbounded Knapsack.mp4",
+              "duration_seconds": 1797,
+              "order": 2
+            },
+            {
+              "id": "7_3_bdc08649791f4916bcc476f61d12e40a",
+              "title": "3. LCS",
+              "file_name": "3. LCS.mp4",
+              "relative_path": "7. Dynamic Programming/3. LCS.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\7. Dynamic Programming\\3. LCS.mp4",
+              "duration_seconds": 1944,
+              "order": 3
+            },
+            {
+              "id": "7_4_ea86fa9cde624187af9cd50fb69049cb",
+              "title": "4. Palindromes",
+              "file_name": "4. Palindromes.mp4",
+              "relative_path": "7. Dynamic Programming/4. Palindromes.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - Advanced Algorithms\\7. Dynamic Programming\\4. Palindromes.mp4",
+              "duration_seconds": 1016,
+              "order": 4
+            }
+          ],
+          "duration_seconds": 6451
+        }
+      ],
+      "created_at": "2026-10-09T09:18:30.864401700+00:00",
+      "updated_at": "2026-10-09T09:18:30.864401700+00:00"
+    },
     "5744c236-ac72-4c0d-ab89-7f35020db347": {
       "id": "5744c236-ac72-4c0d-ab89-7f35020db347",
       "title": "NeetCode - System Design for Beginners",
@@ -247,26 +510,35 @@
     }
   },
   "progress": {
+    "985e8ba5-059a-43eb-ab2e-6a1abfd3a9b2": {
+      "course_id": "985e8ba5-059a-43eb-ab2e-6a1abfd3a9b2",
+      "completed_lecture_ids": [],
+      "last_played_lecture_id": "1_1_81cb53ac87c5487fb1aad8ed0417303a",
+      "playback_positions": {
+        "1_1_81cb53ac87c5487fb1aad8ed0417303a": 1.565437
+      },
+      "notes": []
+    },
     "5744c236-ac72-4c0d-ab89-7f35020db347": {
       "course_id": "5744c236-ac72-4c0d-ab89-7f35020db347",
       "completed_lecture_ids": [
-        "3_1_631be3db35b5441ab523652e6ac294e8",
-        "2_2_48cf65aa9178406ba72412b6c773bc6b",
-        "2_1_9c12956babd24117992d5f66f5b65e37",
         "3_2_40aa8c775d6c427cba40d5fb245bbce1",
-        "3_4_5e53aa9342554fc4ab03cd4ebef38c2a",
         "1_1_890c3934c5c74484b5f0b03fb6da2c08",
-        "1_2_9284b54e47f648cbbea3ba7b34cf239a",
+        "3_1_631be3db35b5441ab523652e6ac294e8",
         "2_3_a85b79b06154473495fdf81d6df36bf3",
+        "3_3_0627f8a4326e4c5cb03d929466a03f62",
+        "3_4_5e53aa9342554fc4ab03cd4ebef38c2a",
         "1_3_7683925bcc2c47d590c30cff7dc65b93",
-        "3_3_0627f8a4326e4c5cb03d929466a03f62"
+        "1_2_9284b54e47f648cbbea3ba7b34cf239a",
+        "2_2_48cf65aa9178406ba72412b6c773bc6b",
+        "2_1_9c12956babd24117992d5f66f5b65e37"
       ],
       "last_played_lecture_id": "4_1_d45fc2347ade436f89aa4be492da84ef",
       "playback_positions": {
-        "1_1_e9c3b0f35817407190c7752d2c43c69e": 0.0,
-        "4_1_d45fc2347ade436f89aa4be492da84ef": 0.700731,
         "1_1_890c3934c5c74484b5f0b03fb6da2c08": 0.0,
-        "4_2_1a7589896aed4beba9c81e99c18f71f2": 1.010373
+        "4_2_1a7589896aed4beba9c81e99c18f71f2": 1.010373,
+        "4_1_d45fc2347ade436f89aa4be492da84ef": 1.17858,
+        "1_1_e9c3b0f35817407190c7752d2c43c69e": 0.0
       },
       "notes": []
     }
