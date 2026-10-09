@@ -57,3 +57,26 @@ export const api = {
     invoke<UserSettings>('update_settings', { settings }),
   pickFolder: () => invoke<string | null>('pick_folder'),
 };
+
+export async function listenToEvent<T>(
+  event: string,
+  handler: (payload: T) => void
+): Promise<() => void> {
+  const tauri = (window as unknown as {
+    __TAURI__?: {
+      event?: { listen: <E>(name: string, cb: (e: { payload: E }) => void) => Promise<() => void> };
+    };
+  });
+
+  if (tauri.__TAURI__?.event?.listen) {
+    return await tauri.__TAURI__.event.listen<T>(event, (e) => handler(e.payload));
+  }
+
+  try {
+    const { listen } = await import('@tauri-apps/api/event');
+    return await listen<T>(event, (e) => handler(e.payload));
+  } catch (err) {
+    console.warn(`Could not listen to event ${event}:`, err);
+    return () => {};
+  }
+}

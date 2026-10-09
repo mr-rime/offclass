@@ -7,8 +7,8 @@
   import CourseContentSidebar from './lib/components/CourseContentSidebar.svelte';
   import CourseTabs from './lib/components/CourseTabs.svelte';
   import CoursesPage from './lib/components/CoursesPage.svelte';
-  import { api } from './lib/tauri';
-  import type { Course, CourseProgress, CourseStats, CourseSummary, Lecture, Section, UserSettings } from './lib/types';
+  import { api, listenToEvent } from './lib/tauri';
+  import type { Course, CourseProgress, CourseStats, CourseSummary, Lecture, Section, UserSettings, ScanProgress } from './lib/types';
 
   // App Navigation & State
   let activeView = $state<'player' | 'library'>('library');
@@ -33,6 +33,7 @@
   let shouldAutoPlay = $state(false);
   let isImporting = $state(false);
   let rescanningCourseId = $state<string | null>(null);
+  let scanProgress = $state<ScanProgress | null>(null);
 
   onMount(async () => {
     try {
@@ -40,6 +41,10 @@
     } catch (e) {
       console.warn('Could not get streaming port:', e);
     }
+
+    listenToEvent<ScanProgress>('scan-progress', (p) => {
+      scanProgress = p;
+    }).catch(() => {});
 
     await loadSettings();
     await fetchCoursesAndOpenLast();
@@ -293,6 +298,7 @@
     try {
       const folder = await api.pickFolder();
       if (folder) {
+        scanProgress = null;
         isImporting = true;
         const detail = await api.scanCourse(folder);
         if (detail) {
@@ -304,12 +310,14 @@
       alert(`Could not import course folder: ${e}`);
     } finally {
       isImporting = false;
+      scanProgress = null;
     }
   }
 
   async function handleRescanCourse(courseId: string, event: MouseEvent) {
     event.stopPropagation();
     try {
+      scanProgress = null;
       rescanningCourseId = courseId;
       const detail = await api.rescanCourse(courseId);
       if (detail) {
@@ -322,6 +330,7 @@
       alert(`Rescan failed: ${e}`);
     } finally {
       rescanningCourseId = null;
+      scanProgress = null;
     }
   }
 
@@ -449,16 +458,34 @@
         </div>
 
         <!-- Text details -->
-        <div class="space-y-1">
-          <h3 class="text-base font-bold text-foreground">Importing Course</h3>
-          <p class="text-xs text-muted-foreground leading-relaxed">
-            Scanning directory and indexing videos & subtitles with ffprobe...
+        <div class="space-y-1.5 w-full">
+          <div class="flex items-center justify-center gap-2">
+            <h3 class="text-base font-bold text-foreground">Importing Course</h3>
+            {#if scanProgress && scanProgress.total > 0}
+              <span class="text-xs font-semibold text-primary px-2 py-0.5 rounded-md bg-primary/10 border border-primary/20 font-mono">
+                {Math.round((scanProgress.current / scanProgress.total) * 100)}%
+              </span>
+            {/if}
+          </div>
+          <p class="text-xs text-muted-foreground leading-relaxed truncate max-w-full px-1" title={scanProgress?.current_file}>
+            {#if scanProgress && scanProgress.total > 0}
+              Indexing {scanProgress.current}/{scanProgress.total}: {scanProgress.current_file}
+            {:else}
+              Scanning directory and indexing videos...
+            {/if}
           </p>
         </div>
 
-        <!-- Animated Progress Bar -->
-        <div class="w-full bg-[#22203d] h-1.5 rounded-full overflow-hidden">
-          <div class="h-full bg-primary rounded-full animate-indeterminate"></div>
+        <!-- Progress Bar Container -->
+        <div class="relative w-full bg-[#22203d] h-2 rounded-full overflow-hidden border border-border/40">
+          {#if scanProgress && scanProgress.total > 0}
+            <div
+              class="h-full bg-primary rounded-full transition-all duration-200 ease-out"
+              style="width: {Math.max(4, Math.min(100, Math.round((scanProgress.current / scanProgress.total) * 100)))}%"
+            ></div>
+          {:else}
+            <div class="animate-indeterminate bg-primary"></div>
+          {/if}
         </div>
       </div>
     </div>

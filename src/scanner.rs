@@ -133,7 +133,13 @@ pub fn probe_video_duration(path: &Path) -> u64 {
     0
 }
 
-pub fn scan_course_directory(dir_path: &Path) -> Result<Course, String> {
+pub fn scan_course_directory<F>(
+    dir_path: &Path,
+    on_progress: Option<F>,
+) -> Result<Course, String>
+where
+    F: Fn(crate::models::ScanProgress) + Send + Sync + 'static,
+{
     if !dir_path.exists() {
         return Err(format!("Path does not exist: {}", dir_path.display()));
     }
@@ -187,6 +193,17 @@ pub fn scan_course_directory(dir_path: &Path) -> Result<Course, String> {
         ));
     }
 
+    let total_videos: usize = sections_map.values().map(|v| v.len()).sum();
+
+    if let Some(ref cb) = on_progress {
+        cb(crate::models::ScanProgress {
+            current: 0,
+            total: total_videos,
+            current_file: "Discovered video files. Analyzing video metadata...".to_string(),
+            phase: "discovering".to_string(),
+        });
+    }
+
     // Sort sections naturally
     let mut section_keys: Vec<String> = sections_map.keys().cloned().collect();
     section_keys.sort_by(|a, b| {
@@ -202,6 +219,7 @@ pub fn scan_course_directory(dir_path: &Path) -> Result<Course, String> {
 
     let course_id = Uuid::new_v4().to_string();
     let mut final_sections = Vec::new();
+    let mut current_video_idx = 0;
 
     for (sec_idx, sec_key) in section_keys.into_iter().enumerate() {
         let mut video_paths = sections_map.remove(&sec_key).unwrap_or_default();
@@ -221,11 +239,21 @@ pub fn scan_course_directory(dir_path: &Path) -> Result<Course, String> {
 
         let mut lectures = Vec::new();
         for (lec_idx, vid_path) in video_paths.into_iter().enumerate() {
+            current_video_idx += 1;
             let file_name = vid_path
                 .file_name()
                 .and_then(|f| f.to_str())
                 .unwrap_or("lecture.mp4")
                 .to_string();
+
+            if let Some(ref cb) = on_progress {
+                cb(crate::models::ScanProgress {
+                    current: current_video_idx,
+                    total: total_videos,
+                    current_file: file_name.clone(),
+                    phase: "indexing".to_string(),
+                });
+            }
 
             let rel_path = vid_path
                 .strip_prefix(dir_path)
@@ -259,6 +287,15 @@ pub fn scan_course_directory(dir_path: &Path) -> Result<Course, String> {
             order: sec_idx + 1,
             lectures,
             duration_seconds: sec_duration,
+        });
+    }
+
+    if let Some(ref cb) = on_progress {
+        cb(crate::models::ScanProgress {
+            current: total_videos,
+            total: total_videos,
+            current_file: "Finalizing course indexing...".to_string(),
+            phase: "finishing".to_string(),
         });
     }
 

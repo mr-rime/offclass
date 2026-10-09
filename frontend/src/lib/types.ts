@@ -72,3 +72,11 @@ export interface UserSettings {
   volume: number;
   active_course_id: string | null;
 }
+
+export interface ScanProgress {
+  current: number;
+  total: number;
+  current_file: string;
+  phase: string;
+}
+

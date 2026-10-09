@@ -96,3 +96,12 @@ impl Default for UserSettings {
         }
     }
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ScanProgress {
+    pub current: usize,
+    pub total: usize,
+    pub current_file: String,
+    pub phase: String,
+}
+

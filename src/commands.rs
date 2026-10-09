@@ -20,18 +20,31 @@ pub async fn list_courses(db: State<'_, SharedDb>) -> Result<Vec<CourseSummary>,
 }
 
 #[tauri::command]
-pub async fn scan_course(db: State<'_, SharedDb>, path: String) -> Result<CourseDetail, String> {
+pub async fn scan_course(
+    app: tauri::AppHandle,
+    db: State<'_, SharedDb>,
+    path: String,
+) -> Result<CourseDetail, String> {
+    use tauri::Emitter;
     let path_obj = Path::new(&path);
-    let course = scan_course_directory(path_obj)?;
+    let app_handle = app.clone();
+    let course = scan_course_directory(
+        path_obj,
+        Some(move |p: crate::models::ScanProgress| {
+            let _ = app_handle.emit("scan-progress", p);
+        }),
+    )?;
     let mut db_write = db.write().await;
     db_write.add_course(course)
 }
 
 #[tauri::command]
 pub async fn rescan_course(
+    app: tauri::AppHandle,
     db: State<'_, SharedDb>,
     course_id: String,
 ) -> Result<CourseDetail, String> {
+    use tauri::Emitter;
     let root_path = {
         let db_read = db.read().await;
         db_read
@@ -43,7 +56,13 @@ pub async fn rescan_course(
     };
 
     let path_obj = Path::new(&root_path);
-    let mut scanned_course = scan_course_directory(path_obj)?;
+    let app_handle = app.clone();
+    let mut scanned_course = scan_course_directory(
+        path_obj,
+        Some(move |p: crate::models::ScanProgress| {
+            let _ = app_handle.emit("scan-progress", p);
+        }),
+    )?;
     scanned_course.id = course_id.clone();
 
     let mut db_write = db.write().await;
