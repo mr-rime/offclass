@@ -110,13 +110,22 @@
   <!-- Search Filter -->
   <div class="p-3 border-b border-border bg-[#18172c]">
     <div class="relative flex items-center">
-      <Search class="w-3.5 h-3.5 absolute left-3 text-muted-foreground pointer-events-none" />
+      <Search class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
       <Input
         type="text"
         placeholder="Search lectures in course..."
-        class="pl-9 h-8 text-xs bg-[#1e1c34] border-border focus:bg-[#22203d] transition-colors"
+        class="pl-9 {searchQuery ? 'pr-8' : ''} h-8 text-xs bg-[#1e1c34] border-border focus:bg-[#22203d] transition-colors"
         bind:value={searchQuery}
       />
+      {#if searchQuery}
+        <button
+          class="absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 rounded hover:bg-[#282548] flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+          onclick={() => (searchQuery = '')}
+          title="Clear search"
+        >
+          <X class="w-3 h-3" />
+        </button>
+      {/if}
     </div>
   </div>
 
@@ -188,16 +197,17 @@
                       <div class="absolute left-0 top-0 bottom-0 w-1 bg-primary"></div>
                     {/if}
 
-                    <!-- Checkbox Button matching image checkbox style -->
+                    <!-- Checkbox Button with distinct visible background -->
                     <button
-                      class="w-4 h-4 rounded mt-0.5 flex items-center justify-center shrink-0 transition-colors {isCompleted
-                        ? 'bg-primary border border-[#5635b5] text-white'
-                        : 'bg-[#1e1d35] border border-[#36335a] hover:border-primary'}"
+                      class="w-[18px] h-[18px] rounded-[4px] mt-0.5 flex items-center justify-center shrink-0 transition-all cursor-pointer shadow-sm {isCompleted
+                        ? 'bg-primary border border-primary text-white shadow-primary/25'
+                        : 'bg-[#282548] border border-[#4a4576] hover:bg-[#34305c] hover:border-primary text-transparent'}"
                       onclick={(e) => onToggleCompleted(lec.id, e)}
                       title={isCompleted ? 'Mark incomplete' : 'Mark complete'}
+                      aria-label={isCompleted ? 'Mark lecture as incomplete' : 'Mark lecture as completed'}
                     >
                       {#if isCompleted}
-                        <Check class="w-3 h-3 stroke-[2.5]" />
+                        <Check class="w-3.5 h-3.5 stroke-[2.8]" />
                       {/if}
                     </button>
 

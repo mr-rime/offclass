@@ -16,6 +16,8 @@
     Clock,
     CheckCircle2,
     Layers,
+    Loader2,
+    X,
   } from 'lucide-svelte';
   import { fly, fade } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
@@ -23,6 +25,8 @@
   interface Props {
     courses: CourseSummary[];
     activeCourseId: string | null;
+    isImporting?: boolean;
+    rescanningCourseId?: string | null;
     onSelectCourse: (courseId: string) => void;
     onImportCourse: () => void;
     onRescanCourse: (courseId: string, event: MouseEvent) => void;
@@ -32,6 +36,8 @@
   let {
     courses,
     activeCourseId,
+    isImporting = false,
+    rescanningCourseId = null,
     onSelectCourse,
     onImportCourse,
     onRescanCourse,
@@ -77,9 +83,20 @@
 
       <!-- Action Buttons -->
       <div class="flex items-center gap-3">
-        <Button variant="purple" size="default" class="gap-2" onclick={onImportCourse}>
-          <FolderPlus class="w-4 h-4" />
-          <span>Import Course Folder</span>
+        <Button
+          variant="purple"
+          size="default"
+          class="gap-2"
+          onclick={onImportCourse}
+          disabled={isImporting}
+        >
+          {#if isImporting}
+            <Loader2 class="w-4 h-4 animate-spin" />
+            <span>Importing...</span>
+          {:else}
+            <FolderPlus class="w-4 h-4" />
+            <span>Import Course Folder</span>
+          {/if}
         </Button>
       </div>
     </div>
@@ -132,14 +149,23 @@
     <!-- Search / Filter Bar -->
     {#if courses.length > 0}
       <div class="flex items-center justify-between gap-4">
-        <div class="relative flex-1 max-w-md">
-          <Search class="w-4 h-4 absolute left-3 text-muted-foreground pointer-events-none" />
+        <div class="relative flex-1 max-w-md flex items-center">
+          <Search class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none transition-colors" />
           <Input
             type="text"
             placeholder="Search your courses..."
-            class="pl-9 h-10 text-sm bg-card border-border focus:bg-background"
+            class="pl-10 pr-9 h-10 text-sm bg-card border-border focus:border-primary focus:bg-background rounded-lg shadow-xs"
             bind:value={searchQuery}
           />
+          {#if searchQuery}
+            <button
+              class="absolute right-2.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-md hover:bg-secondary flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              onclick={() => (searchQuery = '')}
+              title="Clear search"
+            >
+              <X class="w-3.5 h-3.5" />
+            </button>
+          {/if}
         </div>
         <span class="text-xs font-medium text-muted-foreground">
           Showing {filteredCourses.length} of {courses.length} courses
@@ -225,15 +251,21 @@
                         size="icon"
                         class="w-8 h-8 text-muted-foreground hover:text-foreground"
                         onclick={(e) => onRescanCourse(course.id, e)}
+                        disabled={rescanningCourseId === course.id || isImporting}
                         title="Rescan folder from disk"
                       >
-                        <RefreshCw class="w-3.5 h-3.5 transition-transform duration-300 hover:rotate-180" />
+                        {#if rescanningCourseId === course.id}
+                          <Loader2 class="w-3.5 h-3.5 animate-spin text-primary" />
+                        {:else}
+                          <RefreshCw class="w-3.5 h-3.5 transition-transform duration-300 hover:rotate-180" />
+                        {/if}
                       </Button>
                       <Button
                         variant="secondary"
                         size="icon"
                         class="w-8 h-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
                         onclick={(e) => onDeleteCourse(course.id, e)}
+                        disabled={rescanningCourseId === course.id || isImporting}
                         title="Remove from library"
                       >
                         <Trash2 class="w-3.5 h-3.5" />
@@ -256,9 +288,20 @@
         <p class="text-sm text-muted-foreground text-center">
           Import your local course folders containing video lessons and start watching offline.
         </p>
-        <Button variant="purple" size="default" class="mt-2 gap-2 font-semibold" onclick={onImportCourse}>
-          <FolderPlus class="w-4 h-4" />
-          <span>Import Course Folder</span>
+        <Button
+          variant="purple"
+          size="default"
+          class="mt-2 gap-2 font-semibold"
+          onclick={onImportCourse}
+          disabled={isImporting}
+        >
+          {#if isImporting}
+            <Loader2 class="w-4 h-4 animate-spin" />
+            <span>Importing Course...</span>
+          {:else}
+            <FolderPlus class="w-4 h-4" />
+            <span>Import Course Folder</span>
+          {/if}
         </Button>
       </div>
     {:else}

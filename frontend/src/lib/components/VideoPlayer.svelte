@@ -18,6 +18,8 @@
     Check,
     FolderPlus,
     Loader2,
+    Captions,
+    CaptionsOff,
   } from 'lucide-svelte';
   import { onDestroy, onMount } from 'svelte';
   import { fade, scale } from 'svelte/transition';
@@ -31,6 +33,7 @@
     savedPosition: number;
     autoPlay?: boolean;
     notes?: Note[];
+    isImporting?: boolean;
     onPositionUpdated: (sec: number) => void;
     onDurationUpdated: (sec: number) => void;
     onVideoEnded: () => void;
@@ -46,6 +49,7 @@
     savedPosition,
     autoPlay = false,
     notes = [],
+    isImporting = false,
     onPositionUpdated,
     onDurationUpdated,
     onVideoEnded,
@@ -69,6 +73,7 @@
   let isFullscreen = $state(false);
   let isWaiting = $state(false);
   let showRemainingTime = $state(false);
+  let captionsEnabled = $state(false);
 
   // UI / Controls Visibility state
   let controlsVisible = $state(true);
@@ -82,7 +87,10 @@
   let hoverPosPct = $state(0);
 
   // Center Flash Feedback Animation
-  let flashAction = $state<{ type: 'play' | 'pause' | 'rewind' | 'forward' | 'volume' | 'speed'; text?: string } | null>(null);
+  let flashAction = $state<{
+    type: 'play' | 'pause' | 'rewind' | 'forward' | 'volume' | 'speed' | 'captions';
+    text?: string;
+  } | null>(null);
   let flashTimer: ReturnType<typeof setTimeout> | null = null;
   let lastClickTime = 0;
   let singleClickTimer: ReturnType<typeof setTimeout> | null = null;
@@ -93,6 +101,12 @@
   let streamUrl = $derived(
     currentCourse && activeLecture && streamingPort > 0
       ? `http://127.0.0.1:${streamingPort}/stream/${currentCourse.id}/${activeLecture.id}`
+      : ''
+  );
+
+  let subtitleUrl = $derived(
+    currentCourse && activeLecture && streamingPort > 0
+      ? `http://127.0.0.1:${streamingPort}/subtitle/${currentCourse.id}/${activeLecture.id}`
       : ''
   );
 
@@ -147,6 +161,12 @@
     // Set playback rate & volume
     videoElement.playbackRate = playbackRate;
     videoElement.volume = isMuted ? 0 : volume;
+
+    if (videoElement.textTracks && videoElement.textTracks.length > 0) {
+      for (let i = 0; i < videoElement.textTracks.length; i++) {
+        videoElement.textTracks[i].mode = captionsEnabled ? 'showing' : 'hidden';
+      }
+    }
 
     if (autoPlay) {
       videoElement.play().then(() => {
@@ -218,15 +238,34 @@
     showControlsTemporarily();
   }
 
-  function handleVolumeChange(e: Event) {
-    const val = parseFloat((e.target as HTMLInputElement).value);
-    volume = val;
-    isMuted = val === 0;
-    if (videoElement) {
-      videoElement.volume = volume;
-      videoElement.muted = isMuted;
-    }
-    triggerFlash('volume', `${Math.round(volume * 100)}%`);
+  function handleVolumeMouseDown(e: MouseEvent) {
+    const slider = e.currentTarget as HTMLElement;
+    const rect = slider.getBoundingClientRect();
+
+    const updateVol = (clientX: number) => {
+      const pos = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      volume = pos;
+      isMuted = pos === 0;
+      if (videoElement) {
+        videoElement.volume = volume;
+        videoElement.muted = isMuted;
+      }
+      triggerFlash('volume', isMuted ? 'Muted' : `${Math.round(volume * 100)}%`);
+    };
+
+    updateVol(e.clientX);
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      updateVol(moveEvent.clientX);
+    };
+
+    const onMouseUp = () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
   }
 
   function toggleMute() {
@@ -259,6 +298,17 @@
     } catch (e) {
       console.warn('PiP failed:', e);
     }
+  }
+
+  function toggleCaptions() {
+    captionsEnabled = !captionsEnabled;
+    if (videoElement && videoElement.textTracks && videoElement.textTracks.length > 0) {
+      for (let i = 0; i < videoElement.textTracks.length; i++) {
+        videoElement.textTracks[i].mode = captionsEnabled ? 'showing' : 'hidden';
+      }
+    }
+    triggerFlash('captions', captionsEnabled ? 'Captions On' : 'Captions Off');
+    showControlsTemporarily();
   }
 
   async function toggleFullscreen() {
@@ -392,6 +442,10 @@
         e.preventDefault();
         toggleFullscreen();
         break;
+      case 'c':
+        e.preventDefault();
+        toggleCaptions();
+        break;
       case '>':
         if (e.shiftKey) {
           e.preventDefault();
@@ -473,6 +527,7 @@
     <video
       bind:this={videoElement}
       playsinline
+      crossorigin="anonymous"
       class="w-full h-full object-contain outline-none focus:outline-none"
       onloadedmetadata={handleLoadedMetadata}
       ontimeupdate={handleTimeUpdate}
@@ -489,7 +544,15 @@
       }}
       onclick={handleVideoClick}
     >
-      <track kind="captions" />
+      {#if subtitleUrl}
+        <track
+          kind="subtitles"
+          label="English"
+          srclang="en"
+          src={subtitleUrl}
+          default={captionsEnabled}
+        />
+      {/if}
     </video>
 
     <!-- Center Buffering Spinner -->
@@ -524,6 +587,8 @@
             <Volume2 class="w-6 h-6 text-primary" />
           {:else if flashAction.type === 'speed'}
             <Settings class="w-6 h-6 text-primary" />
+          {:else if flashAction.type === 'captions'}
+            <Captions class="w-6 h-6 text-primary" />
           {/if}
           {#if flashAction.text}
             <span class="text-sm font-bold tracking-wide">{flashAction.text}</span>
@@ -676,18 +741,33 @@
               {/if}
             </button>
 
-            <!-- Smooth Expandable Slider -->
-            <div class="w-0 group-hover/vol:w-20 transition-all duration-200 overflow-hidden flex items-center">
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.05"
-                value={isMuted ? 0 : volume}
-                oninput={handleVolumeChange}
-                class="w-18 h-1.5 bg-white/25 rounded-lg appearance-none cursor-pointer accent-primary"
+            <!-- Smooth Expandable Custom Volume Bar with Fill Track -->
+            <div class="w-0 group-hover/vol:w-24 transition-all duration-200 overflow-hidden flex items-center h-8 px-1">
+              <div
+                class="relative w-20 h-5 flex items-center cursor-pointer select-none group/slider"
+                onmousedown={handleVolumeMouseDown}
+                role="slider"
+                tabindex="0"
                 aria-label="Volume slider"
-              />
+                aria-valuenow={isMuted ? 0 : Math.round(volume * 100)}
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <!-- Track background -->
+                <div class="w-full h-1.5 bg-white/25 group-hover/slider:h-2 rounded-full overflow-hidden relative transition-all duration-150">
+                  <!-- Filled Volume Level -->
+                  <div
+                    class="h-full bg-white group-hover/slider:bg-primary transition-colors rounded-full shadow-sm"
+                    style="width: {isMuted ? 0 : Math.round(volume * 100)}%"
+                  ></div>
+                </div>
+
+                <!-- Volume Thumb -->
+                <div
+                  class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white shadow-md pointer-events-none group-hover/vol:scale-100 scale-0 transition-transform"
+                  style="left: {isMuted ? 0 : Math.round(volume * 100)}%"
+                ></div>
+              </div>
             </div>
           </div>
 
@@ -705,8 +785,21 @@
           </button>
         </div>
 
-        <!-- Right Controls (Speed, PiP, Fullscreen) -->
+        <!-- Right Controls (Captions, Speed, PiP, Fullscreen) -->
         <div class="flex items-center gap-1 sm:gap-2 relative">
+          <!-- Captions Toggle Button -->
+          <button
+            class="w-8 h-8 rounded-lg hover:bg-white/15 flex items-center justify-center transition-all cursor-pointer {captionsEnabled ? 'text-primary bg-primary/20 hover:bg-primary/30 border border-primary/40' : 'text-white/70 hover:text-white'}"
+            onclick={toggleCaptions}
+            title="{captionsEnabled ? 'Turn Off Captions (C)' : 'Turn On Captions (C)'}"
+          >
+            {#if captionsEnabled}
+              <Captions class="w-4 h-4" />
+            {:else}
+              <CaptionsOff class="w-4 h-4" />
+            {/if}
+          </button>
+
           <!-- Playback Speed Button & Popover -->
           <div class="relative">
             <button
@@ -776,10 +869,35 @@
       <p class="text-sm text-[#827f9e]">
         Import a course folder or select a lecture from the right sidebar to start watching offline.
       </p>
-      <Button variant="purple" size="default" class="mt-2 gap-2" onclick={onImportCourse}>
-        <FolderPlus class="w-4 h-4" />
-        <span>Select Course Folder</span>
+      <Button
+        variant="purple"
+        size="default"
+        class="mt-2 gap-2"
+        onclick={onImportCourse}
+        disabled={isImporting}
+      >
+        {#if isImporting}
+          <Loader2 class="w-4 h-4 animate-spin" />
+          <span>Importing Course...</span>
+        {:else}
+          <FolderPlus class="w-4 h-4" />
+          <span>Select Course Folder</span>
+        {/if}
       </Button>
     </div>
   {/if}
 </div>
+
+<style>
+  :global(::cue) {
+    background-color: rgba(15, 14, 26, 0.9) !important;
+    color: #ffffff !important;
+    font-family: inherit !important;
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    border-radius: 6px !important;
+    padding: 4px 10px !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9) !important;
+  }
+</style>

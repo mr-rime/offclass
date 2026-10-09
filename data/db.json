@@ -1,296 +1,272 @@
 {
   "courses": {
-    "385f7ba2-b203-41e5-87e8-1100dfbcc7f1": {
-      "id": "385f7ba2-b203-41e5-87e8-1100dfbcc7f1",
-      "title": "[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms",
-      "root_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms",
+    "5744c236-ac72-4c0d-ab89-7f35020db347": {
+      "id": "5744c236-ac72-4c0d-ab89-7f35020db347",
+      "title": "NeetCode - System Design for Beginners",
+      "root_path": "D:\\courses\\NeetCode - System Design for Beginners",
       "sections": [
         {
           "id": "sec_1",
-          "title": "1. Arrays",
+          "title": "1. Background",
           "order": 1,
           "lectures": [
             {
-              "id": "1_1_caaf4ebfe56749c48256fbd3efcfb798",
-              "title": "0. Kadanes Algo",
-              "file_name": "0. Kadanes Algo.mp4",
-              "relative_path": "1. Arrays/0. Kadanes Algo.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\1. Arrays\\0. Kadanes Algo.mp4",
-              "duration_seconds": 1302,
+              "id": "1_1_890c3934c5c74484b5f0b03fb6da2c08",
+              "title": "00 - Computer Architecture",
+              "file_name": "00 - Computer Architecture.mp4",
+              "relative_path": "1. Background/00 - Computer Architecture.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\1. Background\\00 - Computer Architecture.mp4",
+              "duration_seconds": 849,
               "order": 1
             },
             {
-              "id": "1_2_54def116be384de98a40dcdcd138bc70",
-              "title": "1. Sliding Window Fixed",
-              "file_name": "1. Sliding Window Fixed.mp4",
-              "relative_path": "1. Arrays/1. Sliding Window Fixed.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\1. Arrays\\1. Sliding Window Fixed.mp4",
-              "duration_seconds": 506,
+              "id": "1_2_9284b54e47f648cbbea3ba7b34cf239a",
+              "title": "01 - Application Architecture",
+              "file_name": "01 - Application Architecture.mp4",
+              "relative_path": "1. Background/01 - Application Architecture.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\1. Background\\01 - Application Architecture.mp4",
+              "duration_seconds": 665,
               "order": 2
             },
             {
-              "id": "1_3_71a434a578bd43c5899bef868b9259bc",
-              "title": "2. Sliding Window Variable",
-              "file_name": "2. Sliding Window Variable.mp4",
-              "relative_path": "1. Arrays/2. Sliding Window Variable.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\1. Arrays\\2. Sliding Window Variable.mp4",
-              "duration_seconds": 963,
+              "id": "1_3_7683925bcc2c47d590c30cff7dc65b93",
+              "title": "02 - Design Requirements",
+              "file_name": "02 - Design Requirements.mp4",
+              "relative_path": "1. Background/02 - Design Requirements.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\1. Background\\02 - Design Requirements.mp4",
+              "duration_seconds": 1565,
               "order": 3
-            },
-            {
-              "id": "1_4_2e68ce230de64af7887fb5fc25460bca",
-              "title": "3. Two Pointers",
-              "file_name": "3. Two Pointers.mp4",
-              "relative_path": "1. Arrays/3. Two Pointers.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\1. Arrays\\3. Two Pointers.mp4",
-              "duration_seconds": 614,
-              "order": 4
-            },
-            {
-              "id": "1_5_2a05eb1530c642a5ad4b4c6e8547c48f",
-              "title": "4. Prefix Sums",
-              "file_name": "4. Prefix Sums.mp4",
-              "relative_path": "1. Arrays/4. Prefix Sums.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\1. Arrays\\4. Prefix Sums.mp4",
-              "duration_seconds": 754,
-              "order": 5
             }
           ],
-          "duration_seconds": 4139
+          "duration_seconds": 3079
         },
         {
           "id": "sec_2",
-          "title": "2. Linked Lists",
+          "title": "2. Networking",
           "order": 2,
           "lectures": [
             {
-              "id": "2_1_a8443fcd700f446a89c450735f6a6d79",
-              "title": "1. Fast and Slow Pointers",
-              "file_name": "1. Fast and Slow Pointers.mp4",
-              "relative_path": "2. Linked Lists/1. Fast and Slow Pointers.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\2. Linked Lists\\1. Fast and Slow Pointers.mp4",
-              "duration_seconds": 1465,
+              "id": "2_1_9c12956babd24117992d5f66f5b65e37",
+              "title": "03 - Networking Basics",
+              "file_name": "03 - Networking Basics.mp4",
+              "relative_path": "2. Networking/03 - Networking Basics.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\2. Networking\\03 - Networking Basics.mp4",
+              "duration_seconds": 932,
               "order": 1
+            },
+            {
+              "id": "2_2_48cf65aa9178406ba72412b6c773bc6b",
+              "title": "04 - TCP and UDP",
+              "file_name": "04 - TCP and UDP.mp4",
+              "relative_path": "2. Networking/04 - TCP and UDP.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\2. Networking\\04 - TCP and UDP.mp4",
+              "duration_seconds": 578,
+              "order": 2
+            },
+            {
+              "id": "2_3_a85b79b06154473495fdf81d6df36bf3",
+              "title": "05 - DNS",
+              "file_name": "05 - DNS.mp4",
+              "relative_path": "2. Networking/05 - DNS.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\2. Networking\\05 - DNS.mp4",
+              "duration_seconds": 607,
+              "order": 3
             }
           ],
-          "duration_seconds": 1465
+          "duration_seconds": 2117
         },
         {
           "id": "sec_3",
-          "title": "3. Tries",
+          "title": "3. APIs",
           "order": 3,
           "lectures": [
             {
-              "id": "3_1_436022166ff647929274f7b77d89ec80",
-              "title": "1. Trie",
-              "file_name": "1. Trie.mp4",
-              "relative_path": "3. Tries/1. Trie.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\3. Tries\\1. Trie.mp4",
-              "duration_seconds": 969,
+              "id": "3_1_631be3db35b5441ab523652e6ac294e8",
+              "title": "06 - HTTP",
+              "file_name": "06 - HTTP.mp4",
+              "relative_path": "3. APIs/06 - HTTP.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\3. APIs\\06 - HTTP.mp4",
+              "duration_seconds": 1350,
               "order": 1
             },
             {
-              "id": "3_2_8d28f035954446f18854c99f361afe10",
-              "title": "2. Union Find",
-              "file_name": "2. Union Find.mp4",
-              "relative_path": "3. Tries/2. Union Find.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\3. Tries\\2. Union Find.mp4",
-              "duration_seconds": 1222,
+              "id": "3_2_40aa8c775d6c427cba40d5fb245bbce1",
+              "title": "07 - WebSockets",
+              "file_name": "07 - WebSockets.mp4",
+              "relative_path": "3. APIs/07 - WebSockets.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\3. APIs\\07 - WebSockets.mp4",
+              "duration_seconds": 537,
               "order": 2
             },
             {
-              "id": "3_3_a8cc5ef3f77a448a901e5e9d877e8128",
-              "title": "3. Segment Tree",
-              "file_name": "3. Segment Tree.mp4",
-              "relative_path": "3. Tries/3. Segment Tree.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\3. Tries\\3. Segment Tree.mp4",
-              "duration_seconds": 1634,
+              "id": "3_3_0627f8a4326e4c5cb03d929466a03f62",
+              "title": "08 - API Paradigms",
+              "file_name": "08 - API Paradigms.mp4",
+              "relative_path": "3. APIs/08 - API Paradigms.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\3. APIs\\08 - API Paradigms.mp4",
+              "duration_seconds": 1767,
               "order": 3
             },
             {
-              "id": "3_4_697bd4342a104dcdbc9621da0ec1c845",
-              "title": "4. Iterative DFS",
-              "file_name": "4. Iterative DFS.mp4",
-              "relative_path": "3. Tries/4. Iterative DFS.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\3. Tries\\4. Iterative DFS.mp4",
-              "duration_seconds": 1445,
+              "id": "3_4_5e53aa9342554fc4ab03cd4ebef38c2a",
+              "title": "09 - API Design",
+              "file_name": "09 - API Design.mp4",
+              "relative_path": "3. APIs/09 - API Design.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\3. APIs\\09 - API Design.mp4",
+              "duration_seconds": 1284,
               "order": 4
             }
           ],
-          "duration_seconds": 5270
+          "duration_seconds": 4938
         },
         {
           "id": "sec_4",
-          "title": "4. Heaps",
+          "title": "4. Caching Basics",
           "order": 4,
           "lectures": [
             {
-              "id": "4_1_ba8331c40c9c403f97504b46fd48c437",
-              "title": "1. Heaps",
-              "file_name": "1. Heaps.mp4",
-              "relative_path": "4. Heaps/1. Heaps.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\4. Heaps\\1. Heaps.mp4",
-              "duration_seconds": 1344,
+              "id": "4_1_d45fc2347ade436f89aa4be492da84ef",
+              "title": "10 - Caching",
+              "file_name": "10 - Caching.mp4",
+              "relative_path": "4. Caching Basics/10 - Caching.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\4. Caching Basics\\10 - Caching.mp4",
+              "duration_seconds": 1260,
               "order": 1
+            },
+            {
+              "id": "4_2_1a7589896aed4beba9c81e99c18f71f2",
+              "title": "11 - CDNs",
+              "file_name": "11 - CDNs.mp4",
+              "relative_path": "4. Caching Basics/11 - CDNs.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\4. Caching Basics\\11 - CDNs.mp4",
+              "duration_seconds": 672,
+              "order": 2
             }
           ],
-          "duration_seconds": 1344
+          "duration_seconds": 1932
         },
         {
           "id": "sec_5",
-          "title": "5. Backtracking",
+          "title": "5. Proxies",
           "order": 5,
           "lectures": [
             {
-              "id": "5_1_9b278be0853341989a8207a470d78a1a",
-              "title": "1. Subsets",
-              "file_name": "1. Subsets.mp4",
-              "relative_path": "5. Backtracking/1. Subsets.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\5. Backtracking\\1. Subsets.mp4",
-              "duration_seconds": 1335,
+              "id": "5_1_4ea49a18df6440fe8868e8248ec955d8",
+              "title": "12 - Proxies and Load Balancing",
+              "file_name": "12 - Proxies and Load Balancing.mp4",
+              "relative_path": "5. Proxies/12 - Proxies and Load Balancing.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\5. Proxies\\12 - Proxies and Load Balancing.mp4",
+              "duration_seconds": 823,
               "order": 1
             },
             {
-              "id": "5_2_b762c854aeb04530a46ab4921cb8cb6c",
-              "title": "2. Combinations",
-              "file_name": "2. Combinations.mp4",
-              "relative_path": "5. Backtracking/2. Combinations.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\5. Backtracking\\2. Combinations.mp4",
-              "duration_seconds": 1021,
+              "id": "5_2_61d5fbb909fa44d199e889bcb9dc7d02",
+              "title": "13 - Consistent Hashing",
+              "file_name": "13 - Consistent Hashing.mp4",
+              "relative_path": "5. Proxies/13 - Consistent Hashing.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\5. Proxies\\13 - Consistent Hashing.mp4",
+              "duration_seconds": 889,
               "order": 2
-            },
-            {
-              "id": "5_3_6e073e791c9f41f795ff13e1e30e1d4a",
-              "title": "3. Permutation",
-              "file_name": "3. Permutation.mp4",
-              "relative_path": "5. Backtracking/3. Permutation.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\5. Backtracking\\3. Permutation.mp4",
-              "duration_seconds": 1053,
-              "order": 3
             }
           ],
-          "duration_seconds": 3409
+          "duration_seconds": 1712
         },
         {
           "id": "sec_6",
-          "title": "6. Graphs",
+          "title": "6. Storage",
           "order": 6,
           "lectures": [
             {
-              "id": "6_1_64a354407b4244be96dc29224e76fdba",
-              "title": "1. Dijkstra",
-              "file_name": "1. Dijkstra.mp4",
-              "relative_path": "6. Graphs/1. Dijkstra.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\6. Graphs\\1. Dijkstra.mp4",
-              "duration_seconds": 1365,
+              "id": "6_1_76612d7e332941b6acfc93761dd3ee41",
+              "title": "14 - SQL",
+              "file_name": "14 - SQL.mp4",
+              "relative_path": "6. Storage/14 - SQL.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\6. Storage\\14 - SQL.mp4",
+              "duration_seconds": 1127,
               "order": 1
             },
             {
-              "id": "6_2_fb9cd00d8f12401f9bb05ee2eda8eabf",
-              "title": "2. Prim s",
-              "file_name": "2. Prim_s.mp4",
-              "relative_path": "6. Graphs/2. Prim_s.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\6. Graphs\\2. Prim_s.mp4",
-              "duration_seconds": 1432,
+              "id": "6_2_0c4d7652b94a46e2b995f057a9fe86f6",
+              "title": "15 - NoSQL",
+              "file_name": "15 - NoSQL.mp4",
+              "relative_path": "6. Storage/15 - NoSQL.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\6. Storage\\15 - NoSQL.mp4",
+              "duration_seconds": 1054,
               "order": 2
             },
             {
-              "id": "6_3_cdbcc0ad8c3a41de92c1fe73d39224d5",
-              "title": "3. Kruskal s",
-              "file_name": "3. Kruskal_s.mp4",
-              "relative_path": "6. Graphs/3. Kruskal_s.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\6. Graphs\\3. Kruskal_s.mp4",
-              "duration_seconds": 680,
+              "id": "6_3_23dabb5f78ec400db72bfbecbbaff121",
+              "title": "16 - Replication and Sharding",
+              "file_name": "16 - Replication and Sharding.mp4",
+              "relative_path": "6. Storage/16 - Replication and Sharding.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\6. Storage\\16 - Replication and Sharding.mp4",
+              "duration_seconds": 1012,
               "order": 3
             },
             {
-              "id": "6_4_43d70e09734c42ebbaa291113752f4eb",
-              "title": "4. Topological Sort",
-              "file_name": "4. Topological Sort.mp4",
-              "relative_path": "6. Graphs/4. Topological Sort.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\6. Graphs\\4. Topological Sort.mp4",
-              "duration_seconds": 1804,
+              "id": "6_4_da65d57457034d46bac89d80f4cdbaac",
+              "title": "17 - CAP Theorem",
+              "file_name": "17 - CAP Theorem.mp4",
+              "relative_path": "6. Storage/17 - CAP Theorem.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\6. Storage\\17 - CAP Theorem.mp4",
+              "duration_seconds": 716,
               "order": 4
+            },
+            {
+              "id": "6_5_8354b2e3cfce4bad8b89f860a28d42ec",
+              "title": "18 - Object Storage",
+              "file_name": "18 - Object Storage.mp4",
+              "relative_path": "6. Storage/18 - Object Storage.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\6. Storage\\18 - Object Storage.mp4",
+              "duration_seconds": 354,
+              "order": 5
             }
           ],
-          "duration_seconds": 5281
+          "duration_seconds": 4263
         },
         {
           "id": "sec_7",
-          "title": "7. Dynamic Programming",
+          "title": "7. Big Data",
           "order": 7,
           "lectures": [
             {
-              "id": "7_1_639383ad3a414d00ad23ab3bafb741a6",
-              "title": "1. 0-1 Knapsack",
-              "file_name": "1. 0-1 Knapsack.mp4",
-              "relative_path": "7. Dynamic Programming/1. 0-1 Knapsack.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\7. Dynamic Programming\\1. 0-1 Knapsack.mp4",
-              "duration_seconds": 1694,
+              "id": "7_1_63441625e8ff4e84a0ee601873ac9019",
+              "title": "19 - Message Queues",
+              "file_name": "19 - Message Queues.mp4",
+              "relative_path": "7. Big Data/19 - Message Queues.mp4",
+              "absolute_path": "D:\\courses\\NeetCode - System Design for Beginners\\7. Big Data\\19 - Message Queues.mp4",
+              "duration_seconds": 496,
               "order": 1
-            },
-            {
-              "id": "7_2_d81870d75ee64163b545cb7e898700aa",
-              "title": "2. Unbounded Knapsack",
-              "file_name": "2. Unbounded Knapsack.mp4",
-              "relative_path": "7. Dynamic Programming/2. Unbounded Knapsack.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\7. Dynamic Programming\\2. Unbounded Knapsack.mp4",
-              "duration_seconds": 1797,
-              "order": 2
-            },
-            {
-              "id": "7_3_cda41477f9654856bd7d683631495ab0",
-              "title": "3. LCS",
-              "file_name": "3. LCS.mp4",
-              "relative_path": "7. Dynamic Programming/3. LCS.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\7. Dynamic Programming\\3. LCS.mp4",
-              "duration_seconds": 1944,
-              "order": 3
-            },
-            {
-              "id": "7_4_31fa1cf1c67447dca121cd4cfa468a81",
-              "title": "4. Palindromes",
-              "file_name": "4. Palindromes.mp4",
-              "relative_path": "7. Dynamic Programming/4. Palindromes.mp4",
-              "absolute_path": "D:\\courses\\[FreeCoursesOnline.Me] NeetCode - Advanced Algorithms\\7. Dynamic Programming\\4. Palindromes.mp4",
-              "duration_seconds": 1016,
-              "order": 4
             }
           ],
-          "duration_seconds": 6451
+          "duration_seconds": 496
         }
       ],
-      "created_at": "2026-10-09T08:00:52.992605700+00:00",
-      "updated_at": "2026-10-09T08:00:52.992605700+00:00"
+      "created_at": "2026-10-09T09:12:30.265087800+00:00",
+      "updated_at": "2026-10-09T09:12:30.265087800+00:00"
     }
   },
   "progress": {
-    "385f7ba2-b203-41e5-87e8-1100dfbcc7f1": {
-      "course_id": "385f7ba2-b203-41e5-87e8-1100dfbcc7f1",
-      "completed_lecture_ids": [],
-      "last_played_lecture_id": "1_4_2e68ce230de64af7887fb5fc25460bca",
+    "5744c236-ac72-4c0d-ab89-7f35020db347": {
+      "course_id": "5744c236-ac72-4c0d-ab89-7f35020db347",
+      "completed_lecture_ids": [
+        "3_1_631be3db35b5441ab523652e6ac294e8",
+        "2_2_48cf65aa9178406ba72412b6c773bc6b",
+        "2_1_9c12956babd24117992d5f66f5b65e37",
+        "3_2_40aa8c775d6c427cba40d5fb245bbce1",
+        "3_4_5e53aa9342554fc4ab03cd4ebef38c2a",
+        "1_1_890c3934c5c74484b5f0b03fb6da2c08",
+        "1_2_9284b54e47f648cbbea3ba7b34cf239a",
+        "2_3_a85b79b06154473495fdf81d6df36bf3",
+        "1_3_7683925bcc2c47d590c30cff7dc65b93",
+        "3_3_0627f8a4326e4c5cb03d929466a03f62"
+      ],
+      "last_played_lecture_id": "4_1_d45fc2347ade436f89aa4be492da84ef",
       "playback_positions": {
-        "2_1_d2e4d8d64b7f4530b92ebc64f22bb2ea": 0.059648,
-        "1_1_caaf4ebfe56749c48256fbd3efcfb798": 13.42297,
-        "1_1_fffcdda370504ca9ae3bc19b390fa00c": 0.138814,
-        "5_1_a563845a75b84889acb55e45b356b677": 0.117006,
-        "2_1_2b6cb69043bb44e8abcca34fe9ba1626": 0.9357,
-        "1_1_d732af05f1de491d84459e1f33fd4878": 0.122399,
-        "1_3_71a434a578bd43c5899bef868b9259bc": 1.230005,
-        "1_3_e9c4bdec08fe4391b12f83891d782742": 8.904671,
-        "7_3_94ceefd0f9b141878aece967e84cc674": 4.239924,
-        "3_1_112d085bf5e24f0fa4987128eec3ef7b": 0.068666,
-        "1_2_9c4b07de6dd148a19263cd6fa0df900a": 0.125797,
-        "1_4_2e68ce230de64af7887fb5fc25460bca": 5.873334,
-        "1_1_2a41a3bac9e24205a361ccfd59794ec4": 294.745564,
-        "6_1_3ab686964eae461d93aa94f22fb898b2": 0.0,
-        "4_1_97ed61537f7a43248fb3ac8d6db4aeb4": 0.122576,
-        "1_2_4bb6ec8f65cd4b049f85ae934ae6c11d": 0.12897,
-        "1_1_56ada1ce97924f6ca52706a5125c0ad0": 50.900751,
-        "5_3_6e073e791c9f41f795ff13e1e30e1d4a": 4.87513,
-        "1_1_efcd695d58784f42b3f2c324bc25e680": 4.612703,
-        "1_3_7dbd35793fec40e488d1e80e271afaf2": 8.651985,
-        "1_2_54def116be384de98a40dcdcd138bc70": 5.873912
+        "1_1_e9c3b0f35817407190c7752d2c43c69e": 0.0,
+        "4_1_d45fc2347ade436f89aa4be492da84ef": 0.700731,
+        "1_1_890c3934c5c74484b5f0b03fb6da2c08": 0.0,
+        "4_2_1a7589896aed4beba9c81e99c18f71f2": 1.010373
       },
       "notes": []
     }
@@ -300,6 +276,6 @@
     "auto_play_next": true,
     "playback_speed": 1.0,
     "volume": 1.0,
-    "active_course_id": "385f7ba2-b203-41e5-87e8-1100dfbcc7f1"
+    "active_course_id": "5744c236-ac72-4c0d-ab89-7f35020db347"
   }
 }

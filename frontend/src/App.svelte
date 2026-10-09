@@ -1,5 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { fade, scale } from 'svelte/transition';
+  import { cubicOut } from 'svelte/easing';
   import Header from './lib/components/Header.svelte';
   import VideoPlayer from './lib/components/VideoPlayer.svelte';
   import CourseContentSidebar from './lib/components/CourseContentSidebar.svelte';
@@ -29,6 +31,8 @@
   let videoPlayerRef: VideoPlayer | null = $state(null);
   let currentVideoTime = $state(0);
   let shouldAutoPlay = $state(false);
+  let isImporting = $state(false);
+  let rescanningCourseId = $state<string | null>(null);
 
   onMount(async () => {
     try {
@@ -289,6 +293,7 @@
     try {
       const folder = await api.pickFolder();
       if (folder) {
+        isImporting = true;
         const detail = await api.scanCourse(folder);
         if (detail) {
           courses = await api.listCourses();
@@ -297,12 +302,15 @@
       }
     } catch (e) {
       alert(`Could not import course folder: ${e}`);
+    } finally {
+      isImporting = false;
     }
   }
 
   async function handleRescanCourse(courseId: string, event: MouseEvent) {
     event.stopPropagation();
     try {
+      rescanningCourseId = courseId;
       const detail = await api.rescanCourse(courseId);
       if (detail) {
         courses = await api.listCourses();
@@ -312,6 +320,8 @@
       }
     } catch (e) {
       alert(`Rescan failed: ${e}`);
+    } finally {
+      rescanningCourseId = null;
     }
   }
 
@@ -345,6 +355,7 @@
     stats={currentStats}
     progress={currentProgress}
     {sidebarOpen}
+    {isImporting}
     onToggleSidebar={() => (sidebarOpen = !sidebarOpen)}
     onNavigateLibrary={() => (activeView = 'library')}
     onNavigatePlayer={() => (activeView = 'player')}
@@ -357,6 +368,8 @@
     <CoursesPage
       {courses}
       activeCourseId={currentCourse?.id ?? null}
+      {isImporting}
+      {rescanningCourseId}
       onSelectCourse={(id) => loadCourse(id, true)}
       onImportCourse={handleImportCourse}
       onRescanCourse={handleRescanCourse}
@@ -373,6 +386,7 @@
           {activeLecture}
           {activeSection}
           {streamingPort}
+          {isImporting}
           autoPlay={shouldAutoPlay}
           savedPosition={(activeLecture && currentProgress?.playback_positions?.[activeLecture.id]) || 0}
           notes={currentProgress?.notes?.filter((n) => n.lecture_id === activeLecture?.id) ?? []}
@@ -410,6 +424,43 @@
         onToggleCompleted={handleToggleCompleted}
         onCloseSidebar={() => (sidebarOpen = false)}
       />
+    </div>
+  {/if}
+
+  <!-- Sleek Course Importing Backdrop Modal -->
+  {#if isImporting}
+    <div
+      class="fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4 select-none"
+      transition:fade={{ duration: 180 }}
+    >
+      <div
+        class="bg-[#161528] border border-primary/40 shadow-2xl rounded-2xl p-7 max-w-sm w-full flex flex-col items-center text-center space-y-4 relative overflow-hidden"
+        in:scale={{ start: 0.94, duration: 220, easing: cubicOut }}
+      >
+        <!-- Glowing top line -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse"></div>
+
+        <!-- Animated Logo & Spinner Ring -->
+        <div class="relative flex items-center justify-center my-1">
+          <div class="w-16 h-16 rounded-2xl bg-[#22203d] border border-border/80 flex items-center justify-center overflow-hidden shadow-lg p-2.5">
+            <img src="/logo.png" alt="OffClass" class="w-full h-full object-cover rounded-xl" />
+          </div>
+          <div class="absolute -inset-2.5 rounded-2xl border-2 border-primary/30 border-t-primary animate-spin"></div>
+        </div>
+
+        <!-- Text details -->
+        <div class="space-y-1">
+          <h3 class="text-base font-bold text-foreground">Importing Course</h3>
+          <p class="text-xs text-muted-foreground leading-relaxed">
+            Scanning directory and indexing videos & subtitles with ffprobe...
+          </p>
+        </div>
+
+        <!-- Animated Progress Bar -->
+        <div class="w-full bg-[#22203d] h-1.5 rounded-full overflow-hidden">
+          <div class="h-full bg-primary rounded-full animate-indeterminate"></div>
+        </div>
+      </div>
     </div>
   {/if}
 </div>

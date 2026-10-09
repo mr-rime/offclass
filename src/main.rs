@@ -6,6 +6,7 @@ mod media_server;
 mod models;
 mod scanner;
 mod streamer;
+mod subtitles;
 
 use commands::*;
 use db::AppDatabase;

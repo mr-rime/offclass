@@ -9,6 +9,7 @@
     Layers,
     Play,
     GraduationCap,
+    Loader2,
   } from 'lucide-svelte';
   import { fly, scale } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
@@ -19,6 +20,7 @@
     stats: CourseStats | null;
     progress: CourseProgress | null;
     sidebarOpen: boolean;
+    isImporting?: boolean;
     onToggleSidebar: () => void;
     onNavigateLibrary: () => void;
     onNavigatePlayer: () => void;
@@ -31,6 +33,7 @@
     stats,
     progress,
     sidebarOpen,
+    isImporting = false,
     onToggleSidebar,
     onNavigateLibrary,
     onNavigatePlayer,
@@ -135,9 +138,15 @@
       size="sm"
       class="gap-1.5 text-xs font-medium"
       onclick={onImportCourse}
+      disabled={isImporting}
     >
-      <FolderPlus class="w-3.5 h-3.5" />
-      <span>Import Course</span>
+      {#if isImporting}
+        <Loader2 class="w-3.5 h-3.5 animate-spin" />
+        <span>Importing...</span>
+      {:else}
+        <FolderPlus class="w-3.5 h-3.5" />
+        <span>Import Course</span>
+      {/if}
     </Button>
 
     {#if activeView === 'player'}
