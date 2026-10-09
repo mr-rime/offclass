@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "identifier": "com.offclass.player",
   "build": {
+    "beforeBuildCommand": "npm --prefix frontend run build",
     "frontendDist": "frontend/dist"
   },
   "app": {
@@ -25,12 +26,28 @@
     }
   },
   "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "publisher": "OffClass",
+    "copyright": "Copyright © 2026 OffClass",
+    "category": "Education",
+    "shortDescription": "Offline Course Player",
+    "longDescription": "OffClass is a modern offline video course player designed for distraction-free learning.",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
       "icons/128x128@2x.png",
       "icons/icon.ico",
       "icons/icon.png"
-    ]
+    ],
+    "windows": {
+      "nsis": {
+        "installerIcon": "icons/icon.ico",
+        "installMode": "currentUser",
+        "languages": [
+          "English"
+        ]
+      }
+    }
   }
 }
