@@ -27,7 +27,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": ["nsis"],
+    "targets": ["msi"],
     "publisher": "OffClass",
     "copyright": "Copyright © 2026 OffClass",
     "category": "Education",
@@ -41,6 +41,9 @@
       "icons/icon.png"
     ],
     "windows": {
+      "wix": {
+        "language": "en-US"
+      },
       "nsis": {
         "installerIcon": "icons/icon.ico",
         "installMode": "currentUser",
