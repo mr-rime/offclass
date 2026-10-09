@@ -35,6 +35,65 @@ async fn main() {
         .expect("Failed to start video streaming server");
 
     tauri::Builder::default()
+        .setup(|app| {
+            #[cfg(target_os = "windows")]
+            {
+                use tauri::Manager;
+                if let Some(window) = app.get_webview_window("main") {
+                    if let Ok(hwnd) = window.hwnd() {
+                        unsafe {
+                            #[link(name = "dwmapi")]
+                            unsafe extern "system" {
+                                fn DwmSetWindowAttribute(
+                                    hwnd: *mut std::ffi::c_void,
+                                    dwAttribute: u32,
+                                    pvAttribute: *const std::ffi::c_void,
+                                    cbAttribute: u32,
+                                ) -> i32;
+                            }
+
+                            let dark_mode: i32 = 1;
+                            // DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+                            DwmSetWindowAttribute(
+                                hwnd.0 as *mut std::ffi::c_void,
+                                20,
+                                &dark_mode as *const _ as *const std::ffi::c_void,
+                                std::mem::size_of::<i32>() as u32,
+                            );
+
+                            // DWMWA_CAPTION_COLOR = 35 (Windows 11 build 22000+)
+                            // COLORREF: 0x00BBGGRR -> #131222 = R:0x13, G:0x12, B:0x22 -> 0x00221213
+                            let caption_color: u32 = 0x00221213;
+                            DwmSetWindowAttribute(
+                                hwnd.0 as *mut std::ffi::c_void,
+                                35,
+                                &caption_color as *const _ as *const std::ffi::c_void,
+                                std::mem::size_of::<u32>() as u32,
+                            );
+
+                            // DWMWA_TEXT_COLOR = 36 (White/light text)
+                            let text_color: u32 = 0x00FAF4F5;
+                            DwmSetWindowAttribute(
+                                hwnd.0 as *mut std::ffi::c_void,
+                                36,
+                                &text_color as *const _ as *const std::ffi::c_void,
+                                std::mem::size_of::<u32>() as u32,
+                            );
+
+                            // DWMWA_BORDER_COLOR = 34
+                            let border_color: u32 = 0x0048282B;
+                            DwmSetWindowAttribute(
+                                hwnd.0 as *mut std::ffi::c_void,
+                                34,
+                                &border_color as *const _ as *const std::ffi::c_void,
+                                std::mem::size_of::<u32>() as u32,
+                            );
+                        }
+                    }
+                }
+            }
+            Ok(())
+        })
         .manage(shared_db)
         .manage(StreamPort(streaming_port))
         .invoke_handler(tauri::generate_handler![

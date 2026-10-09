@@ -19,11 +19,11 @@
   }: Props = $props();
 
   const variants = {
-    default: 'bg-primary text-primary-foreground shadow hover:opacity-90 active:scale-[0.98]',
-    purple: 'bg-[#a435f0] text-white hover:bg-[#8710d8] shadow-sm font-bold active:scale-[0.98] hover:shadow-[#a435f0]/25 hover:shadow-md',
-    destructive: 'bg-destructive text-destructive-foreground shadow-sm hover:opacity-90 active:scale-[0.98]',
-    outline: 'border border-input bg-background shadow-xs hover:bg-secondary hover:text-foreground active:scale-[0.98]',
-    secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80 active:scale-[0.98]',
+    default: 'bg-primary text-primary-foreground shadow-xs hover:opacity-90 active:scale-[0.98]',
+    purple: 'bg-primary text-primary-foreground hover:bg-[#5a32cf] font-semibold active:scale-[0.98]',
+    destructive: 'bg-destructive text-destructive-foreground shadow-xs hover:opacity-90 active:scale-[0.98]',
+    outline: 'border border-border bg-card shadow-xs hover:bg-secondary hover:text-foreground active:scale-[0.98]',
+    secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-[#2c294a] active:scale-[0.98]',
     ghost: 'hover:bg-secondary hover:text-foreground active:scale-[0.96]',
     link: 'text-primary underline-offset-4 hover:underline',
   };

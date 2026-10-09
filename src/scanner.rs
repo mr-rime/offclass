@@ -102,6 +102,37 @@ pub fn clean_lecture_title(file_name: &str) -> String {
     with_spaces.trim().to_string()
 }
 
+pub fn probe_video_duration(path: &Path) -> u64 {
+    #[cfg(target_os = "windows")]
+    use std::os::windows::process::CommandExt;
+
+    let mut cmd = std::process::Command::new("ffprobe");
+    #[cfg(target_os = "windows")]
+    cmd.creation_flags(0x08000000); // CREATE_NO_WINDOW
+
+    cmd.args([
+        "-v",
+        "error",
+        "-show_entries",
+        "format=duration",
+        "-of",
+        "default=noprint_wrappers=1:nokey=1",
+    ]);
+    cmd.arg(path);
+
+    if let Ok(output) = cmd.output() {
+        if output.status.success() {
+            let text = String::from_utf8_lossy(&output.stdout);
+            if let Ok(secs) = text.trim().parse::<f64>() {
+                if secs > 0.0 {
+                    return secs.round() as u64;
+                }
+            }
+        }
+    }
+    0
+}
+
 pub fn scan_course_directory(dir_path: &Path) -> Result<Course, String> {
     if !dir_path.exists() {
         return Err(format!("Path does not exist: {}", dir_path.display()));
@@ -204,6 +235,7 @@ pub fn scan_course_directory(dir_path: &Path) -> Result<Course, String> {
 
             let abs_path = vid_path.to_string_lossy().to_string();
             let title = clean_lecture_title(&file_name);
+            let duration = probe_video_duration(&vid_path);
 
             // Generate deterministic ID from relative path
             let lec_id = format!("{}_{}_{}", sec_idx + 1, lec_idx + 1, Uuid::new_v4().simple());
@@ -214,17 +246,19 @@ pub fn scan_course_directory(dir_path: &Path) -> Result<Course, String> {
                 file_name,
                 relative_path: rel_path,
                 absolute_path: abs_path,
-                duration_seconds: 0,
+                duration_seconds: duration,
                 order: lec_idx + 1,
             });
         }
+
+        let sec_duration: u64 = lectures.iter().map(|l| l.duration_seconds).sum();
 
         final_sections.push(Section {
             id: format!("sec_{}", sec_idx + 1),
             title: sec_title,
             order: sec_idx + 1,
             lectures,
-            duration_seconds: 0,
+            duration_seconds: sec_duration,
         });
     }
 

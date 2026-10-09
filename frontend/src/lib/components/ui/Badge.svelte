@@ -17,11 +17,11 @@
   }: Props = $props();
 
   const variants = {
-    default: 'border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80',
+    default: 'border-transparent bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
     secondary: 'border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80',
-    destructive: 'border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80',
-    outline: 'text-foreground',
-    purple: 'border-transparent bg-[#a435f0]/15 text-[#a435f0] dark:text-[#c0c4fc] font-semibold',
+    destructive: 'border-transparent bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/80',
+    outline: 'text-foreground border-border',
+    purple: 'border-transparent bg-[#362857] text-[#c0b8f0] font-semibold',
   };
 </script>
 

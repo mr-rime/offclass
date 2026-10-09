@@ -46,7 +46,7 @@ impl AppDatabase {
             DatabaseSchema::default()
         };
 
-        // Auto-repair section titles from lecture relative paths if truncated
+        // Auto-repair section titles and probe missing lecture durations
         let mut repaired = false;
         for course in schema.courses.values_mut() {
             for sec in &mut course.sections {
@@ -62,6 +62,25 @@ impl AppDatabase {
                             }
                         }
                     }
+                }
+
+                for lec in &mut sec.lectures {
+                    if lec.duration_seconds == 0 {
+                        let path = Path::new(&lec.absolute_path);
+                        if path.exists() {
+                            let dur = crate::scanner::probe_video_duration(path);
+                            if dur > 0 {
+                                lec.duration_seconds = dur;
+                                repaired = true;
+                            }
+                        }
+                    }
+                }
+
+                let sec_dur: u64 = sec.lectures.iter().map(|l| l.duration_seconds).sum();
+                if sec.duration_seconds != sec_dur {
+                    sec.duration_seconds = sec_dur;
+                    repaired = true;
                 }
             }
         }

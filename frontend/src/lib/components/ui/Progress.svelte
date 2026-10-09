@@ -20,7 +20,7 @@
   aria-valuemax={max}
 >
   <div
-    class="h-full w-full flex-1 bg-gradient-to-r from-[#a435f0] to-[#5624d0] transition-all duration-300"
+    class="h-full w-full flex-1 bg-primary rounded-full transition-all duration-300"
     style="transform: translateX(-{100 - percentage}%);"
   ></div>
 </div>

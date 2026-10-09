@@ -28,6 +28,7 @@
   let sidebarOpen = $state(true);
   let videoPlayerRef: VideoPlayer | null = $state(null);
   let currentVideoTime = $state(0);
+  let shouldAutoPlay = $state(false);
 
   onMount(async () => {
     try {
@@ -45,29 +46,16 @@
       const settings = await api.getSettings();
       if (settings) {
         userSettings = settings;
-        applyTheme(userSettings.theme);
+        applyTheme();
       }
     } catch (e) {
       console.error('Failed to load settings:', e);
     }
   }
 
-  function applyTheme(theme: 'dark' | 'light') {
-    document.documentElement.setAttribute('data-theme', theme);
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }
-
-  async function handleToggleTheme() {
-    const nextTheme = userSettings.theme === 'dark' ? 'light' : 'dark';
-    userSettings.theme = nextTheme;
-    applyTheme(nextTheme);
-    try {
-      await api.updateSettings(userSettings);
-    } catch (e) {}
+  function applyTheme() {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.classList.add('dark');
   }
 
   async function fetchCoursesAndOpenLast() {
@@ -76,7 +64,7 @@
       courses = list;
       if (list && list.length > 0) {
         const targetId = userSettings.active_course_id || list[0].id;
-        await loadCourse(targetId);
+        await loadCourse(targetId, false);
       } else {
         activeView = 'library';
       }
@@ -85,7 +73,7 @@
     }
   }
 
-  async function loadCourse(courseId: string) {
+  async function loadCourse(courseId: string, autoPlay: boolean = false) {
     try {
       const detail = await api.getCourse(courseId);
       if (detail) {
@@ -119,7 +107,7 @@
         }
 
         if (targetLecture && targetSection) {
-          selectLecture(targetLecture, targetSection);
+          selectLecture(targetLecture, targetSection, autoPlay);
         }
 
         // Navigate to player
@@ -132,9 +120,32 @@
     }
   }
 
-  function selectLecture(lecture: Lecture, section: Section) {
+  function selectLecture(lecture: Lecture, section: Section, autoPlay: boolean = false) {
+    if (currentCourse && activeLecture && videoPlayerRef) {
+      const cur = videoPlayerRef.getCurrentTime();
+      if (cur > 0) {
+        handlePositionUpdated(cur);
+      }
+    }
+
+    shouldAutoPlay = autoPlay;
     activeLecture = lecture;
     activeSection = section;
+
+    if (currentCourse) {
+      if (!currentProgress) {
+        currentProgress = {
+          course_id: currentCourse.id,
+          completed_lecture_ids: [],
+          last_played_lecture_id: lecture.id,
+          playback_positions: {},
+          notes: [],
+        };
+      }
+      currentProgress.last_played_lecture_id = lecture.id;
+      const existingPos = currentProgress.playback_positions[lecture.id] || 0;
+      api.updatePosition(currentCourse.id, lecture.id, existingPos).catch(() => {});
+    }
   }
 
   async function handleToggleCompleted(lectureId: string, event: MouseEvent) {
@@ -184,16 +195,25 @@
   }
 
   function handleDurationUpdated(durSec: number) {
-    if (currentCourse && activeLecture) {
+    if (currentCourse && activeLecture && durSec > 0) {
       activeLecture.duration_seconds = durSec;
+      if (activeSection) {
+        activeSection.duration_seconds = activeSection.lectures.reduce(
+          (acc, l) => acc + (l.duration_seconds || 0),
+          0
+        );
+      }
       api.updateDuration(currentCourse.id, activeLecture.id, durSec).catch(() => {});
     }
   }
 
   function handleVideoEnded() {
-    if (activeLecture && currentProgress) {
+    if (activeLecture && currentProgress && currentCourse) {
       if (!currentProgress.completed_lecture_ids.includes(activeLecture.id)) {
         handleToggleCompleted(activeLecture.id, new MouseEvent('click'));
+      }
+      if (activeLecture.duration_seconds > 0) {
+        handlePositionUpdated(activeLecture.duration_seconds);
       }
       if (userSettings.auto_play_next) {
         playNextLecture();
@@ -207,7 +227,7 @@
     for (const s of currentCourse.sections) {
       for (const l of s.lectures) {
         if (found) {
-          selectLecture(l, s);
+          selectLecture(l, s, true);
           return;
         }
         if (l.id === activeLecture.id) {
@@ -254,7 +274,7 @@
       for (const s of currentCourse.sections) {
         for (const l of s.lectures) {
           if (l.id === lectureId) {
-            selectLecture(l, s);
+            selectLecture(l, s, true);
             setTimeout(() => {
               videoPlayerRef?.seekTo(timestamp);
             }, 300);
@@ -324,9 +344,7 @@
     {currentCourse}
     stats={currentStats}
     progress={currentProgress}
-    theme={userSettings.theme}
     {sidebarOpen}
-    onToggleTheme={handleToggleTheme}
     onToggleSidebar={() => (sidebarOpen = !sidebarOpen)}
     onNavigateLibrary={() => (activeView = 'library')}
     onNavigatePlayer={() => (activeView = 'player')}
@@ -339,7 +357,7 @@
     <CoursesPage
       {courses}
       activeCourseId={currentCourse?.id ?? null}
-      onSelectCourse={loadCourse}
+      onSelectCourse={(id) => loadCourse(id, true)}
       onImportCourse={handleImportCourse}
       onRescanCourse={handleRescanCourse}
       onDeleteCourse={handleDeleteCourse}
@@ -355,10 +373,13 @@
           {activeLecture}
           {activeSection}
           {streamingPort}
+          autoPlay={shouldAutoPlay}
           savedPosition={(activeLecture && currentProgress?.playback_positions?.[activeLecture.id]) || 0}
+          notes={currentProgress?.notes?.filter((n) => n.lecture_id === activeLecture?.id) ?? []}
           onPositionUpdated={handlePositionUpdated}
           onDurationUpdated={handleDurationUpdated}
           onVideoEnded={handleVideoEnded}
+          onNextLecture={playNextLecture}
           onImportCourse={handleImportCourse}
         />
 
@@ -385,7 +406,7 @@
         progress={currentProgress}
         {activeLecture}
         isOpen={sidebarOpen}
-        onSelectLecture={selectLecture}
+        onSelectLecture={(lec, sec) => selectLecture(lec, sec, true)}
         onToggleCompleted={handleToggleCompleted}
         onCloseSidebar={() => (sidebarOpen = false)}
       />
