@@ -1,4 +1,2921 @@
 {
-  "courses": {},
-  "progress": {}
+  "courses": {
+    "e5525925-6c6d-4642-9b25-ab3631c746a5": {
+      "id": "e5525925-6c6d-4642-9b25-ab3631c746a5",
+      "title": "Python Data Structures & Algorithms + LEETCODE Exercises",
+      "root_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises",
+      "sections": [
+        {
+          "id": "sec_1",
+          "title": "1 - -- Start Here",
+          "order": 1,
+          "lectures": [
+            {
+              "id": "1_1_b1f0ada15f4e466c9499b3e4dce0a5a6",
+              "title": "1. Overview (Please Watch)",
+              "file_name": "1. Overview (Please Watch).mp4",
+              "relative_path": "1 - -- Start Here/1. Overview (Please Watch).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\1 - -- Start Here\\1. Overview (Please Watch).mp4",
+              "duration_seconds": 377,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "1_2_fb04b06cd1dc4434adbee78452b76774",
+              "title": "2. Code Editor",
+              "file_name": "2. Code Editor.mp4",
+              "relative_path": "1 - -- Start Here/2. Code Editor.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\1 - -- Start Here\\2. Code Editor.mp4",
+              "duration_seconds": 716,
+              "order": 2,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1093
+        },
+        {
+          "id": "sec_2",
+          "title": "2 - Big O",
+          "order": 2,
+          "lectures": [
+            {
+              "id": "2_1_7cb6fd0229c64326b6e37f57c8f4bd1b",
+              "title": "1. Big O O(n)",
+              "file_name": "1. Big O O(n).html",
+              "relative_path": "2 - Big O/1. Big O O(n).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\1. Big O O(n).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "2_2_39a78dd611b6411fbf98c2a5d4705552",
+              "title": "1. Big O",
+              "file_name": "1. Big O.html",
+              "relative_path": "2 - Big O/1. Big O.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\1. Big O.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "2_3_5838de87fb5647d38b655082f799183a",
+              "title": "1. Understanding and Comparing Algorithmic Efficiencies (O(n) vs O(n²))",
+              "file_name": "1. Understanding and Comparing Algorithmic Efficiencies (O(n) vs O(n²)).html",
+              "relative_path": "2 - Big O/1. Understanding and Comparing Algorithmic Efficiencies (O(n) vs O(n²)).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\1. Understanding and Comparing Algorithmic Efficiencies (O(n) vs O(n²)).html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "2_4_6ab4794f0a834cd7907cd5947ec8bc33",
+              "title": "2. Big O O(n^2)",
+              "file_name": "2. Big O O(n^2).html",
+              "relative_path": "2 - Big O/2. Big O O(n^2).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\2. Big O O(n^2).html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "2_5_898563306f8a48a7bdeb3c2ab4bc6027",
+              "title": "3. Big O Intro",
+              "file_name": "3. Big O Intro.mp4",
+              "relative_path": "2 - Big O/3. Big O Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\3. Big O Intro.mp4",
+              "duration_seconds": 176,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "2_6_502b7b99b5c040f79722738bc1c53a3f",
+              "title": "4. Big O Worst Case",
+              "file_name": "4. Big O Worst Case.mp4",
+              "relative_path": "2 - Big O/4. Big O Worst Case.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\4. Big O Worst Case.mp4",
+              "duration_seconds": 94,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "2_7_5aa0e8514da640b8b0a938e034d5729c",
+              "title": "5. Big O O(n)",
+              "file_name": "5. Big O O(n).mp4",
+              "relative_path": "2 - Big O/5. Big O O(n).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\5. Big O O(n).mp4",
+              "duration_seconds": 116,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "2_8_9b7d5ecce0d145d7a7296856f99b8576",
+              "title": "6. Big O Drop Constants",
+              "file_name": "6. Big O Drop Constants.mp4",
+              "relative_path": "2 - Big O/6. Big O Drop Constants.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\6. Big O Drop Constants.mp4",
+              "duration_seconds": 103,
+              "order": 8,
+              "item_type": "video"
+            },
+            {
+              "id": "2_9_e588f6beecc240c6bcebd9bb7969706d",
+              "title": "7. Big O O(n^2)",
+              "file_name": "7. Big O O(n^2).mp4",
+              "relative_path": "2 - Big O/7. Big O O(n^2).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\7. Big O O(n^2).mp4",
+              "duration_seconds": 92,
+              "order": 9,
+              "item_type": "video"
+            },
+            {
+              "id": "2_10_da82d5a9a41540afab8204431885110c",
+              "title": "8. Big O Drop Non-Dominants",
+              "file_name": "8. Big O Drop Non-Dominants.mp4",
+              "relative_path": "2 - Big O/8. Big O Drop Non-Dominants.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\8. Big O Drop Non-Dominants.mp4",
+              "duration_seconds": 131,
+              "order": 10,
+              "item_type": "video"
+            },
+            {
+              "id": "2_11_2b9b1ef507cd46e6b4d1686901c0d808",
+              "title": "9. Big O O(1)",
+              "file_name": "9. Big O O(1).mp4",
+              "relative_path": "2 - Big O/9. Big O O(1).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\9. Big O O(1).mp4",
+              "duration_seconds": 104,
+              "order": 11,
+              "item_type": "video"
+            },
+            {
+              "id": "2_12_0eb72103ac0b43968d7a475bc93000b3",
+              "title": "10. Big O O(log n)",
+              "file_name": "10. Big O O(log n).mp4",
+              "relative_path": "2 - Big O/10. Big O O(log n).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\10. Big O O(log n).mp4",
+              "duration_seconds": 252,
+              "order": 12,
+              "item_type": "video"
+            },
+            {
+              "id": "2_13_5be013715741402ea3103b831f41bb45",
+              "title": "11. Big O Different Terms for Inputs",
+              "file_name": "11. Big O Different Terms for Inputs.mp4",
+              "relative_path": "2 - Big O/11. Big O Different Terms for Inputs.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\11. Big O Different Terms for Inputs.mp4",
+              "duration_seconds": 115,
+              "order": 13,
+              "item_type": "video"
+            },
+            {
+              "id": "2_14_4b37339525f846f898aae0dae9c9238a",
+              "title": "12. Big O Lists",
+              "file_name": "12. Big O Lists.mp4",
+              "relative_path": "2 - Big O/12. Big O Lists.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\12. Big O Lists.mp4",
+              "duration_seconds": 255,
+              "order": 14,
+              "item_type": "video"
+            },
+            {
+              "id": "2_15_5e57678fb2c04940a17b586a597543e8",
+              "title": "13. Big O Wrap Up",
+              "file_name": "13. Big O Wrap Up.mp4",
+              "relative_path": "2 - Big O/13. Big O Wrap Up.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\2 - Big O\\13. Big O Wrap Up.mp4",
+              "duration_seconds": 408,
+              "order": 15,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1846
+        },
+        {
+          "id": "sec_3",
+          "title": "3 - Classes & Pointers",
+          "order": 3,
+          "lectures": [
+            {
+              "id": "3_1_c6cec00437fb4bb5a499d3dc8e60ad88",
+              "title": "14. Classes",
+              "file_name": "14. Classes.mp4",
+              "relative_path": "3 - Classes & Pointers/14. Classes.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\3 - Classes & Pointers\\14. Classes.mp4",
+              "duration_seconds": 361,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "3_2_3e1b608cdb4147fe90cfef2c2259b7ac",
+              "title": "15. Pointers",
+              "file_name": "15. Pointers.mp4",
+              "relative_path": "3 - Classes & Pointers/15. Pointers.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\3 - Classes & Pointers\\15. Pointers.mp4",
+              "duration_seconds": 520,
+              "order": 2,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 881
+        },
+        {
+          "id": "sec_4",
+          "title": "4 - Linked Lists",
+          "order": 4,
+          "lectures": [
+            {
+              "id": "4_1_065f30adca944c5890842b9aacf46857",
+              "title": "2. Linked List Big O",
+              "file_name": "2. Linked List Big O.html",
+              "relative_path": "4 - Linked Lists/2. Linked List Big O.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\2. Linked List Big O.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "4_2_1f0f4af9b7734a1fbf2beb2eeb89c989",
+              "title": "16. Linked List Intro",
+              "file_name": "16. Linked List Intro.mp4",
+              "relative_path": "4 - Linked Lists/16. Linked List Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\16. Linked List Intro.mp4",
+              "duration_seconds": 138,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "4_3_98e13314cdb34c9f8ccbe6ed5bdd105f",
+              "title": "17. LL Big O",
+              "file_name": "17. LL Big O.mp4",
+              "relative_path": "4 - Linked Lists/17. LL Big O.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\17. LL Big O.mp4",
+              "duration_seconds": 364,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "4_4_0a4060646ce84a67861cd5b5d4752265",
+              "title": "18. LL Under the Hood",
+              "file_name": "18. LL Under the Hood.mp4",
+              "relative_path": "4 - Linked Lists/18. LL Under the Hood.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\18. LL Under the Hood.mp4",
+              "duration_seconds": 210,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "4_5_036f36a0bd7c4635b6cc7591a78ef9dc",
+              "title": "19. LL Constructor",
+              "file_name": "19. LL Constructor.mp4",
+              "relative_path": "4 - Linked Lists/19. LL Constructor.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\19. LL Constructor.mp4",
+              "duration_seconds": 395,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "4_6_a7cb97cec06a4f15ae258a467023e02a",
+              "title": "20. Coding Exercises (Important)",
+              "file_name": "20. Coding Exercises (Important).html",
+              "relative_path": "4 - Linked Lists/20. Coding Exercises (Important).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\20. Coding Exercises (Important).html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            },
+            {
+              "id": "4_7_a93a2a56fa3043ad97bc94d9e4168136",
+              "title": "21. LL Print List",
+              "file_name": "21. LL Print List.mp4",
+              "relative_path": "4 - Linked Lists/21. LL Print List.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\21. LL Print List.mp4",
+              "duration_seconds": 82,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "4_8_e910a9c2fbec4a09b0f01a231baa3721",
+              "title": "22. LL Append",
+              "file_name": "22. LL Append.mp4",
+              "relative_path": "4 - Linked Lists/22. LL Append.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\22. LL Append.mp4",
+              "duration_seconds": 333,
+              "order": 8,
+              "item_type": "video"
+            },
+            {
+              "id": "4_9_27e305b6ef1d4f619316444d520359d0",
+              "title": "23. LL Pop Intro",
+              "file_name": "23. LL Pop Intro.mp4",
+              "relative_path": "4 - Linked Lists/23. LL Pop Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\23. LL Pop Intro.mp4",
+              "duration_seconds": 288,
+              "order": 9,
+              "item_type": "video"
+            },
+            {
+              "id": "4_10_7deb581685c24e0785ee6bb8e838903c",
+              "title": "24. LL Pop Code",
+              "file_name": "24. LL Pop Code.mp4",
+              "relative_path": "4 - Linked Lists/24. LL Pop Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\24. LL Pop Code.mp4",
+              "duration_seconds": 523,
+              "order": 10,
+              "item_type": "video"
+            },
+            {
+              "id": "4_11_c7cd7615e3964f1b85addbd1d03ce76b",
+              "title": "25. LL Prepend",
+              "file_name": "25. LL Prepend.mp4",
+              "relative_path": "4 - Linked Lists/25. LL Prepend.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\25. LL Prepend.mp4",
+              "duration_seconds": 260,
+              "order": 11,
+              "item_type": "video"
+            },
+            {
+              "id": "4_12_3a13146cd393442d8655e4b1334773eb",
+              "title": "26. LL Pop First",
+              "file_name": "26. LL Pop First.mp4",
+              "relative_path": "4 - Linked Lists/26. LL Pop First.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\26. LL Pop First.mp4",
+              "duration_seconds": 326,
+              "order": 12,
+              "item_type": "video"
+            },
+            {
+              "id": "4_13_4a60a14ebcd447738d2bbeff8311a3e2",
+              "title": "27. LL Get",
+              "file_name": "27. LL Get.mp4",
+              "relative_path": "4 - Linked Lists/27. LL Get.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\27. LL Get.mp4",
+              "duration_seconds": 280,
+              "order": 13,
+              "item_type": "video"
+            },
+            {
+              "id": "4_14_e43d52102fc9499692f53c013eefc196",
+              "title": "28. LL Set",
+              "file_name": "28. LL Set.mp4",
+              "relative_path": "4 - Linked Lists/28. LL Set.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\28. LL Set.mp4",
+              "duration_seconds": 293,
+              "order": 14,
+              "item_type": "video"
+            },
+            {
+              "id": "4_15_60933bce3dac412b92aaac7e9548e270",
+              "title": "29. LL Insert",
+              "file_name": "29. LL Insert.mp4",
+              "relative_path": "4 - Linked Lists/29. LL Insert.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\29. LL Insert.mp4",
+              "duration_seconds": 464,
+              "order": 15,
+              "item_type": "video"
+            },
+            {
+              "id": "4_16_92f00f84f03f429da4de1453f4860c7a",
+              "title": "30. LL Remove",
+              "file_name": "30. LL Remove.mp4",
+              "relative_path": "4 - Linked Lists/30. LL Remove.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\30. LL Remove.mp4",
+              "duration_seconds": 432,
+              "order": 16,
+              "item_type": "video"
+            },
+            {
+              "id": "4_17_4ab01474da19471caf189b8136b1e962",
+              "title": "31. LL Reverse",
+              "file_name": "31. LL Reverse.mp4",
+              "relative_path": "4 - Linked Lists/31. LL Reverse.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\4 - Linked Lists\\31. LL Reverse.mp4",
+              "duration_seconds": 408,
+              "order": 17,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 4796
+        },
+        {
+          "id": "sec_5",
+          "title": "5 - LL Coding Exercises",
+          "order": 5,
+          "lectures": [
+            {
+              "id": "5_1_108bf6ad455148ee805cdc992416d1a4",
+              "title": "3. LL Constructor",
+              "file_name": "3. LL Constructor.html",
+              "relative_path": "5 - LL Coding Exercises/3. LL Constructor.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\3. LL Constructor.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "5_2_49f097bbcac24a88bff5735c6d44d010",
+              "title": "4. LL Print List",
+              "file_name": "4. LL Print List.html",
+              "relative_path": "5 - LL Coding Exercises/4. LL Print List.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\4. LL Print List.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "5_3_1f6a9aa19ca9445a87082d39a095c254",
+              "title": "5. LL Append",
+              "file_name": "5. LL Append.html",
+              "relative_path": "5 - LL Coding Exercises/5. LL Append.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\5. LL Append.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "5_4_a5415f4f61bb451db78c64e126a7013f",
+              "title": "6. LL Pop",
+              "file_name": "6. LL Pop.html",
+              "relative_path": "5 - LL Coding Exercises/6. LL Pop.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\6. LL Pop.html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "5_5_2984d5fd67284a37b2bc66516fcdd1f0",
+              "title": "7. LL Prepend",
+              "file_name": "7. LL Prepend.html",
+              "relative_path": "5 - LL Coding Exercises/7. LL Prepend.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\7. LL Prepend.html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "5_6_6b7bbd034ba94d76bbaac69a5902d6ee",
+              "title": "8. LL Pop First",
+              "file_name": "8. LL Pop First.html",
+              "relative_path": "5 - LL Coding Exercises/8. LL Pop First.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\8. LL Pop First.html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            },
+            {
+              "id": "5_7_1d643cc65a3c4d3596f758f061b576d4",
+              "title": "9. LL Get",
+              "file_name": "9. LL Get.html",
+              "relative_path": "5 - LL Coding Exercises/9. LL Get.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\9. LL Get.html",
+              "duration_seconds": 0,
+              "order": 7,
+              "item_type": "html"
+            },
+            {
+              "id": "5_8_2dbab8544be448eda3b5ba29c72aa531",
+              "title": "10. LL Set",
+              "file_name": "10. LL Set.html",
+              "relative_path": "5 - LL Coding Exercises/10. LL Set.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\10. LL Set.html",
+              "duration_seconds": 0,
+              "order": 8,
+              "item_type": "html"
+            },
+            {
+              "id": "5_9_8b4bf5cba24c44cc9c28c83c133585c4",
+              "title": "11. LL Insert",
+              "file_name": "11. LL Insert.html",
+              "relative_path": "5 - LL Coding Exercises/11. LL Insert.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\11. LL Insert.html",
+              "duration_seconds": 0,
+              "order": 9,
+              "item_type": "html"
+            },
+            {
+              "id": "5_10_90e0bbe8d5f5430f98eb44823f1dd893",
+              "title": "12. LL Remove",
+              "file_name": "12. LL Remove.html",
+              "relative_path": "5 - LL Coding Exercises/12. LL Remove.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\12. LL Remove.html",
+              "duration_seconds": 0,
+              "order": 10,
+              "item_type": "html"
+            },
+            {
+              "id": "5_11_0d2abb9e38dd40dfad38d337e6daec97",
+              "title": "13. LL Reverse",
+              "file_name": "13. LL Reverse.html",
+              "relative_path": "5 - LL Coding Exercises/13. LL Reverse.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\5 - LL Coding Exercises\\13. LL Reverse.html",
+              "duration_seconds": 0,
+              "order": 11,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_6",
+          "title": "6 - LL Interview LeetCode Exercises",
+          "order": 6,
+          "lectures": [
+            {
+              "id": "6_1_d2c2314f977d4741b454b5fb649bdc7a",
+              "title": "14. LL Find Middle Node ( Interview Question)",
+              "file_name": "14. LL Find Middle Node ( Interview Question).html",
+              "relative_path": "6 - LL Interview LeetCode Exercises/14. LL Find Middle Node ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\14. LL Find Middle Node ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "6_2_e9e18759bd8a4005bd78154a8f14dad1",
+              "title": "15. LL Has Loop ( Interview Question)",
+              "file_name": "15. LL Has Loop ( Interview Question).html",
+              "relative_path": "6 - LL Interview LeetCode Exercises/15. LL Has Loop ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\15. LL Has Loop ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "6_3_429d772980744e7aa3ad6edcf386d5fb",
+              "title": "16. LL Find Kth Node From End ( Interview Question)",
+              "file_name": "16. LL Find Kth Node From End ( Interview Question).html",
+              "relative_path": "6 - LL Interview LeetCode Exercises/16. LL Find Kth Node From End ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\16. LL Find Kth Node From End ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "6_4_1fd4b86429ef49f39bb02973bf68cdfe",
+              "title": "17. LL Remove Duplicates ( Interview Question)",
+              "file_name": "17. LL Remove Duplicates ( Interview Question).html",
+              "relative_path": "6 - LL Interview LeetCode Exercises/17. LL Remove Duplicates ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\17. LL Remove Duplicates ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "6_5_76eb8e5d0c56430d9a502900daad3928",
+              "title": "18. LL Binary to Decimal ( Interview Question)",
+              "file_name": "18. LL Binary to Decimal ( Interview Question).html",
+              "relative_path": "6 - LL Interview LeetCode Exercises/18. LL Binary to Decimal ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\18. LL Binary to Decimal ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "6_6_4286d40f1d39453fabfcaa4b04d363b1",
+              "title": "19. LL Partition List ( Interview Question)",
+              "file_name": "19. LL Partition List ( Interview Question).html",
+              "relative_path": "6 - LL Interview LeetCode Exercises/19. LL Partition List ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\19. LL Partition List ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            },
+            {
+              "id": "6_7_f330212f87d4439baeba1ef81664d595",
+              "title": "20. LL Reverse Between ( Interview Question)",
+              "file_name": "20. LL Reverse Between ( Interview Question).html",
+              "relative_path": "6 - LL Interview LeetCode Exercises/20. LL Reverse Between ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\20. LL Reverse Between ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 7,
+              "item_type": "html"
+            },
+            {
+              "id": "6_8_2e7c5b782aa14a1493dc14e77f893bc5",
+              "title": "21. LL Swap Nodes in Pairs ( Interview Question)",
+              "file_name": "21. LL Swap Nodes in Pairs ( Interview Question).html",
+              "relative_path": "6 - LL Interview LeetCode Exercises/21. LL Swap Nodes in Pairs ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\21. LL Swap Nodes in Pairs ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 8,
+              "item_type": "html"
+            },
+            {
+              "id": "6_9_db0080a1dae54bb88a5cf2d916f6a086",
+              "title": "32. LL Find Middle Node",
+              "file_name": "32. LL Find Middle Node.mp4",
+              "relative_path": "6 - LL Interview LeetCode Exercises/32. LL Find Middle Node.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\32. LL Find Middle Node.mp4",
+              "duration_seconds": 210,
+              "order": 9,
+              "item_type": "video"
+            },
+            {
+              "id": "6_10_aa362944f24c4f66bebaa08708c5a23b",
+              "title": "33. LL Has Loop",
+              "file_name": "33. LL Has Loop.mp4",
+              "relative_path": "6 - LL Interview LeetCode Exercises/33. LL Has Loop.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\33. LL Has Loop.mp4",
+              "duration_seconds": 243,
+              "order": 10,
+              "item_type": "video"
+            },
+            {
+              "id": "6_11_14ff962d56724bb8b2c6f4df45302b34",
+              "title": "34. LL Find Kth Node from End",
+              "file_name": "34. LL Find Kth Node from End.mp4",
+              "relative_path": "6 - LL Interview LeetCode Exercises/34. LL Find Kth Node from End.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\34. LL Find Kth Node from End.mp4",
+              "duration_seconds": 102,
+              "order": 11,
+              "item_type": "video"
+            },
+            {
+              "id": "6_12_3bc888b82e7e49308911bde40673bd42",
+              "title": "35. LL Remove Duplicates",
+              "file_name": "35. LL Remove Duplicates.mp4",
+              "relative_path": "6 - LL Interview LeetCode Exercises/35. LL Remove Duplicates.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\35. LL Remove Duplicates.mp4",
+              "duration_seconds": 205,
+              "order": 12,
+              "item_type": "video"
+            },
+            {
+              "id": "6_13_61f73eae6310484886a1f5719e844467",
+              "title": "36. LL Binary to Decimal",
+              "file_name": "36. LL Binary to Decimal.mp4",
+              "relative_path": "6 - LL Interview LeetCode Exercises/36. LL Binary to Decimal.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\36. LL Binary to Decimal.mp4",
+              "duration_seconds": 378,
+              "order": 13,
+              "item_type": "video"
+            },
+            {
+              "id": "6_14_96b26629d6154b049fda9f6e5c221fb0",
+              "title": "37. LL Partition List",
+              "file_name": "37. LL Partition List.mp4",
+              "relative_path": "6 - LL Interview LeetCode Exercises/37. LL Partition List.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\37. LL Partition List.mp4",
+              "duration_seconds": 276,
+              "order": 14,
+              "item_type": "video"
+            },
+            {
+              "id": "6_15_390f44c443e74f51abd0053d705022ce",
+              "title": "38. LL Reverse Between",
+              "file_name": "38. LL Reverse Between.mp4",
+              "relative_path": "6 - LL Interview LeetCode Exercises/38. LL Reverse Between.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\38. LL Reverse Between.mp4",
+              "duration_seconds": 404,
+              "order": 15,
+              "item_type": "video"
+            },
+            {
+              "id": "6_16_f136397dc79d4b52b4af013d2e08fbea",
+              "title": "39. LL Swap Nodes in Pairs",
+              "file_name": "39. LL Swap Nodes in Pairs.mp4",
+              "relative_path": "6 - LL Interview LeetCode Exercises/39. LL Swap Nodes in Pairs.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\6 - LL Interview LeetCode Exercises\\39. LL Swap Nodes in Pairs.mp4",
+              "duration_seconds": 267,
+              "order": 16,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 2085
+        },
+        {
+          "id": "sec_7",
+          "title": "7 - Doubly Linked Lists",
+          "order": 7,
+          "lectures": [
+            {
+              "id": "7_1_49fd3a0185474724b6a7c3df67830647",
+              "title": "40. DLL Constructor",
+              "file_name": "40. DLL Constructor.mp4",
+              "relative_path": "7 - Doubly Linked Lists/40. DLL Constructor.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\40. DLL Constructor.mp4",
+              "duration_seconds": 211,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "7_2_7397e39403f24a838dbd5a39cb930cb9",
+              "title": "41. DLL Append",
+              "file_name": "41. DLL Append.mp4",
+              "relative_path": "7 - Doubly Linked Lists/41. DLL Append.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\41. DLL Append.mp4",
+              "duration_seconds": 245,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "7_3_6a6c371e89894a209b73ac797e61ed02",
+              "title": "42. DLL Pop",
+              "file_name": "42. DLL Pop.mp4",
+              "relative_path": "7 - Doubly Linked Lists/42. DLL Pop.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\42. DLL Pop.mp4",
+              "duration_seconds": 464,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "7_4_15acea15ddb84cb9ac47699bf329a273",
+              "title": "43. DLL Prepend",
+              "file_name": "43. DLL Prepend.mp4",
+              "relative_path": "7 - Doubly Linked Lists/43. DLL Prepend.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\43. DLL Prepend.mp4",
+              "duration_seconds": 213,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "7_5_bfd77f3d593a4bbab799e89b1efcb5aa",
+              "title": "44. DLL Pop First",
+              "file_name": "44. DLL Pop First.mp4",
+              "relative_path": "7 - Doubly Linked Lists/44. DLL Pop First.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\44. DLL Pop First.mp4",
+              "duration_seconds": 278,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "7_6_937cbd13c25a419a81e88a67d2d26c0e",
+              "title": "45. DLL Get",
+              "file_name": "45. DLL Get.mp4",
+              "relative_path": "7 - Doubly Linked Lists/45. DLL Get.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\45. DLL Get.mp4",
+              "duration_seconds": 373,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "7_7_595d2473a9ea4fd59f208998e5764bab",
+              "title": "46. DLL Set",
+              "file_name": "46. DLL Set.mp4",
+              "relative_path": "7 - Doubly Linked Lists/46. DLL Set.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\46. DLL Set.mp4",
+              "duration_seconds": 243,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "7_8_0fe1664e90554dffaca9f3d473601205",
+              "title": "47. DLL Insert",
+              "file_name": "47. DLL Insert.mp4",
+              "relative_path": "7 - Doubly Linked Lists/47. DLL Insert.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\47. DLL Insert.mp4",
+              "duration_seconds": 310,
+              "order": 8,
+              "item_type": "video"
+            },
+            {
+              "id": "7_9_082535882ad74c1fb0dc77e2c0f9e315",
+              "title": "48. DLL Remove",
+              "file_name": "48. DLL Remove.mp4",
+              "relative_path": "7 - Doubly Linked Lists/48. DLL Remove.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\7 - Doubly Linked Lists\\48. DLL Remove.mp4",
+              "duration_seconds": 350,
+              "order": 9,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 2687
+        },
+        {
+          "id": "sec_8",
+          "title": "8 - DLL Coding Exercises",
+          "order": 8,
+          "lectures": [
+            {
+              "id": "8_1_ba134365d606439f8cd90482cd69f1ae",
+              "title": "22. DLL Constructor",
+              "file_name": "22. DLL Constructor.html",
+              "relative_path": "8 - DLL Coding Exercises/22. DLL Constructor.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\22. DLL Constructor.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "8_2_c53a90de5f5041e68dedfa7f6c2ac67d",
+              "title": "23. DLL Append",
+              "file_name": "23. DLL Append.html",
+              "relative_path": "8 - DLL Coding Exercises/23. DLL Append.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\23. DLL Append.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "8_3_a34b7597ef074471b9dedaa8aa44652a",
+              "title": "24. DLL Pop",
+              "file_name": "24. DLL Pop.html",
+              "relative_path": "8 - DLL Coding Exercises/24. DLL Pop.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\24. DLL Pop.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "8_4_f67ce3f7f2ea48cfbb3a7c9cfbf56b3a",
+              "title": "25. DLL Prepend",
+              "file_name": "25. DLL Prepend.html",
+              "relative_path": "8 - DLL Coding Exercises/25. DLL Prepend.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\25. DLL Prepend.html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "8_5_49401fb84674442cbad67ee48c82d749",
+              "title": "26. DLL Pop First",
+              "file_name": "26. DLL Pop First.html",
+              "relative_path": "8 - DLL Coding Exercises/26. DLL Pop First.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\26. DLL Pop First.html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "8_6_f4b33690881b417c909843ce8d7dd485",
+              "title": "27. DLL Get",
+              "file_name": "27. DLL Get.html",
+              "relative_path": "8 - DLL Coding Exercises/27. DLL Get.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\27. DLL Get.html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            },
+            {
+              "id": "8_7_2cb96de592484429898004f931c2802d",
+              "title": "28. DLL Set",
+              "file_name": "28. DLL Set.html",
+              "relative_path": "8 - DLL Coding Exercises/28. DLL Set.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\28. DLL Set.html",
+              "duration_seconds": 0,
+              "order": 7,
+              "item_type": "html"
+            },
+            {
+              "id": "8_8_9d39333023dc43c5aebdfdc09b78c2a0",
+              "title": "29. DLL Insert",
+              "file_name": "29. DLL Insert.html",
+              "relative_path": "8 - DLL Coding Exercises/29. DLL Insert.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\29. DLL Insert.html",
+              "duration_seconds": 0,
+              "order": 8,
+              "item_type": "html"
+            },
+            {
+              "id": "8_9_056d385218f843a285a82e28ecd0a1fe",
+              "title": "30. DLL Remove",
+              "file_name": "30. DLL Remove.html",
+              "relative_path": "8 - DLL Coding Exercises/30. DLL Remove.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\8 - DLL Coding Exercises\\30. DLL Remove.html",
+              "duration_seconds": 0,
+              "order": 9,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_9",
+          "title": "9 - DLL Interview LeetCode Exercises",
+          "order": 9,
+          "lectures": [
+            {
+              "id": "9_1_c9cdb1c9cb684fcfb2c1378290f7deb6",
+              "title": "31. DLL Palindrome Checker ( Interview Question)",
+              "file_name": "31. DLL Palindrome Checker ( Interview Question).html",
+              "relative_path": "9 - DLL Interview LeetCode Exercises/31. DLL Palindrome Checker ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\9 - DLL Interview LeetCode Exercises\\31. DLL Palindrome Checker ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "9_2_296a867986294043896db98a94d10ddd",
+              "title": "32. DLL Reverse ( Interview Question)",
+              "file_name": "32. DLL Reverse ( Interview Question).html",
+              "relative_path": "9 - DLL Interview LeetCode Exercises/32. DLL Reverse ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\9 - DLL Interview LeetCode Exercises\\32. DLL Reverse ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "9_3_b8d4a435315f4e86b08b37f42ffbe32b",
+              "title": "33. DLL Partition List ( Interview Question)",
+              "file_name": "33. DLL Partition List ( Interview Question).html",
+              "relative_path": "9 - DLL Interview LeetCode Exercises/33. DLL Partition List ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\9 - DLL Interview LeetCode Exercises\\33. DLL Partition List ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "9_4_32e61de93da446508996ec843aa9b20e",
+              "title": "34. DLL Reverse Between ( Interview Question)",
+              "file_name": "34. DLL Reverse Between ( Interview Question).html",
+              "relative_path": "9 - DLL Interview LeetCode Exercises/34. DLL Reverse Between ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\9 - DLL Interview LeetCode Exercises\\34. DLL Reverse Between ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "9_5_9a95114830cc4a2281f357cb0f4cf007",
+              "title": "35. DLL Swap Nodes in Pairs ( Interview Question)",
+              "file_name": "35. DLL Swap Nodes in Pairs ( Interview Question).html",
+              "relative_path": "9 - DLL Interview LeetCode Exercises/35. DLL Swap Nodes in Pairs ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\9 - DLL Interview LeetCode Exercises\\35. DLL Swap Nodes in Pairs ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "9_6_14e52441736344d0b7ed4365681dc714",
+              "title": "49. DLL Palindrome Checker",
+              "file_name": "49. DLL Palindrome Checker.mp4",
+              "relative_path": "9 - DLL Interview LeetCode Exercises/49. DLL Palindrome Checker.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\9 - DLL Interview LeetCode Exercises\\49. DLL Palindrome Checker.mp4",
+              "duration_seconds": 112,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "9_7_ba075baa216a4c429f356c5a7ddc62c2",
+              "title": "50. DLL Reverse",
+              "file_name": "50. DLL Reverse.mp4",
+              "relative_path": "9 - DLL Interview LeetCode Exercises/50. DLL Reverse.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\9 - DLL Interview LeetCode Exercises\\50. DLL Reverse.mp4",
+              "duration_seconds": 145,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "9_8_d7b5c4e726fe4d07bfbff89f611a7d10",
+              "title": "51. DLL Partition List",
+              "file_name": "51. DLL Partition List.mp4",
+              "relative_path": "9 - DLL Interview LeetCode Exercises/51. DLL Partition List.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\9 - DLL Interview LeetCode Exercises\\51. DLL Partition List.mp4",
+              "duration_seconds": 151,
+              "order": 8,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 408
+        },
+        {
+          "id": "sec_10",
+          "title": "10 - Stacks & Queues",
+          "order": 10,
+          "lectures": [
+            {
+              "id": "10_1_ee35171d172a488992dd58886596dc11",
+              "title": "3. Stacks & Queues Big O",
+              "file_name": "3. Stacks & Queues Big O.html",
+              "relative_path": "10 - Stacks & Queues/3. Stacks & Queues Big O.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\3. Stacks & Queues Big O.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "10_2_c34ffd1b50cf41aab53c821b45823bb8",
+              "title": "52. Stack Intro",
+              "file_name": "52. Stack Intro.mp4",
+              "relative_path": "10 - Stacks & Queues/52. Stack Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\52. Stack Intro.mp4",
+              "duration_seconds": 286,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "10_3_417e4db24e554dfcab0e08a726180d62",
+              "title": "53. Stack Constructor",
+              "file_name": "53. Stack Constructor.mp4",
+              "relative_path": "10 - Stacks & Queues/53. Stack Constructor.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\53. Stack Constructor.mp4",
+              "duration_seconds": 129,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "10_4_950b1b16ab8d49f6a5b9480bd77aa2e7",
+              "title": "54. Stack Push",
+              "file_name": "54. Stack Push.mp4",
+              "relative_path": "10 - Stacks & Queues/54. Stack Push.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\54. Stack Push.mp4",
+              "duration_seconds": 183,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "10_5_c3401d41aa5a4b84ac457bd80e2a93f2",
+              "title": "55. Stack Pop",
+              "file_name": "55. Stack Pop.mp4",
+              "relative_path": "10 - Stacks & Queues/55. Stack Pop.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\55. Stack Pop.mp4",
+              "duration_seconds": 233,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "10_6_95ca512df4b84660a159c022c1b355dd",
+              "title": "56. Queue Intro",
+              "file_name": "56. Queue Intro.mp4",
+              "relative_path": "10 - Stacks & Queues/56. Queue Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\56. Queue Intro.mp4",
+              "duration_seconds": 158,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "10_7_36872ce813e0437fb88050243db42f0d",
+              "title": "57. Queue Constructor",
+              "file_name": "57. Queue Constructor.mp4",
+              "relative_path": "10 - Stacks & Queues/57. Queue Constructor.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\57. Queue Constructor.mp4",
+              "duration_seconds": 144,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "10_8_d7ac51ec091a45bb8b33168a34e6f588",
+              "title": "58. Queue Enqueue",
+              "file_name": "58. Queue Enqueue.mp4",
+              "relative_path": "10 - Stacks & Queues/58. Queue Enqueue.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\58. Queue Enqueue.mp4",
+              "duration_seconds": 187,
+              "order": 8,
+              "item_type": "video"
+            },
+            {
+              "id": "10_9_4d1bda866cff46699d6a243e59c674d9",
+              "title": "59. Queue Dequeue",
+              "file_name": "59. Queue Dequeue.mp4",
+              "relative_path": "10 - Stacks & Queues/59. Queue Dequeue.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\10 - Stacks & Queues\\59. Queue Dequeue.mp4",
+              "duration_seconds": 261,
+              "order": 9,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1581
+        },
+        {
+          "id": "sec_11",
+          "title": "11 - S&Q Coding Exercises",
+          "order": 11,
+          "lectures": [
+            {
+              "id": "11_1_b1ad2ecca5c64c19ac3fa64f2eab16fa",
+              "title": "36. Stack Constructor",
+              "file_name": "36. Stack Constructor.html",
+              "relative_path": "11 - S&Q Coding Exercises/36. Stack Constructor.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\11 - S&Q Coding Exercises\\36. Stack Constructor.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "11_2_bac7627fe8f84e99aeed5da0e281e902",
+              "title": "37. Stack Push",
+              "file_name": "37. Stack Push.html",
+              "relative_path": "11 - S&Q Coding Exercises/37. Stack Push.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\11 - S&Q Coding Exercises\\37. Stack Push.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "11_3_f971ae8f60db443dbbfa213bb89bdc2f",
+              "title": "38. Stack Pop",
+              "file_name": "38. Stack Pop.html",
+              "relative_path": "11 - S&Q Coding Exercises/38. Stack Pop.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\11 - S&Q Coding Exercises\\38. Stack Pop.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "11_4_4ee86b47a08142c9ad4bf506c6037503",
+              "title": "39. Queue Constructor",
+              "file_name": "39. Queue Constructor.html",
+              "relative_path": "11 - S&Q Coding Exercises/39. Queue Constructor.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\11 - S&Q Coding Exercises\\39. Queue Constructor.html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "11_5_295cbaaab6984e3bab1e1f3e0a0b2453",
+              "title": "40. Queue Enqueue",
+              "file_name": "40. Queue Enqueue.html",
+              "relative_path": "11 - S&Q Coding Exercises/40. Queue Enqueue.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\11 - S&Q Coding Exercises\\40. Queue Enqueue.html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "11_6_d6617a6ee9414b9ebf3ff325c1c03272",
+              "title": "41. Queue Dequeue",
+              "file_name": "41. Queue Dequeue.html",
+              "relative_path": "11 - S&Q Coding Exercises/41. Queue Dequeue.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\11 - S&Q Coding Exercises\\41. Queue Dequeue.html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_12",
+          "title": "12 - S&Q Interview LeetCode Exercises",
+          "order": 12,
+          "lectures": [
+            {
+              "id": "12_1_1b15f40a5c07477082426420fb5b7816",
+              "title": "42. Stack Implement Stack Using a List ( Interview Question)",
+              "file_name": "42. Stack Implement Stack Using a List ( Interview Question).html",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/42. Stack Implement Stack Using a List ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\42. Stack Implement Stack Using a List ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "12_2_679501ff2a674bc6be7d8a101e789e42",
+              "title": "43. Stack Push for Stack That Uses List ( Interview Question)",
+              "file_name": "43. Stack Push for Stack That Uses List ( Interview Question).html",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/43. Stack Push for Stack That Uses List ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\43. Stack Push for Stack That Uses List ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "12_3_c487cf49e26a4379bd3e7b936b876c57",
+              "title": "44. Stack Pop for Stack That Uses List ( Interview Question)",
+              "file_name": "44. Stack Pop for Stack That Uses List ( Interview Question).html",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/44. Stack Pop for Stack That Uses List ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\44. Stack Pop for Stack That Uses List ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "12_4_eba28454840f46f1a8ef916944e6a45f",
+              "title": "45. Stack Reverse String ( Interview Question)",
+              "file_name": "45. Stack Reverse String ( Interview Question).html",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/45. Stack Reverse String ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\45. Stack Reverse String ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "12_5_96e188428d734c34b1380d5e825abd9c",
+              "title": "46. Stack Parentheses Balanced ( Interview Question)",
+              "file_name": "46. Stack Parentheses Balanced ( Interview Question).html",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/46. Stack Parentheses Balanced ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\46. Stack Parentheses Balanced ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "12_6_6d26bf65ce3b4a499bf428e1661a5796",
+              "title": "47. Stack Sort Stack ( Interview Question)",
+              "file_name": "47. Stack Sort Stack ( Interview Question).html",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/47. Stack Sort Stack ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\47. Stack Sort Stack ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            },
+            {
+              "id": "12_7_b251320c3f214410a5aaf349d375ad23",
+              "title": "48. Queue Using Stacks Enqueue ( Interview Question)",
+              "file_name": "48. Queue Using Stacks Enqueue ( Interview Question).html",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/48. Queue Using Stacks Enqueue ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\48. Queue Using Stacks Enqueue ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 7,
+              "item_type": "html"
+            },
+            {
+              "id": "12_8_5573efb45a144c33996584a83666b021",
+              "title": "49. Queue Using Stacks Dequeue ( Interview Question)",
+              "file_name": "49. Queue Using Stacks Dequeue ( Interview Question).html",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/49. Queue Using Stacks Dequeue ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\49. Queue Using Stacks Dequeue ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 8,
+              "item_type": "html"
+            },
+            {
+              "id": "12_9_6c7f9d2144594eeeaf5bc871ae53cb4b",
+              "title": "60. Stack Reverse String",
+              "file_name": "60. Stack Reverse String.mp4",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/60. Stack Reverse String.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\60. Stack Reverse String.mp4",
+              "duration_seconds": 46,
+              "order": 9,
+              "item_type": "video"
+            },
+            {
+              "id": "12_10_1b42b3eed5bc4d678f3bcc3177bd050d",
+              "title": "61. Stack Parentheses Balanced",
+              "file_name": "61. Stack Parentheses Balanced.mp4",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/61. Stack Parentheses Balanced.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\61. Stack Parentheses Balanced.mp4",
+              "duration_seconds": 219,
+              "order": 10,
+              "item_type": "video"
+            },
+            {
+              "id": "12_11_4a3e0f7fa9a94772ad4e39a4314ffc55",
+              "title": "62. Stack Sort Stack",
+              "file_name": "62. Stack Sort Stack.mp4",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/62. Stack Sort Stack.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\62. Stack Sort Stack.mp4",
+              "duration_seconds": 136,
+              "order": 11,
+              "item_type": "video"
+            },
+            {
+              "id": "12_12_146df17a7641460699d82978783a5048",
+              "title": "63. Queue Using Stacks",
+              "file_name": "63. Queue Using Stacks.mp4",
+              "relative_path": "12 - S&Q Interview LeetCode Exercises/63. Queue Using Stacks.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\12 - S&Q Interview LeetCode Exercises\\63. Queue Using Stacks.mp4",
+              "duration_seconds": 134,
+              "order": 12,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 535
+        },
+        {
+          "id": "sec_13",
+          "title": "13 - Trees",
+          "order": 13,
+          "lectures": [
+            {
+              "id": "13_1_47402f99287849d586f42e6dfe821441",
+              "title": "4. BST Big O",
+              "file_name": "4. BST Big O.html",
+              "relative_path": "13 - Trees/4. BST Big O.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\13 - Trees\\4. BST Big O.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "13_2_d3e60f41910040489ce10ad70f48c984",
+              "title": "64. Trees Intro & Terminology",
+              "file_name": "64. Trees Intro & Terminology.mp4",
+              "relative_path": "13 - Trees/64. Trees Intro & Terminology.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\13 - Trees\\64. Trees Intro & Terminology.mp4",
+              "duration_seconds": 277,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "13_3_9e7c3fecd30e463391068fdd3fcfc23a",
+              "title": "65. Binary Search Trees Example",
+              "file_name": "65. Binary Search Trees Example.mp4",
+              "relative_path": "13 - Trees/65. Binary Search Trees Example.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\13 - Trees\\65. Binary Search Trees Example.mp4",
+              "duration_seconds": 153,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "13_4_afc2649616184dbbb7034926254ee1e4",
+              "title": "66. BST Big O",
+              "file_name": "66. BST Big O.mp4",
+              "relative_path": "13 - Trees/66. BST Big O.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\13 - Trees\\66. BST Big O.mp4",
+              "duration_seconds": 516,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "13_5_27556ee5319b4c368387198bf3623439",
+              "title": "67. BST Constructor",
+              "file_name": "67. BST Constructor.mp4",
+              "relative_path": "13 - Trees/67. BST Constructor.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\13 - Trees\\67. BST Constructor.mp4",
+              "duration_seconds": 249,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "13_6_3b51b692665d4f2a91da12bfbc472915",
+              "title": "68. BST Insert - Intro",
+              "file_name": "68. BST Insert - Intro.mp4",
+              "relative_path": "13 - Trees/68. BST Insert - Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\13 - Trees\\68. BST Insert - Intro.mp4",
+              "duration_seconds": 345,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "13_7_b563aa1fc40d439887eea75cfe5b3666",
+              "title": "69. BST Insert - Code",
+              "file_name": "69. BST Insert - Code.mp4",
+              "relative_path": "13 - Trees/69. BST Insert - Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\13 - Trees\\69. BST Insert - Code.mp4",
+              "duration_seconds": 568,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "13_8_938f04bb77864e52973fb0cc88c4f23c",
+              "title": "70. BST Contains",
+              "file_name": "70. BST Contains.mp4",
+              "relative_path": "13 - Trees/70. BST Contains.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\13 - Trees\\70. BST Contains.mp4",
+              "duration_seconds": 554,
+              "order": 8,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 2662
+        },
+        {
+          "id": "sec_14",
+          "title": "14 - BST Coding Exercises",
+          "order": 14,
+          "lectures": [
+            {
+              "id": "14_1_fca076aba81648c69826615fb73ff432",
+              "title": "50. BST Constructor",
+              "file_name": "50. BST Constructor.html",
+              "relative_path": "14 - BST Coding Exercises/50. BST Constructor.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\14 - BST Coding Exercises\\50. BST Constructor.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "14_2_25ab894e42e04207bfc81631bea1840d",
+              "title": "51. BST Insert",
+              "file_name": "51. BST Insert.html",
+              "relative_path": "14 - BST Coding Exercises/51. BST Insert.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\14 - BST Coding Exercises\\51. BST Insert.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "14_3_db999522d6704c7c921f0afe31c971ff",
+              "title": "52. BST Contains",
+              "file_name": "52. BST Contains.html",
+              "relative_path": "14 - BST Coding Exercises/52. BST Contains.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\14 - BST Coding Exercises\\52. BST Contains.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_15",
+          "title": "15 - BST Interview LeetCode Exercises",
+          "order": 15,
+          "lectures": [
+            {
+              "id": "15_1_28aae354053a4c9691cb65fba94738d2",
+              "title": "71. BST Interview LeetCode Exercises Location",
+              "file_name": "71. BST Interview LeetCode Exercises Location.html",
+              "relative_path": "15 - BST Interview LeetCode Exercises/71. BST Interview LeetCode Exercises Location.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\15 - BST Interview LeetCode Exercises\\71. BST Interview LeetCode Exercises Location.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_16",
+          "title": "16 - Hash Tables",
+          "order": 16,
+          "lectures": [
+            {
+              "id": "16_1_66c6390f27df4182b786890faf7e04b7",
+              "title": "5. Hash Table Big O",
+              "file_name": "5. Hash Table Big O.html",
+              "relative_path": "16 - Hash Tables/5. Hash Table Big O.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\5. Hash Table Big O.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "16_2_b15b32a1a7a245429188b562ef2ab3c0",
+              "title": "72. Hash Table Intro",
+              "file_name": "72. Hash Table Intro.mp4",
+              "relative_path": "16 - Hash Tables/72. Hash Table Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\72. Hash Table Intro.mp4",
+              "duration_seconds": 298,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "16_3_c6bceefad71e403abb1f49eb6887a820",
+              "title": "73. HT Collisions",
+              "file_name": "73. HT Collisions.mp4",
+              "relative_path": "16 - Hash Tables/73. HT Collisions.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\73. HT Collisions.mp4",
+              "duration_seconds": 153,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "16_4_78f4157ac66049f99dbb3d204ef04893",
+              "title": "74. HT Constructor",
+              "file_name": "74. HT Constructor.mp4",
+              "relative_path": "16 - Hash Tables/74. HT Constructor.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\74. HT Constructor.mp4",
+              "duration_seconds": 262,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "16_5_828d9deaafbc4f7384dc1f028c66476b",
+              "title": "75. HT Set",
+              "file_name": "75. HT Set.mp4",
+              "relative_path": "16 - Hash Tables/75. HT Set.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\75. HT Set.mp4",
+              "duration_seconds": 270,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "16_6_a5cd9483b04047c994683055e5d43d68",
+              "title": "76. HT Get",
+              "file_name": "76. HT Get.mp4",
+              "relative_path": "16 - Hash Tables/76. HT Get.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\76. HT Get.mp4",
+              "duration_seconds": 296,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "16_7_f54e920f14574bb49d1e9c7ab0039b8f",
+              "title": "77. HT Keys",
+              "file_name": "77. HT Keys.mp4",
+              "relative_path": "16 - Hash Tables/77. HT Keys.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\77. HT Keys.mp4",
+              "duration_seconds": 175,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "16_8_1b86482f209c49d1b0d2458a7adfc497",
+              "title": "78. HT Big O",
+              "file_name": "78. HT Big O.mp4",
+              "relative_path": "16 - Hash Tables/78. HT Big O.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\78. HT Big O.mp4",
+              "duration_seconds": 168,
+              "order": 8,
+              "item_type": "video"
+            },
+            {
+              "id": "16_9_012bd0569b174f79bf45eb66196a226c",
+              "title": "79. HT Interview Question",
+              "file_name": "79. HT Interview Question.mp4",
+              "relative_path": "16 - Hash Tables/79. HT Interview Question.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\16 - Hash Tables\\79. HT Interview Question.mp4",
+              "duration_seconds": 357,
+              "order": 9,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1979
+        },
+        {
+          "id": "sec_17",
+          "title": "17 - HT Coding Exercises",
+          "order": 17,
+          "lectures": [
+            {
+              "id": "17_1_8f298218976046e588752a5838d9aa9b",
+              "title": "53. HT Constructor",
+              "file_name": "53. HT Constructor.html",
+              "relative_path": "17 - HT Coding Exercises/53. HT Constructor.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\17 - HT Coding Exercises\\53. HT Constructor.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "17_2_b3dc0a1eec4649fdb96f6234043f4afb",
+              "title": "54. HT Set",
+              "file_name": "54. HT Set.html",
+              "relative_path": "17 - HT Coding Exercises/54. HT Set.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\17 - HT Coding Exercises\\54. HT Set.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "17_3_9e090692765949e18815014b736b86d0",
+              "title": "55. HT Get",
+              "file_name": "55. HT Get.html",
+              "relative_path": "17 - HT Coding Exercises/55. HT Get.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\17 - HT Coding Exercises\\55. HT Get.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "17_4_752fdf6dd38e4d6c846e9fab943bb3ff",
+              "title": "56. HT Keys",
+              "file_name": "56. HT Keys.html",
+              "relative_path": "17 - HT Coding Exercises/56. HT Keys.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\17 - HT Coding Exercises\\56. HT Keys.html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_18",
+          "title": "18 - HT Interview LeetCode Exercises",
+          "order": 18,
+          "lectures": [
+            {
+              "id": "18_1_a82d72c08bca44e89e11341d75c5563f",
+              "title": "57. HT Item In Common ( Interview Question)",
+              "file_name": "57. HT Item In Common ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/57. HT Item In Common ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\57. HT Item In Common ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "18_2_650290e9686944608f143f44d3d7c128",
+              "title": "58. HT Find Duplicates ( Interview Question)",
+              "file_name": "58. HT Find Duplicates ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/58. HT Find Duplicates ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\58. HT Find Duplicates ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "18_3_f445728a7ff14f0a875d99ef944c91d9",
+              "title": "59. HT First Non-Repeating Character ( Interview Question)",
+              "file_name": "59. HT First Non-Repeating Character ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/59. HT First Non-Repeating Character ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\59. HT First Non-Repeating Character ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "18_4_0cfdb72b42614dd3b0f20135ff023bdc",
+              "title": "60. HT Group Anagrams ( Interview Question)",
+              "file_name": "60. HT Group Anagrams ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/60. HT Group Anagrams ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\60. HT Group Anagrams ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "18_5_9ed85e8f81194860aaa61a64d91bf4f1",
+              "title": "61. HT Two Sum ( Interview Question)",
+              "file_name": "61. HT Two Sum ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/61. HT Two Sum ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\61. HT Two Sum ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "18_6_c874ce3d3dad4fbcb23042a657f35c48",
+              "title": "62. HT Subarray Sum ( Interview Question)",
+              "file_name": "62. HT Subarray Sum ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/62. HT Subarray Sum ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\62. HT Subarray Sum ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            },
+            {
+              "id": "18_7_615fe2840f2e424c904aaf272af7633d",
+              "title": "63. Set Remove Duplicates ( Interview Question)",
+              "file_name": "63. Set Remove Duplicates ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/63. Set Remove Duplicates ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\63. Set Remove Duplicates ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 7,
+              "item_type": "html"
+            },
+            {
+              "id": "18_8_d7fbd928f03b4c62a95fd64b52c79f71",
+              "title": "64. Set Has Unique Chars ( Interview Question)",
+              "file_name": "64. Set Has Unique Chars ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/64. Set Has Unique Chars ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\64. Set Has Unique Chars ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 8,
+              "item_type": "html"
+            },
+            {
+              "id": "18_9_274f7f3f84c44038b008c98bffb4ae25",
+              "title": "65. Set Find Pairs ( Interview Question)",
+              "file_name": "65. Set Find Pairs ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/65. Set Find Pairs ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\65. Set Find Pairs ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 9,
+              "item_type": "html"
+            },
+            {
+              "id": "18_10_495613baa30a4de0b717e2ddff3f4a8b",
+              "title": "66. Set Longest Consecutive Sequence ( Interview Question)",
+              "file_name": "66. Set Longest Consecutive Sequence ( Interview Question).html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/66. Set Longest Consecutive Sequence ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\66. Set Longest Consecutive Sequence ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 10,
+              "item_type": "html"
+            },
+            {
+              "id": "18_11_365021d0eb3947e28601638e2f062037",
+              "title": "80. Introduction to Sets",
+              "file_name": "80. Introduction to Sets.html",
+              "relative_path": "18 - HT Interview LeetCode Exercises/80. Introduction to Sets.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\18 - HT Interview LeetCode Exercises\\80. Introduction to Sets.html",
+              "duration_seconds": 0,
+              "order": 11,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_19",
+          "title": "19 - Graphs",
+          "order": 19,
+          "lectures": [
+            {
+              "id": "19_1_aec7b79557364309ba779824e0970ba9",
+              "title": "6. Graphs",
+              "file_name": "6. Graphs.html",
+              "relative_path": "19 - Graphs/6. Graphs.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\6. Graphs.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "19_2_584f1da282f94460bf4145041227e030",
+              "title": "81. Graph Intro",
+              "file_name": "81. Graph Intro.mp4",
+              "relative_path": "19 - Graphs/81. Graph Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\81. Graph Intro.mp4",
+              "duration_seconds": 225,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "19_3_556684b1bcdd403a9b2373bec1fdbb3d",
+              "title": "82. Graph Adjacency Matrix",
+              "file_name": "82. Graph Adjacency Matrix.mp4",
+              "relative_path": "19 - Graphs/82. Graph Adjacency Matrix.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\82. Graph Adjacency Matrix.mp4",
+              "duration_seconds": 178,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "19_4_6d2a9db19b964ef1a94968f0e7804b01",
+              "title": "83. Graph Adjacency List",
+              "file_name": "83. Graph Adjacency List.mp4",
+              "relative_path": "19 - Graphs/83. Graph Adjacency List.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\83. Graph Adjacency List.mp4",
+              "duration_seconds": 84,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "19_5_f8ce8efac4e34f8d92c585524cdcf419",
+              "title": "84. Graph Big O",
+              "file_name": "84. Graph Big O.mp4",
+              "relative_path": "19 - Graphs/84. Graph Big O.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\84. Graph Big O.mp4",
+              "duration_seconds": 370,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "19_6_007bc33ac8e745ed96bce5be9028a5af",
+              "title": "85. Graph Add Vertex",
+              "file_name": "85. Graph Add Vertex.mp4",
+              "relative_path": "19 - Graphs/85. Graph Add Vertex.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\85. Graph Add Vertex.mp4",
+              "duration_seconds": 174,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "19_7_1624d562464e4a8785bb2b95a9594f32",
+              "title": "86. Graph Add Edge",
+              "file_name": "86. Graph Add Edge.mp4",
+              "relative_path": "19 - Graphs/86. Graph Add Edge.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\86. Graph Add Edge.mp4",
+              "duration_seconds": 165,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "19_8_e76338d52e354526b6873724f6665654",
+              "title": "87. Graph Remove Edge",
+              "file_name": "87. Graph Remove Edge.mp4",
+              "relative_path": "19 - Graphs/87. Graph Remove Edge.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\87. Graph Remove Edge.mp4",
+              "duration_seconds": 325,
+              "order": 8,
+              "item_type": "video"
+            },
+            {
+              "id": "19_9_7ffaeb1a968d4da2ace60fbfb0b1ab1f",
+              "title": "88. Graph Remove Vertex",
+              "file_name": "88. Graph Remove Vertex.mp4",
+              "relative_path": "19 - Graphs/88. Graph Remove Vertex.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\19 - Graphs\\88. Graph Remove Vertex.mp4",
+              "duration_seconds": 323,
+              "order": 9,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1844
+        },
+        {
+          "id": "sec_20",
+          "title": "20 - Graph Coding Exercises",
+          "order": 20,
+          "lectures": [
+            {
+              "id": "20_1_44952c9c22f54d7482e8523d8aa09a2d",
+              "title": "67. Graph Add Vertex",
+              "file_name": "67. Graph Add Vertex.html",
+              "relative_path": "20 - Graph Coding Exercises/67. Graph Add Vertex.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\20 - Graph Coding Exercises\\67. Graph Add Vertex.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "20_2_614632bcc8ef41f883a686c0adab00d6",
+              "title": "68. Graph Add Edge",
+              "file_name": "68. Graph Add Edge.html",
+              "relative_path": "20 - Graph Coding Exercises/68. Graph Add Edge.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\20 - Graph Coding Exercises\\68. Graph Add Edge.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "20_3_f7b6d57e638d48e3ac3d7bcc1621ecc8",
+              "title": "69. Graph Remove Edge",
+              "file_name": "69. Graph Remove Edge.html",
+              "relative_path": "20 - Graph Coding Exercises/69. Graph Remove Edge.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\20 - Graph Coding Exercises\\69. Graph Remove Edge.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "20_4_b73ee0ed414f4bba80d0bb6db7085aa5",
+              "title": "70. Graph Remove Vertex",
+              "file_name": "70. Graph Remove Vertex.html",
+              "relative_path": "20 - Graph Coding Exercises/70. Graph Remove Vertex.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\20 - Graph Coding Exercises\\70. Graph Remove Vertex.html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_21",
+          "title": "21 - Heaps",
+          "order": 21,
+          "lectures": [
+            {
+              "id": "21_1_1f233cb6dee34b44b4f231a59671d7e6",
+              "title": "89. Heap Intro",
+              "file_name": "89. Heap Intro.mp4",
+              "relative_path": "21 - Heaps/89. Heap Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\21 - Heaps\\89. Heap Intro.mp4",
+              "duration_seconds": 422,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "21_2_f4ee9adfcdfc47c09c7450546e75ebdd",
+              "title": "90. Heap Insert (Intro)",
+              "file_name": "90. Heap Insert (Intro).mp4",
+              "relative_path": "21 - Heaps/90. Heap Insert (Intro).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\21 - Heaps\\90. Heap Insert (Intro).mp4",
+              "duration_seconds": 266,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "21_3_d8a431b135bf4fd3985deaba5a327195",
+              "title": "91. Heap Helper Methods",
+              "file_name": "91. Heap Helper Methods.mp4",
+              "relative_path": "21 - Heaps/91. Heap Helper Methods.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\21 - Heaps\\91. Heap Helper Methods.mp4",
+              "duration_seconds": 156,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "21_4_09fd5a5564954ac981a1ed5d22582a92",
+              "title": "92. Heap Insert (Code)",
+              "file_name": "92. Heap Insert (Code).mp4",
+              "relative_path": "21 - Heaps/92. Heap Insert (Code).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\21 - Heaps\\92. Heap Insert (Code).mp4",
+              "duration_seconds": 370,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "21_5_e80ec188bac74d19a396ce6a5620fe1b",
+              "title": "93. Heap Remove",
+              "file_name": "93. Heap Remove.mp4",
+              "relative_path": "21 - Heaps/93. Heap Remove.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\21 - Heaps\\93. Heap Remove.mp4",
+              "duration_seconds": 303,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "21_6_26eb3730132d4d2ea78304bec7639d0a",
+              "title": "94. Heap Sink Down",
+              "file_name": "94. Heap Sink Down.mp4",
+              "relative_path": "21 - Heaps/94. Heap Sink Down.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\21 - Heaps\\94. Heap Sink Down.mp4",
+              "duration_seconds": 574,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "21_7_b71bce67331d4729b40c65e036604c64",
+              "title": "95. Heap Priority Queues & Big O",
+              "file_name": "95. Heap Priority Queues & Big O.mp4",
+              "relative_path": "21 - Heaps/95. Heap Priority Queues & Big O.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\21 - Heaps\\95. Heap Priority Queues & Big O.mp4",
+              "duration_seconds": 233,
+              "order": 7,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 2324
+        },
+        {
+          "id": "sec_22",
+          "title": "22 - Heap Coding Exercises",
+          "order": 22,
+          "lectures": [
+            {
+              "id": "22_1_9cd8cd6fad494f9c94d0a05a0dcebed8",
+              "title": "71. Heap Insert",
+              "file_name": "71. Heap Insert.html",
+              "relative_path": "22 - Heap Coding Exercises/71. Heap Insert.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\22 - Heap Coding Exercises\\71. Heap Insert.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "22_2_1c4e8d09030b473a8c0a450b61dd544c",
+              "title": "72. Heap Remove",
+              "file_name": "72. Heap Remove.html",
+              "relative_path": "22 - Heap Coding Exercises/72. Heap Remove.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\22 - Heap Coding Exercises\\72. Heap Remove.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "22_3_cf37c819e1a74201933f9117b6f90e4b",
+              "title": "73. Heap Sink Down",
+              "file_name": "73. Heap Sink Down.html",
+              "relative_path": "22 - Heap Coding Exercises/73. Heap Sink Down.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\22 - Heap Coding Exercises\\73. Heap Sink Down.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "22_4_4fb4c22137f74726b4e6d20c7e1c5b05",
+              "title": "74. MinHeap Insert",
+              "file_name": "74. MinHeap Insert.html",
+              "relative_path": "22 - Heap Coding Exercises/74. MinHeap Insert.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\22 - Heap Coding Exercises\\74. MinHeap Insert.html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "22_5_4102e3b5373c4f9fa9f240ae47487fae",
+              "title": "75. MinHeap Remove",
+              "file_name": "75. MinHeap Remove.html",
+              "relative_path": "22 - Heap Coding Exercises/75. MinHeap Remove.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\22 - Heap Coding Exercises\\75. MinHeap Remove.html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "22_6_88f4e11173914fe98038a91e94b6b721",
+              "title": "76. MinHeap Sink Down",
+              "file_name": "76. MinHeap Sink Down.html",
+              "relative_path": "22 - Heap Coding Exercises/76. MinHeap Sink Down.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\22 - Heap Coding Exercises\\76. MinHeap Sink Down.html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_23",
+          "title": "23 - Heap Interview LeetCode Exercises",
+          "order": 23,
+          "lectures": [
+            {
+              "id": "23_1_89f732707255430da702303c3f1ec9cf",
+              "title": "77. Heap Kth Smallest Element in an Array",
+              "file_name": "77. Heap Kth Smallest Element in an Array.html",
+              "relative_path": "23 - Heap Interview LeetCode Exercises/77. Heap Kth Smallest Element in an Array.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\23 - Heap Interview LeetCode Exercises\\77. Heap Kth Smallest Element in an Array.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "23_2_f27d02a4708e4297bb91dc8cacd78a9c",
+              "title": "78. Heap Maximum Element in a Stream",
+              "file_name": "78. Heap Maximum Element in a Stream.html",
+              "relative_path": "23 - Heap Interview LeetCode Exercises/78. Heap Maximum Element in a Stream.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\23 - Heap Interview LeetCode Exercises\\78. Heap Maximum Element in a Stream.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_24",
+          "title": "24 - Recursion",
+          "order": 24,
+          "lectures": [
+            {
+              "id": "24_1_dcf639293ab5404786fffd516c4b9d09",
+              "title": "96. Recursion Intro",
+              "file_name": "96. Recursion Intro.mp4",
+              "relative_path": "24 - Recursion/96. Recursion Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\24 - Recursion\\96. Recursion Intro.mp4",
+              "duration_seconds": 364,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "24_2_28490b38ea1e4e478439fa7ee26a45ce",
+              "title": "97. Call Stack",
+              "file_name": "97. Call Stack.mp4",
+              "relative_path": "24 - Recursion/97. Call Stack.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\24 - Recursion\\97. Call Stack.mp4",
+              "duration_seconds": 424,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "24_3_2ff9814a77544ab38c14f4db5e526572",
+              "title": "98. Factorial",
+              "file_name": "98. Factorial.mp4",
+              "relative_path": "24 - Recursion/98. Factorial.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\24 - Recursion\\98. Factorial.mp4",
+              "duration_seconds": 612,
+              "order": 3,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1400
+        },
+        {
+          "id": "sec_25",
+          "title": "25 - Recursive Binary Search Trees",
+          "order": 25,
+          "lectures": [
+            {
+              "id": "25_1_f90b10d03ac047f3a8b4ab038665187e",
+              "title": "99. rBST Contains",
+              "file_name": "99. rBST Contains.mp4",
+              "relative_path": "25 - Recursive Binary Search Trees/99. rBST Contains.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\25 - Recursive Binary Search Trees\\99. rBST Contains.mp4",
+              "duration_seconds": 436,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "25_2_ffdf4e06f6c84a0682c5bb2fd2cebb75",
+              "title": "100. rBST Insert",
+              "file_name": "100. rBST Insert.mp4",
+              "relative_path": "25 - Recursive Binary Search Trees/100. rBST Insert.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\25 - Recursive Binary Search Trees\\100. rBST Insert.mp4",
+              "duration_seconds": 552,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "25_3_27303f1364424f2db0b5ea3b66061f97",
+              "title": "101. rBST Delete Intro",
+              "file_name": "101. rBST Delete Intro.mp4",
+              "relative_path": "25 - Recursive Binary Search Trees/101. rBST Delete Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\25 - Recursive Binary Search Trees\\101. rBST Delete Intro.mp4",
+              "duration_seconds": 141,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "25_4_1731f415aeab4071840817779b8fec11",
+              "title": "102. rBST Delete Code (1 of 3)",
+              "file_name": "102. rBST Delete Code (1 of 3).mp4",
+              "relative_path": "25 - Recursive Binary Search Trees/102. rBST Delete Code (1 of 3).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\25 - Recursive Binary Search Trees\\102. rBST Delete Code (1 of 3).mp4",
+              "duration_seconds": 381,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "25_5_c477497677c64ccf921b0e91793649ba",
+              "title": "103. rBST Delete Code (2 of 3)",
+              "file_name": "103. rBST Delete Code (2 of 3).mp4",
+              "relative_path": "25 - Recursive Binary Search Trees/103. rBST Delete Code (2 of 3).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\25 - Recursive Binary Search Trees\\103. rBST Delete Code (2 of 3).mp4",
+              "duration_seconds": 322,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "25_6_c756f44c384540ef9c6eff1d91184cb1",
+              "title": "104. rBST Minimum Value",
+              "file_name": "104. rBST Minimum Value.mp4",
+              "relative_path": "25 - Recursive Binary Search Trees/104. rBST Minimum Value.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\25 - Recursive Binary Search Trees\\104. rBST Minimum Value.mp4",
+              "duration_seconds": 244,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "25_7_df98a0e8e704424d81fc2c097e1b74af",
+              "title": "105. rBST Delete Code (3 of 3)",
+              "file_name": "105. rBST Delete Code (3 of 3).mp4",
+              "relative_path": "25 - Recursive Binary Search Trees/105. rBST Delete Code (3 of 3).mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\25 - Recursive Binary Search Trees\\105. rBST Delete Code (3 of 3).mp4",
+              "duration_seconds": 299,
+              "order": 7,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 2375
+        },
+        {
+          "id": "sec_26",
+          "title": "26 - rBST Coding Exercises",
+          "order": 26,
+          "lectures": [
+            {
+              "id": "26_1_a7c80d4fa4b1488284eb88bb7fe3288c",
+              "title": "79. rBST Contains",
+              "file_name": "79. rBST Contains.html",
+              "relative_path": "26 - rBST Coding Exercises/79. rBST Contains.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\26 - rBST Coding Exercises\\79. rBST Contains.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "26_2_c5de55cd923a491eb68a35dc893905a9",
+              "title": "80. rBST Insert",
+              "file_name": "80. rBST Insert.html",
+              "relative_path": "26 - rBST Coding Exercises/80. rBST Insert.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\26 - rBST Coding Exercises\\80. rBST Insert.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "26_3_98e71f0ac5144b2ab7f288c62bae93a8",
+              "title": "81. BST Minimum Value",
+              "file_name": "81. BST Minimum Value.html",
+              "relative_path": "26 - rBST Coding Exercises/81. BST Minimum Value.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\26 - rBST Coding Exercises\\81. BST Minimum Value.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "26_4_e0d7c22996854c318424a2dad8b96d8e",
+              "title": "82. rBST Delete",
+              "file_name": "82. rBST Delete.html",
+              "relative_path": "26 - rBST Coding Exercises/82. rBST Delete.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\26 - rBST Coding Exercises\\82. rBST Delete.html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_27",
+          "title": "27 - rBST Interview LeetCode Exercises",
+          "order": 27,
+          "lectures": [
+            {
+              "id": "27_1_1c349e2e30644eebb6cddf54c64e0f5c",
+              "title": "83. BST Convert Sorted List to Balanced BST ( Interview Question)",
+              "file_name": "83. BST Convert Sorted List to Balanced BST ( Interview Question).html",
+              "relative_path": "27 - rBST Interview LeetCode Exercises/83. BST Convert Sorted List to Balanced BST ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\27 - rBST Interview LeetCode Exercises\\83. BST Convert Sorted List to Balanced BST ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "27_2_6df883ff6b98491783aa929dca75cad8",
+              "title": "84. BST Invert Binary Tree ( Interview Question)",
+              "file_name": "84. BST Invert Binary Tree ( Interview Question).html",
+              "relative_path": "27 - rBST Interview LeetCode Exercises/84. BST Invert Binary Tree ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\27 - rBST Interview LeetCode Exercises\\84. BST Invert Binary Tree ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_28",
+          "title": "28 - Tree Traversal",
+          "order": 28,
+          "lectures": [
+            {
+              "id": "28_1_e59459e07ba641988d1cc44eea857141",
+              "title": "106. Tree Traversal Intro",
+              "file_name": "106. Tree Traversal Intro.mp4",
+              "relative_path": "28 - Tree Traversal/106. Tree Traversal Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\106. Tree Traversal Intro.mp4",
+              "duration_seconds": 85,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "28_2_c2afcd9dbc6e4624bd1211cb17433001",
+              "title": "107. BFS (Breadth First Search) Intro",
+              "file_name": "107. BFS (Breadth First Search) Intro.mp4",
+              "relative_path": "28 - Tree Traversal/107. BFS (Breadth First Search) Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\107. BFS (Breadth First Search) Intro.mp4",
+              "duration_seconds": 182,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "28_3_89b001adc98f4727989f6efd8993a408",
+              "title": "108. BFS Code",
+              "file_name": "108. BFS Code.mp4",
+              "relative_path": "28 - Tree Traversal/108. BFS Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\108. BFS Code.mp4",
+              "duration_seconds": 350,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "28_4_ac2c3be3d4e748afa36a165f568ec6ce",
+              "title": "109. DFS (Depth First Search) PreOrder - Intro",
+              "file_name": "109. DFS (Depth First Search) PreOrder - Intro.mp4",
+              "relative_path": "28 - Tree Traversal/109. DFS (Depth First Search) PreOrder - Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\109. DFS (Depth First Search) PreOrder - Intro.mp4",
+              "duration_seconds": 68,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "28_5_5166c2b1e73d422d890333159c2e2120",
+              "title": "110. DFS PreOrder - Code",
+              "file_name": "110. DFS PreOrder - Code.mp4",
+              "relative_path": "28 - Tree Traversal/110. DFS PreOrder - Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\110. DFS PreOrder - Code.mp4",
+              "duration_seconds": 330,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "28_6_b20cd36e1009496eb2c7bc2feafd79f8",
+              "title": "111. DFS PostOrder - Intro",
+              "file_name": "111. DFS PostOrder - Intro.mp4",
+              "relative_path": "28 - Tree Traversal/111. DFS PostOrder - Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\111. DFS PostOrder - Intro.mp4",
+              "duration_seconds": 133,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "28_7_17ff792719e2471d9a2c4b4245bd8abf",
+              "title": "112. DFS PostOrder - Code",
+              "file_name": "112. DFS PostOrder - Code.mp4",
+              "relative_path": "28 - Tree Traversal/112. DFS PostOrder - Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\112. DFS PostOrder - Code.mp4",
+              "duration_seconds": 309,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "28_8_7a3a31415fc24af3892b1e718899578a",
+              "title": "113. DFS InOrder - Intro",
+              "file_name": "113. DFS InOrder - Intro.mp4",
+              "relative_path": "28 - Tree Traversal/113. DFS InOrder - Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\113. DFS InOrder - Intro.mp4",
+              "duration_seconds": 120,
+              "order": 8,
+              "item_type": "video"
+            },
+            {
+              "id": "28_9_d4bac3b8ba1d4b48a14ef608e9566f15",
+              "title": "114. DFS InOrder - Code",
+              "file_name": "114. DFS InOrder - Code.mp4",
+              "relative_path": "28 - Tree Traversal/114. DFS InOrder - Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\28 - Tree Traversal\\114. DFS InOrder - Code.mp4",
+              "duration_seconds": 296,
+              "order": 9,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1873
+        },
+        {
+          "id": "sec_29",
+          "title": "29 - BST Traversal Coding Exercises",
+          "order": 29,
+          "lectures": [
+            {
+              "id": "29_1_4263c40d99d04a3eb541536ad237d544",
+              "title": "85. BFS (Breadth First Search)",
+              "file_name": "85. BFS (Breadth First Search).html",
+              "relative_path": "29 - BST Traversal Coding Exercises/85. BFS (Breadth First Search).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\29 - BST Traversal Coding Exercises\\85. BFS (Breadth First Search).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "29_2_42b6d2e848fe4d3e861dfbe350a397fd",
+              "title": "86. DFS PreOrder",
+              "file_name": "86. DFS PreOrder.html",
+              "relative_path": "29 - BST Traversal Coding Exercises/86. DFS PreOrder.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\29 - BST Traversal Coding Exercises\\86. DFS PreOrder.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "29_3_5e16470edf6a4d0fac50f7203042dd3b",
+              "title": "87. DFS PostOrder",
+              "file_name": "87. DFS PostOrder.html",
+              "relative_path": "29 - BST Traversal Coding Exercises/87. DFS PostOrder.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\29 - BST Traversal Coding Exercises\\87. DFS PostOrder.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "29_4_202e2e6fa2eb4cb3a170f4e4d91f6323",
+              "title": "88. DFS InOrder",
+              "file_name": "88. DFS InOrder.html",
+              "relative_path": "29 - BST Traversal Coding Exercises/88. DFS InOrder.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\29 - BST Traversal Coding Exercises\\88. DFS InOrder.html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_30",
+          "title": "30 - BST Traversal Interview LeetCode Exercises",
+          "order": 30,
+          "lectures": [
+            {
+              "id": "30_1_c4ee78f3efb645f7bc15d4ad90529920",
+              "title": "89. BST Validate BST ( Interview Question)",
+              "file_name": "89. BST Validate BST ( Interview Question).html",
+              "relative_path": "30 - BST Traversal Interview LeetCode Exercises/89. BST Validate BST ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\30 - BST Traversal Interview LeetCode Exercises\\89. BST Validate BST ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "30_2_32710337c9924e00b5f4cd47a854fe57",
+              "title": "90. BST Kth Smallest Node ( Interview Question)",
+              "file_name": "90. BST Kth Smallest Node ( Interview Question).html",
+              "relative_path": "30 - BST Traversal Interview LeetCode Exercises/90. BST Kth Smallest Node ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\30 - BST Traversal Interview LeetCode Exercises\\90. BST Kth Smallest Node ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_31",
+          "title": "31 - Basic Sorts",
+          "order": 31,
+          "lectures": [
+            {
+              "id": "31_1_ba7e81474cde4743ac303a6c607c2fa6",
+              "title": "7. Basic Sorts",
+              "file_name": "7. Basic Sorts.html",
+              "relative_path": "31 - Basic Sorts/7. Basic Sorts.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\31 - Basic Sorts\\7. Basic Sorts.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "31_2_40aa7104fd5b4e088be0b7ec6cd84a58",
+              "title": "115. Bubble Sort Intro",
+              "file_name": "115. Bubble Sort Intro.mp4",
+              "relative_path": "31 - Basic Sorts/115. Bubble Sort Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\31 - Basic Sorts\\115. Bubble Sort Intro.mp4",
+              "duration_seconds": 157,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "31_3_722620969b954347abdf82ec4031dd4f",
+              "title": "116. Bubble Sort Code",
+              "file_name": "116. Bubble Sort Code.mp4",
+              "relative_path": "31 - Basic Sorts/116. Bubble Sort Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\31 - Basic Sorts\\116. Bubble Sort Code.mp4",
+              "duration_seconds": 192,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "31_4_84710a1fc8cd4cb58af3f38d9a47001b",
+              "title": "117. Selection Sort Intro",
+              "file_name": "117. Selection Sort Intro.mp4",
+              "relative_path": "31 - Basic Sorts/117. Selection Sort Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\31 - Basic Sorts\\117. Selection Sort Intro.mp4",
+              "duration_seconds": 227,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "31_5_29aa0bee625843a0adc41831850c1a27",
+              "title": "118. Selection Sort Code",
+              "file_name": "118. Selection Sort Code.mp4",
+              "relative_path": "31 - Basic Sorts/118. Selection Sort Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\31 - Basic Sorts\\118. Selection Sort Code.mp4",
+              "duration_seconds": 372,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "31_6_9b250609975c42b58bb0dcac6e53a2a5",
+              "title": "119. Insertion Sort Intro",
+              "file_name": "119. Insertion Sort Intro.mp4",
+              "relative_path": "31 - Basic Sorts/119. Insertion Sort Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\31 - Basic Sorts\\119. Insertion Sort Intro.mp4",
+              "duration_seconds": 103,
+              "order": 6,
+              "item_type": "video"
+            },
+            {
+              "id": "31_7_7de18c56e8df45a38f4732b42013b6df",
+              "title": "120. Insertion Sort Code",
+              "file_name": "120. Insertion Sort Code.mp4",
+              "relative_path": "31 - Basic Sorts/120. Insertion Sort Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\31 - Basic Sorts\\120. Insertion Sort Code.mp4",
+              "duration_seconds": 282,
+              "order": 7,
+              "item_type": "video"
+            },
+            {
+              "id": "31_8_70ae7f0275384996873dec19c254d1b6",
+              "title": "121. Insertion Sort Big O",
+              "file_name": "121. Insertion Sort Big O.mp4",
+              "relative_path": "31 - Basic Sorts/121. Insertion Sort Big O.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\31 - Basic Sorts\\121. Insertion Sort Big O.mp4",
+              "duration_seconds": 80,
+              "order": 8,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1413
+        },
+        {
+          "id": "sec_32",
+          "title": "32 - Basic Sorts Coding Exercises",
+          "order": 32,
+          "lectures": [
+            {
+              "id": "32_1_3c515a2762c74162a07fa918bad75922",
+              "title": "91. Bubble Sort",
+              "file_name": "91. Bubble Sort.html",
+              "relative_path": "32 - Basic Sorts Coding Exercises/91. Bubble Sort.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\32 - Basic Sorts Coding Exercises\\91. Bubble Sort.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "32_2_9025465212ca4df18ed8eb1bf12aa64d",
+              "title": "92. Selection Sort",
+              "file_name": "92. Selection Sort.html",
+              "relative_path": "32 - Basic Sorts Coding Exercises/92. Selection Sort.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\32 - Basic Sorts Coding Exercises\\92. Selection Sort.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "32_3_53eab80462194323b641eed44d3c5d3e",
+              "title": "93. Insertion Sort",
+              "file_name": "93. Insertion Sort.html",
+              "relative_path": "32 - Basic Sorts Coding Exercises/93. Insertion Sort.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\32 - Basic Sorts Coding Exercises\\93. Insertion Sort.html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_33",
+          "title": "33 - Basic Sorts Interview LeetCode Exercises",
+          "order": 33,
+          "lectures": [
+            {
+              "id": "33_1_52cf3d6beeb846fe89536abf88310392",
+              "title": "94. Bubble Sort of LL ( Interview Question)",
+              "file_name": "94. Bubble Sort of LL ( Interview Question).html",
+              "relative_path": "33 - Basic Sorts Interview LeetCode Exercises/94. Bubble Sort of LL ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\33 - Basic Sorts Interview LeetCode Exercises\\94. Bubble Sort of LL ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "33_2_80ef277d1d904105b932a2f163cd43c9",
+              "title": "95. Selection Sort of LL ( Interview Question)",
+              "file_name": "95. Selection Sort of LL ( Interview Question).html",
+              "relative_path": "33 - Basic Sorts Interview LeetCode Exercises/95. Selection Sort of LL ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\33 - Basic Sorts Interview LeetCode Exercises\\95. Selection Sort of LL ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "33_3_5cdca8e8d0cb4a1dbffed1154202d96c",
+              "title": "96. Insertion Sort of LL ( Interview Question)",
+              "file_name": "96. Insertion Sort of LL ( Interview Question).html",
+              "relative_path": "33 - Basic Sorts Interview LeetCode Exercises/96. Insertion Sort of LL ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\33 - Basic Sorts Interview LeetCode Exercises\\96. Insertion Sort of LL ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_34",
+          "title": "34 - Merge Sort",
+          "order": 34,
+          "lectures": [
+            {
+              "id": "34_1_8ae5dd1b97734c8b84097dae95d94d11",
+              "title": "122. Merge Sort Overview",
+              "file_name": "122. Merge Sort Overview.mp4",
+              "relative_path": "34 - Merge Sort/122. Merge Sort Overview.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\34 - Merge Sort\\122. Merge Sort Overview.mp4",
+              "duration_seconds": 96,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "34_2_6f01b33bfe6f422e818aec5dab0e6e30",
+              "title": "123. Merge Intro",
+              "file_name": "123. Merge Intro.mp4",
+              "relative_path": "34 - Merge Sort/123. Merge Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\34 - Merge Sort\\123. Merge Intro.mp4",
+              "duration_seconds": 96,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "34_3_64aef6ac5d3a410b8984e25fa4264163",
+              "title": "124. Merge Code",
+              "file_name": "124. Merge Code.mp4",
+              "relative_path": "34 - Merge Sort/124. Merge Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\34 - Merge Sort\\124. Merge Code.mp4",
+              "duration_seconds": 252,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "34_4_9ed19f6982764255b19e8a3df1b128b5",
+              "title": "125. Merge Sort Intro",
+              "file_name": "125. Merge Sort Intro.mp4",
+              "relative_path": "34 - Merge Sort/125. Merge Sort Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\34 - Merge Sort\\125. Merge Sort Intro.mp4",
+              "duration_seconds": 118,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "34_5_8b10466e875c4a688f4e0ede93659faf",
+              "title": "126. Merge Sort Code",
+              "file_name": "126. Merge Sort Code.mp4",
+              "relative_path": "34 - Merge Sort/126. Merge Sort Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\34 - Merge Sort\\126. Merge Sort Code.mp4",
+              "duration_seconds": 678,
+              "order": 5,
+              "item_type": "video"
+            },
+            {
+              "id": "34_6_70ca3f27bcd14cb7843785fa9aec2dbb",
+              "title": "127. Merge Sort Big O",
+              "file_name": "127. Merge Sort Big O.mp4",
+              "relative_path": "34 - Merge Sort/127. Merge Sort Big O.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\34 - Merge Sort\\127. Merge Sort Big O.mp4",
+              "duration_seconds": 204,
+              "order": 6,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1444
+        },
+        {
+          "id": "sec_35",
+          "title": "35 - Merge Sort Coding Exercises",
+          "order": 35,
+          "lectures": [
+            {
+              "id": "35_1_9595cbf210a74df09abe12edfbf17e58",
+              "title": "97. Merge",
+              "file_name": "97. Merge.html",
+              "relative_path": "35 - Merge Sort Coding Exercises/97. Merge.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\35 - Merge Sort Coding Exercises\\97. Merge.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "35_2_65e21dae0c2d48779ffa2ff4e6a730e6",
+              "title": "98. Merge Sort",
+              "file_name": "98. Merge Sort.html",
+              "relative_path": "35 - Merge Sort Coding Exercises/98. Merge Sort.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\35 - Merge Sort Coding Exercises\\98. Merge Sort.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_36",
+          "title": "36 - Merge Interview LeetCode Exercise",
+          "order": 36,
+          "lectures": [
+            {
+              "id": "36_1_2ce7371552194ae8acf7ed979813b992",
+              "title": "99. Merge Two Sorted LL ( Interview Question)",
+              "file_name": "99. Merge Two Sorted LL ( Interview Question).html",
+              "relative_path": "36 - Merge Interview LeetCode Exercise/99. Merge Two Sorted LL ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\36 - Merge Interview LeetCode Exercise\\99. Merge Two Sorted LL ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_37",
+          "title": "37 - Quick Sort",
+          "order": 37,
+          "lectures": [
+            {
+              "id": "37_1_9b5a4c9757904cbdbc50012799c3cc5e",
+              "title": "128. Quick Sort Intro",
+              "file_name": "128. Quick Sort Intro.mp4",
+              "relative_path": "37 - Quick Sort/128. Quick Sort Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\37 - Quick Sort\\128. Quick Sort Intro.mp4",
+              "duration_seconds": 164,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "37_2_d6560c5c22e3465cbbf0dcd162fde4e4",
+              "title": "129. Pivot Intro",
+              "file_name": "129. Pivot Intro.mp4",
+              "relative_path": "37 - Quick Sort/129. Pivot Intro.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\37 - Quick Sort\\129. Pivot Intro.mp4",
+              "duration_seconds": 210,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "37_3_6571ad4a0cc44652bffe3904edd5fdd6",
+              "title": "130. Pivot Code",
+              "file_name": "130. Pivot Code.mp4",
+              "relative_path": "37 - Quick Sort/130. Pivot Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\37 - Quick Sort\\130. Pivot Code.mp4",
+              "duration_seconds": 341,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "37_4_2e7c6882af744112b7502a933525dd64",
+              "title": "131. Quick Sort Code",
+              "file_name": "131. Quick Sort Code.mp4",
+              "relative_path": "37 - Quick Sort/131. Quick Sort Code.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\37 - Quick Sort\\131. Quick Sort Code.mp4",
+              "duration_seconds": 364,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "37_5_21ce6f0ded244410a3544a5a436ef881",
+              "title": "132. Quick Sort Big O",
+              "file_name": "132. Quick Sort Big O.mp4",
+              "relative_path": "37 - Quick Sort/132. Quick Sort Big O.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\37 - Quick Sort\\132. Quick Sort Big O.mp4",
+              "duration_seconds": 180,
+              "order": 5,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 1259
+        },
+        {
+          "id": "sec_38",
+          "title": "38 - Quick Sort Coding Exercises",
+          "order": 38,
+          "lectures": [
+            {
+              "id": "38_1_f9d19ac8aef140dcb48355a783da8788",
+              "title": "100. Pivot",
+              "file_name": "100. Pivot.html",
+              "relative_path": "38 - Quick Sort Coding Exercises/100. Pivot.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\38 - Quick Sort Coding Exercises\\100. Pivot.html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "38_2_92eec81061e447ba90ff987d8bfaaac1",
+              "title": "101. Quick Sort",
+              "file_name": "101. Quick Sort.html",
+              "relative_path": "38 - Quick Sort Coding Exercises/101. Quick Sort.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\38 - Quick Sort Coding Exercises\\101. Quick Sort.html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_39",
+          "title": "39 - Dynamic Programming",
+          "order": 39,
+          "lectures": [
+            {
+              "id": "39_1_6c433a246abd47d0b3cb1938b5e4615b",
+              "title": "133. Overlapping Subproblems",
+              "file_name": "133. Overlapping Subproblems.mp4",
+              "relative_path": "39 - Dynamic Programming/133. Overlapping Subproblems.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\39 - Dynamic Programming\\133. Overlapping Subproblems.mp4",
+              "duration_seconds": 292,
+              "order": 1,
+              "item_type": "video"
+            },
+            {
+              "id": "39_2_42d3784a4729427c83dae15c83c3954b",
+              "title": "134. Optimized Substructure",
+              "file_name": "134. Optimized Substructure.mp4",
+              "relative_path": "39 - Dynamic Programming/134. Optimized Substructure.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\39 - Dynamic Programming\\134. Optimized Substructure.mp4",
+              "duration_seconds": 207,
+              "order": 2,
+              "item_type": "video"
+            },
+            {
+              "id": "39_3_9cbcb72aec2f4bacb4f8ad9ebefa47e3",
+              "title": "135. Fibonacci Sequence",
+              "file_name": "135. Fibonacci Sequence.mp4",
+              "relative_path": "39 - Dynamic Programming/135. Fibonacci Sequence.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\39 - Dynamic Programming\\135. Fibonacci Sequence.mp4",
+              "duration_seconds": 715,
+              "order": 3,
+              "item_type": "video"
+            },
+            {
+              "id": "39_4_ca312a7a13a04780a67e71aadc104cea",
+              "title": "136. Memoization",
+              "file_name": "136. Memoization.mp4",
+              "relative_path": "39 - Dynamic Programming/136. Memoization.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\39 - Dynamic Programming\\136. Memoization.mp4",
+              "duration_seconds": 897,
+              "order": 4,
+              "item_type": "video"
+            },
+            {
+              "id": "39_5_6a77b7621e27483793ccbf41d41947c5",
+              "title": "137. Bottom Up",
+              "file_name": "137. Bottom Up.mp4",
+              "relative_path": "39 - Dynamic Programming/137. Bottom Up.mp4",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\39 - Dynamic Programming\\137. Bottom Up.mp4",
+              "duration_seconds": 408,
+              "order": 5,
+              "item_type": "video"
+            }
+          ],
+          "duration_seconds": 2519
+        },
+        {
+          "id": "sec_40",
+          "title": "40 - Other Interview LeetCode Exercises",
+          "order": 40,
+          "lectures": [
+            {
+              "id": "40_1_b06522557bcd43098d437aae2f458ca2",
+              "title": "102. List Remove Element ( Interview Question)",
+              "file_name": "102. List Remove Element ( Interview Question).html",
+              "relative_path": "40 - Other Interview LeetCode Exercises/102. List Remove Element ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\40 - Other Interview LeetCode Exercises\\102. List Remove Element ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            },
+            {
+              "id": "40_2_08b815d9dc74433fa856329332c8d326",
+              "title": "103. List Find Max Min ( Interview Question)",
+              "file_name": "103. List Find Max Min ( Interview Question).html",
+              "relative_path": "40 - Other Interview LeetCode Exercises/103. List Find Max Min ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\40 - Other Interview LeetCode Exercises\\103. List Find Max Min ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 2,
+              "item_type": "html"
+            },
+            {
+              "id": "40_3_327d6cad49ba4fea9488ce6e2165f761",
+              "title": "104. List Find Longest String ( Interview Question)",
+              "file_name": "104. List Find Longest String ( Interview Question).html",
+              "relative_path": "40 - Other Interview LeetCode Exercises/104. List Find Longest String ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\40 - Other Interview LeetCode Exercises\\104. List Find Longest String ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 3,
+              "item_type": "html"
+            },
+            {
+              "id": "40_4_0b441a1e221341edbd86710b34053094",
+              "title": "105. List Remove Duplicates ( Interview Question)",
+              "file_name": "105. List Remove Duplicates ( Interview Question).html",
+              "relative_path": "40 - Other Interview LeetCode Exercises/105. List Remove Duplicates ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\40 - Other Interview LeetCode Exercises\\105. List Remove Duplicates ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 4,
+              "item_type": "html"
+            },
+            {
+              "id": "40_5_29538eee79da47b68a842e62ab72da78",
+              "title": "106. List Max Profit ( Interview Question)",
+              "file_name": "106. List Max Profit ( Interview Question).html",
+              "relative_path": "40 - Other Interview LeetCode Exercises/106. List Max Profit ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\40 - Other Interview LeetCode Exercises\\106. List Max Profit ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 5,
+              "item_type": "html"
+            },
+            {
+              "id": "40_6_ce24e6e4371243f18f30758e9704a67c",
+              "title": "107. List Rotate ( Interview Question)",
+              "file_name": "107. List Rotate ( Interview Question).html",
+              "relative_path": "40 - Other Interview LeetCode Exercises/107. List Rotate ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\40 - Other Interview LeetCode Exercises\\107. List Rotate ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 6,
+              "item_type": "html"
+            },
+            {
+              "id": "40_7_df95d70c0f12422cbe332cbe6c7481fe",
+              "title": "108. List Max Sub Array ( Interview Question)",
+              "file_name": "108. List Max Sub Array ( Interview Question).html",
+              "relative_path": "40 - Other Interview LeetCode Exercises/108. List Max Sub Array ( Interview Question).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\40 - Other Interview LeetCode Exercises\\108. List Max Sub Array ( Interview Question).html",
+              "duration_seconds": 0,
+              "order": 7,
+              "item_type": "html"
+            },
+            {
+              "id": "40_8_7ef16d84f3d04a968499aec9c021af30",
+              "title": "138. Thank You!",
+              "file_name": "138. Thank You!.html",
+              "relative_path": "40 - Other Interview LeetCode Exercises/138. Thank You!.html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\40 - Other Interview LeetCode Exercises\\138. Thank You!.html",
+              "duration_seconds": 0,
+              "order": 8,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        },
+        {
+          "id": "sec_41",
+          "title": "41 - Coding Exercises",
+          "order": 41,
+          "lectures": [
+            {
+              "id": "41_1_98f56a12afbf4c3bbbfd10550bc997fb",
+              "title": "139. Coding Exercises Are Now After Each Section - (CLICK HERE FOR MORE INFO)",
+              "file_name": "139. Coding Exercises Are Now After Each Section - (CLICK HERE FOR MORE INFO).html",
+              "relative_path": "41 - Coding Exercises/139. Coding Exercises Are Now After Each Section - (CLICK HERE FOR MORE INFO).html",
+              "absolute_path": "D:\\courses\\Python Data Structures & Algorithms + LEETCODE Exercises\\41 - Coding Exercises\\139. Coding Exercises Are Now After Each Section - (CLICK HERE FOR MORE INFO).html",
+              "duration_seconds": 0,
+              "order": 1,
+              "item_type": "html"
+            }
+          ],
+          "duration_seconds": 0
+        }
+      ],
+      "created_at": "2026-10-10T10:18:44.568648300+00:00",
+      "updated_at": "2026-10-10T10:18:44.568648300+00:00"
+    }
+  },
+  "progress": {
+    "e5525925-6c6d-4642-9b25-ab3631c746a5": {
+      "course_id": "e5525925-6c6d-4642-9b25-ab3631c746a5",
+      "completed_lecture_ids": [
+        "1_1_b1f0ada15f4e466c9499b3e4dce0a5a6"
+      ],
+      "last_played_lecture_id": "2_5_898563306f8a48a7bdeb3c2ab4bc6027",
+      "playback_positions": {
+        "2_2_39a78dd611b6411fbf98c2a5d4705552": 0.0,
+        "4_6_a7cb97cec06a4f15ae258a467023e02a": 0.0,
+        "2_1_7cb6fd0229c64326b6e37f57c8f4bd1b": 0.0,
+        "1_1_b1f0ada15f4e466c9499b3e4dce0a5a6": 377.045601,
+        "5_1_108bf6ad455148ee805cdc992416d1a4": 0.0,
+        "1_2_fb04b06cd1dc4434adbee78452b76774": 11.044349,
+        "4_1_065f30adca944c5890842b9aacf46857": 0.0,
+        "2_4_6ab4794f0a834cd7907cd5947ec8bc33": 0.0,
+        "2_3_5838de87fb5647d38b655082f799183a": 0.0,
+        "6_1_d2c2314f977d4741b454b5fb649bdc7a": 0.0,
+        "2_5_898563306f8a48a7bdeb3c2ab4bc6027": 1.697264
+      },
+      "notes": []
+    }
+  },
+  "settings": {
+    "theme": "dark",
+    "auto_play_next": true,
+    "playback_speed": 1.0,
+    "volume": 1.0,
+    "active_course_id": "e5525925-6c6d-4642-9b25-ab3631c746a5"
+  }
 }

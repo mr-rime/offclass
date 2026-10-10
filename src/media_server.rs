@@ -33,9 +33,18 @@ pub async fn stream_video_file(file_path: &Path, headers: &HeaderMap) -> Respons
     };
 
     let total_size = metadata.len();
-    let mime_type = mime_guess::from_path(file_path)
+    let mut mime_type = mime_guess::from_path(file_path)
         .first_or_octet_stream()
         .to_string();
+
+    if mime_type.starts_with("text/")
+        || mime_type == "application/javascript"
+        || mime_type == "application/json"
+    {
+        if !mime_type.contains("charset") {
+            mime_type = format!("{}; charset=utf-8", mime_type);
+        }
+    }
 
     let range_header = headers.get(RANGE).and_then(|h| h.to_str().ok());
 

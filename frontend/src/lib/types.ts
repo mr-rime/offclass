@@ -6,6 +6,7 @@ export interface Lecture {
   absolute_path: string;
   duration_seconds: number;
   order: number;
+  item_type?: 'video' | 'html';
 }
 
 export interface Section {

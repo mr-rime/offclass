@@ -10,6 +10,8 @@ const VIDEO_EXTENSIONS: &[&str] = &[
     "mp4", "m4v", "webm", "mkv", "mov", "avi", "ts", "flv", "wmv",
 ];
 
+const HTML_EXTENSIONS: &[&str] = &["html", "htm"];
+
 /// Smart natural sort comparator for alphanumeric strings (e.g. "1", "2", "10", "01 - intro.mp4", "1. Arrays")
 pub fn natural_compare(a: &str, b: &str) -> Ordering {
     let mut a_chars = a.chars().peekable();
@@ -73,6 +75,18 @@ pub fn is_video_file(path: &Path) -> bool {
     }
 }
 
+pub fn is_html_file(path: &Path) -> bool {
+    if let Some(ext) = path.extension().and_then(|e| e.to_str()) {
+        HTML_EXTENSIONS.contains(&ext.to_lowercase().as_str())
+    } else {
+        false
+    }
+}
+
+pub fn is_supported_course_file(path: &Path) -> bool {
+    is_video_file(path) || is_html_file(path)
+}
+
 pub fn clean_section_title(raw_folder_name: &str) -> String {
     let raw = raw_folder_name.trim();
     // Take the last folder component if path like "Nested/1. Arrays"
@@ -89,8 +103,8 @@ pub fn clean_section_title(raw_folder_name: &str) -> String {
 pub fn clean_lecture_title(file_name: &str) -> String {
     let mut title = file_name.trim();
 
-    // Strip known video extensions only (.mp4, .mkv, .webm, etc.)
-    for ext in VIDEO_EXTENSIONS {
+    // Strip known video & HTML extensions (.mp4, .mkv, .webm, .html, .htm, etc.)
+    for ext in VIDEO_EXTENSIONS.iter().chain(HTML_EXTENSIONS.iter()) {
         let suffix = format!(".{}", ext);
         if title.to_lowercase().ends_with(&suffix) {
             title = &title[..title.len() - suffix.len()];
@@ -158,8 +172,8 @@ where
         .map(clean_section_title)
         .unwrap_or_else(|| "Imported Course".to_string());
 
-    // Group videos by section folder
-    // Map: Section relative path -> Vec of video files
+    // Group media & HTML files by section folder
+    // Map: Section relative path -> Vec of files
     let mut sections_map: BTreeMap<String, Vec<PathBuf>> = BTreeMap::new();
 
     for entry in WalkDir::new(dir_path)
@@ -168,7 +182,7 @@ where
         .filter_map(|e| e.ok())
     {
         let path = entry.path();
-        if path.is_file() && is_video_file(path) {
+        if path.is_file() && is_supported_course_file(path) {
             let rel_path = path.strip_prefix(dir_path).unwrap_or(path);
             let parent = rel_path.parent();
 
@@ -187,19 +201,20 @@ where
 
     if sections_map.is_empty() {
         return Err(format!(
-            "No video files found in directory: {}. Supported formats: {}",
+            "No video or HTML files found in directory: {}. Supported formats: {}, {}",
             dir_path.display(),
-            VIDEO_EXTENSIONS.join(", ")
+            VIDEO_EXTENSIONS.join(", "),
+            HTML_EXTENSIONS.join(", ")
         ));
     }
 
-    let total_videos: usize = sections_map.values().map(|v| v.len()).sum();
+    let total_items: usize = sections_map.values().map(|v| v.len()).sum();
 
     if let Some(ref cb) = on_progress {
         cb(crate::models::ScanProgress {
             current: 0,
-            total: total_videos,
-            current_file: "Discovered video files. Analyzing video metadata...".to_string(),
+            total: total_items,
+            current_file: "Discovered media and HTML files. Analyzing metadata...".to_string(),
             phase: "discovering".to_string(),
         });
     }
@@ -219,13 +234,13 @@ where
 
     let course_id = Uuid::new_v4().to_string();
     let mut final_sections = Vec::new();
-    let mut current_video_idx = 0;
+    let mut current_item_idx = 0;
 
     for (sec_idx, sec_key) in section_keys.into_iter().enumerate() {
-        let mut video_paths = sections_map.remove(&sec_key).unwrap_or_default();
+        let mut file_paths = sections_map.remove(&sec_key).unwrap_or_default();
 
-        // Sort videos naturally by filename
-        video_paths.sort_by(|a, b| {
+        // Sort files naturally by filename
+        file_paths.sort_by(|a, b| {
             let name_a = a.file_name().and_then(|f| f.to_str()).unwrap_or("");
             let name_b = b.file_name().and_then(|f| f.to_str()).unwrap_or("");
             natural_compare(name_a, name_b)
@@ -238,32 +253,39 @@ where
         };
 
         let mut lectures = Vec::new();
-        for (lec_idx, vid_path) in video_paths.into_iter().enumerate() {
-            current_video_idx += 1;
-            let file_name = vid_path
+        for (lec_idx, file_path) in file_paths.into_iter().enumerate() {
+            current_item_idx += 1;
+            let file_name = file_path
                 .file_name()
                 .and_then(|f| f.to_str())
-                .unwrap_or("lecture.mp4")
+                .unwrap_or("lecture")
                 .to_string();
+
+            let is_html = is_html_file(&file_path);
+            let item_type = if is_html { "html" } else { "video" };
 
             if let Some(ref cb) = on_progress {
                 cb(crate::models::ScanProgress {
-                    current: current_video_idx,
-                    total: total_videos,
+                    current: current_item_idx,
+                    total: total_items,
                     current_file: file_name.clone(),
                     phase: "indexing".to_string(),
                 });
             }
 
-            let rel_path = vid_path
+            let rel_path = file_path
                 .strip_prefix(dir_path)
-                .unwrap_or(&vid_path)
+                .unwrap_or(&file_path)
                 .to_string_lossy()
                 .replace('\\', "/");
 
-            let abs_path = vid_path.to_string_lossy().to_string();
+            let abs_path = file_path.to_string_lossy().to_string();
             let title = clean_lecture_title(&file_name);
-            let duration = probe_video_duration(&vid_path);
+            let duration = if is_html {
+                0
+            } else {
+                probe_video_duration(&file_path)
+            };
 
             // Generate deterministic ID from relative path
             let lec_id = format!("{}_{}_{}", sec_idx + 1, lec_idx + 1, Uuid::new_v4().simple());
@@ -276,6 +298,7 @@ where
                 absolute_path: abs_path,
                 duration_seconds: duration,
                 order: lec_idx + 1,
+                item_type: item_type.to_string(),
             });
         }
 
@@ -292,8 +315,8 @@ where
 
     if let Some(ref cb) = on_progress {
         cb(crate::models::ScanProgress {
-            current: total_videos,
-            total: total_videos,
+            current: total_items,
+            total: total_items,
             current_file: "Finalizing course indexing...".to_string(),
             phase: "finishing".to_string(),
         });
@@ -323,6 +346,7 @@ mod tests {
             "2. Lesson 2.mp4",
             "20. Lesson 20.mp4",
             "03. Lesson 3.mp4",
+            "04. Quiz.html",
         ];
 
         list.sort_by(|a, b| natural_compare(a, b));
@@ -333,6 +357,7 @@ mod tests {
                 "1. Lesson 1.mp4",
                 "2. Lesson 2.mp4",
                 "03. Lesson 3.mp4",
+                "04. Quiz.html",
                 "10. Lesson 10.mp4",
                 "20. Lesson 20.mp4",
             ]
@@ -352,5 +377,14 @@ mod tests {
         assert_eq!(clean_lecture_title("1. Arrays.mp4"), "1. Arrays");
         assert_eq!(clean_lecture_title("01. Introduction to Rust.mp4"), "01. Introduction to Rust");
         assert_eq!(clean_lecture_title("02_Memory_Management.mkv"), "02 Memory Management");
+        assert_eq!(clean_lecture_title("03_Cheat_Sheet.html"), "03 Cheat Sheet");
+        assert_eq!(clean_lecture_title("index.htm"), "index");
+    }
+
+    #[test]
+    fn test_is_html_file() {
+        assert!(is_html_file(Path::new("lesson.html")));
+        assert!(is_html_file(Path::new("index.htm")));
+        assert!(!is_html_file(Path::new("video.mp4")));
     }
 }

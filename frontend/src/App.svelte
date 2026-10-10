@@ -4,6 +4,7 @@
   import { cubicOut } from 'svelte/easing';
   import Header from './lib/components/Header.svelte';
   import VideoPlayer from './lib/components/VideoPlayer.svelte';
+  import HtmlViewer from './lib/components/HtmlViewer.svelte';
   import CourseContentSidebar from './lib/components/CourseContentSidebar.svelte';
   import CourseTabs from './lib/components/CourseTabs.svelte';
   import CoursesPage from './lib/components/CoursesPage.svelte';
@@ -34,6 +35,18 @@
   let isImporting = $state(false);
   let rescanningCourseId = $state<string | null>(null);
   let scanProgress = $state<ScanProgress | null>(null);
+
+  let isHtmlLecture = $derived(
+    activeLecture
+      ? activeLecture.item_type === 'html' ||
+        activeLecture.file_name?.toLowerCase().endsWith('.html') ||
+        activeLecture.file_name?.toLowerCase().endsWith('.htm') ||
+        activeLecture.relative_path?.toLowerCase().endsWith('.html') ||
+        activeLecture.relative_path?.toLowerCase().endsWith('.htm') ||
+        activeLecture.absolute_path?.toLowerCase().endsWith('.html') ||
+        activeLecture.absolute_path?.toLowerCase().endsWith('.htm')
+      : false
+  );
 
   onMount(async () => {
     try {
@@ -389,22 +402,34 @@
     <div class="flex-1 flex overflow-hidden">
       <!-- Left / Center Player & Details Scrollable Area -->
       <main class="flex-1 flex flex-col overflow-y-auto bg-background">
-        <VideoPlayer
-          bind:this={videoPlayerRef}
-          {currentCourse}
-          {activeLecture}
-          {activeSection}
-          {streamingPort}
-          {isImporting}
-          autoPlay={shouldAutoPlay}
-          savedPosition={(activeLecture && currentProgress?.playback_positions?.[activeLecture.id]) || 0}
-          notes={currentProgress?.notes?.filter((n) => n.lecture_id === activeLecture?.id) ?? []}
-          onPositionUpdated={handlePositionUpdated}
-          onDurationUpdated={handleDurationUpdated}
-          onVideoEnded={handleVideoEnded}
-          onNextLecture={playNextLecture}
-          onImportCourse={handleImportCourse}
-        />
+        {#if isHtmlLecture}
+          <HtmlViewer
+            {currentCourse}
+            {activeLecture}
+            {activeSection}
+            {streamingPort}
+            isCompleted={activeLecture ? currentProgress?.completed_lecture_ids?.includes(activeLecture.id) : false}
+            onToggleCompleted={(e) => activeLecture && handleToggleCompleted(activeLecture.id, e)}
+            onNextLecture={playNextLecture}
+          />
+        {:else}
+          <VideoPlayer
+            bind:this={videoPlayerRef}
+            {currentCourse}
+            {activeLecture}
+            {activeSection}
+            {streamingPort}
+            {isImporting}
+            autoPlay={shouldAutoPlay}
+            savedPosition={(activeLecture && currentProgress?.playback_positions?.[activeLecture.id]) || 0}
+            notes={currentProgress?.notes?.filter((n) => n.lecture_id === activeLecture?.id) ?? []}
+            onPositionUpdated={handlePositionUpdated}
+            onDurationUpdated={handleDurationUpdated}
+            onVideoEnded={handleVideoEnded}
+            onNextLecture={playNextLecture}
+            onImportCourse={handleImportCourse}
+          />
+        {/if}
 
         <!-- Tabs & Information Below Video -->
         {#if currentCourse && activeLecture}

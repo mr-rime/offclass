@@ -1,0 +1,169 @@
+WEBVTT
+
+1
+00:01.250 --> 00:05.510
+In this course, we're going to spend a lot of time on big O.
+
+2
+00:05.540 --> 00:09.530
+It is a huge topic when it comes to data structures and algorithms.
+
+3
+00:09.890 --> 00:11.510
+So what is big O?
+
+4
+00:11.810 --> 00:15.710
+Big O is a way of comparing two sets of code.
+
+5
+00:15.770 --> 00:21.710
+And let's say code one and code two accomplish exactly the same thing.
+
+6
+00:21.710 --> 00:24.290
+How would you compare one against the other?
+
+7
+00:24.350 --> 00:26.990
+Code one might be more readable.
+
+8
+00:26.990 --> 00:28.100
+That might be better.
+
+9
+00:28.710 --> 00:35.010
+Koto might be more concise, the code might take up fewer lines, and if that's what you're measuring,
+
+10
+00:35.010 --> 00:37.140
+then you would say that code two is better.
+
+11
+00:37.410 --> 00:46.950
+Big O is a way of comparing code one and code two mathematically about how efficient they run.
+
+12
+00:47.220 --> 00:53.160
+In a coding interview, you will absolutely be asked questions about big O.
+
+13
+00:53.640 --> 00:56.940
+So let's look at what big O is.
+
+14
+00:57.500 --> 01:06.540
+Let's say we have a stopwatch and we run code one, and we start the stopwatch, and it runs for 15
+
+15
+01:06.540 --> 01:14.880
+seconds, and we reset the stopwatch, and we run code two, and code two runs a lot longer than 15
+
+16
+01:14.880 --> 01:15.410
+seconds.
+
+17
+01:15.410 --> 01:17.150
+It runs for a full minute.
+
+18
+01:17.420 --> 01:21.680
+Based on this, you would say that code one is better than code two.
+
+19
+01:21.710 --> 01:23.330
+You can measure it.
+
+20
+01:23.930 --> 01:26.930
+This is called time complexity.
+
+21
+01:27.500 --> 01:33.950
+The thing about time complexity that is interesting is that it is not measured in time.
+
+22
+01:34.530 --> 01:40.770
+Because if you took the same code and ran it on a computer that runs twice as fast, it would complete
+
+23
+01:40.770 --> 01:41.640
+twice as fast.
+
+24
+01:41.640 --> 01:42.750
+It doesn't make the code any better.
+
+25
+01:42.750 --> 01:44.490
+It just means the computer is better.
+
+26
+01:44.490 --> 01:49.680
+So it is measured in the number of operations that it takes to complete something.
+
+27
+01:49.920 --> 01:53.790
+And we'll look at examples of that as we go along here.
+
+28
+01:53.790 --> 01:58.530
+In addition to time complexity, we measure space complexity.
+
+29
+01:58.950 --> 02:01.470
+So let's say that code one.
+
+30
+02:02.020 --> 02:09.520
+While it runs very fast comparatively, let's say it takes up a lot of memory when it runs.
+
+31
+02:10.230 --> 02:15.600
+And maybe code two, even though that takes much longer to finish.
+
+32
+02:16.050 --> 02:18.060
+Maybe it takes up less memory.
+
+33
+02:18.420 --> 02:25.680
+If preserving memory space is your most important priority and you don't mind having some extra time
+
+34
+02:25.680 --> 02:28.620
+complexity, maybe code two is better.
+
+35
+02:28.920 --> 02:34.080
+So when you get into an interview, there's a good chance that you'll be asked questions about time
+
+36
+02:34.080 --> 02:34.740
+complexity.
+
+37
+02:34.740 --> 02:38.460
+And then they'll say, hey, well, what if space complexity is our main priority?
+
+38
+02:38.490 --> 02:39.990
+How would you approach it then?
+
+39
+02:40.020 --> 02:45.360
+You have to understand both concepts and be able to address that in the job interview.
+
+40
+02:45.870 --> 02:48.870
+But for the most part in this class we will be dealing.
+
+41
+02:49.590 --> 02:51.060
+With time complexity.
+
+42
+02:51.450 --> 02:55.020
+And that is our quick intro to big O.

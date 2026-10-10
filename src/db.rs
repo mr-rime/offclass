@@ -65,8 +65,25 @@ impl AppDatabase {
                 }
 
                 for lec in &mut sec.lectures {
-                    if lec.duration_seconds == 0 {
-                        let path = Path::new(&lec.absolute_path);
+                    let path = Path::new(&lec.absolute_path);
+                    let rel_path = Path::new(&lec.relative_path);
+                    let file_name_path = Path::new(&lec.file_name);
+                    let is_html = crate::scanner::is_html_file(path)
+                        || crate::scanner::is_html_file(rel_path)
+                        || crate::scanner::is_html_file(file_name_path);
+
+                    if is_html {
+                        if lec.item_type != "html" || lec.duration_seconds != 0 {
+                            lec.item_type = "html".to_string();
+                            lec.duration_seconds = 0;
+                            repaired = true;
+                        }
+                    } else if lec.item_type.is_empty() {
+                        lec.item_type = "video".to_string();
+                        repaired = true;
+                    }
+
+                    if lec.item_type == "video" && lec.duration_seconds == 0 {
                         if path.exists() {
                             let dur = crate::scanner::probe_video_duration(path);
                             if dur > 0 {

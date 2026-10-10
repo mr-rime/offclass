@@ -137,7 +137,7 @@
 
         <Card class="p-4 bg-card border-border flex flex-col gap-1">
           <span class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-            Total Videos
+            Lectures & Docs
           </span>
           <span class="text-2xl font-bold text-foreground">
             {stats?.total_lectures ?? 0}

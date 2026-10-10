@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:01.250 --> 00:09.620
+Now we're going to look at our first big O and I start with O of N, not because it is the most efficient
+
+2
+00:09.620 --> 00:16.610
+or least efficient big O, but because I think it's the easiest to explain, easiest one to get your
+
+3
+00:16.610 --> 00:17.450
+head around.
+
+4
+00:17.750 --> 00:20.630
+So we're going to explain this with some code.
+
+5
+00:21.020 --> 00:25.100
+So we're going to create a function that we're going to call print items.
+
+6
+00:25.400 --> 00:28.220
+We're going to pass it a number n.
+
+7
+00:28.670 --> 00:33.350
+And we're going to have a for loop that runs in times.
+
+8
+00:33.350 --> 00:37.880
+And then we're going to print I from the for loop.
+
+9
+00:37.880 --> 00:38.900
+Pretty simple.
+
+10
+00:38.900 --> 00:43.790
+So let's flip over to VS code and have a look at this.
+
+11
+00:44.720 --> 00:45.110
+Okay.
+
+12
+00:45.110 --> 00:46.910
+So there is our function.
+
+13
+00:46.910 --> 00:49.550
+And then we're going to call it here with the number ten.
+
+14
+00:49.550 --> 00:50.900
+So I'm going to run this.
+
+15
+00:51.750 --> 00:55.770
+And you can see over here that it printed out zero through nine.
+
+16
+00:55.770 --> 00:59.490
+So there were ten items that were printed to the screen.
+
+17
+00:59.490 --> 01:01.050
+So let's flip back.
+
+18
+01:01.050 --> 01:05.820
+So this is an example of something that is O of n.
+
+19
+01:05.820 --> 01:08.460
+We passed it the number n.
+
+20
+01:09.150 --> 01:11.790
+And then it ran in time.
+
+21
+01:11.790 --> 01:13.800
+So we're in operations.
+
+22
+01:14.220 --> 01:17.250
+So whatever N was, that was the number of operations.
+
+23
+01:17.250 --> 01:18.510
+So that's O of N.
+
+24
+01:18.660 --> 01:21.420
+Let's take a look at this on a graph.
+
+25
+01:22.710 --> 01:27.150
+So on this graph on this bottom axis, that's n.
+
+26
+01:27.360 --> 01:32.010
+And on the other axis this is the number of operations.
+
+27
+01:32.010 --> 01:37.050
+So o of n is always going to be a straight line.
+
+28
+01:37.050 --> 01:39.810
+It is what is called proportional.
+
+29
+01:39.810 --> 01:46.170
+So if you hear the word proportional when it comes to big O that is going to be O of n.
+
+30
+01:46.620 --> 01:51.600
+So we'll be adding to this graph so we can compare one to another.
+
+31
+01:51.750 --> 01:55.230
+But for now that is O of n.

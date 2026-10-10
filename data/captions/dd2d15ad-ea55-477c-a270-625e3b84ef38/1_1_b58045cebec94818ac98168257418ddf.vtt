@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00.280 --> 00:07.000
+So in this video, I'm going to do a quick course overview and talk about how you can get the most out
+
+2
+00:07.000 --> 00:08.410
+of this course.
+
+3
+00:08.440 --> 00:11.110
+Please watch this video to the end.
+
+4
+00:11.110 --> 00:18.370
+In the last half of this video, I'll talk about how to access the coding exercises, which are very
+
+5
+00:18.370 --> 00:19.330
+important.
+
+6
+00:19.600 --> 00:24.550
+So this panel on the right is what you would see in the course in the browser.
+
+7
+00:24.790 --> 00:29.860
+And I do have some students that don't want to cover anything conceptual.
+
+8
+00:29.860 --> 00:32.620
+They just want to get right into writing code.
+
+9
+00:32.620 --> 00:39.910
+If that is you go directly to the linked list section and start with the constructor video.
+
+10
+00:40.240 --> 00:42.700
+So there'll be two things I'm going to cover here.
+
+11
+00:42.700 --> 00:48.010
+First, I'm going to talk about why you should come up here and do these two sections before you get
+
+12
+00:48.010 --> 00:49.510
+to the linked list section.
+
+13
+00:49.840 --> 00:54.880
+And then I'm going to talk about how to access the coding exercises.
+
+14
+00:55.120 --> 01:03.220
+So first let's talk about big O and big O is a way of measuring how efficient your code is.
+
+15
+01:03.220 --> 01:07.660
+And I'm going to give you just a quick example of where we might apply that.
+
+16
+01:07.930 --> 01:14.950
+Let's say you're writing an application and you're trying to decide should you store your data in a
+
+17
+01:14.950 --> 01:18.310
+linked list or a doubly linked list.
+
+18
+01:18.610 --> 01:24.670
+So you're looking at a singly linked list first, and the most important thing to you is being able
+
+19
+01:24.670 --> 01:29.440
+to remove the last item as efficiently as possible.
+
+20
+01:29.770 --> 01:37.270
+Is a singly linked list going to be most efficient, or would it be better to use a doubly linked list?
+
+21
+01:37.270 --> 01:41.860
+Would this be more efficient when you remove the last item?
+
+22
+01:42.190 --> 01:49.150
+Now, it just so happens that a doubly linked list is much more efficient at this particular task.
+
+23
+01:49.450 --> 01:54.070
+And we'll get into all the reasons for that when we get into the course.
+
+24
+01:54.430 --> 02:00.970
+But the important thing here is the way we're going to talk about this efficiency is going to be the
+
+25
+02:00.970 --> 02:03.220
+language of big O.
+
+26
+02:03.580 --> 02:07.570
+So there are three different reasons you should watch this section.
+
+27
+02:07.780 --> 02:14.080
+First, we're going to be talking about the big O of everything we do with every data structure and
+
+28
+02:14.080 --> 02:16.420
+every algorithm throughout the course.
+
+29
+02:16.420 --> 02:20.830
+And we're going to be having quizzes on it and spend a lot of time on this topic.
+
+30
+02:20.830 --> 02:23.980
+So that's the first reason you should watch this section.
+
+31
+02:24.070 --> 02:30.010
+The second reason is you can see just right here, if you're making decisions on what data structure
+
+32
+02:30.010 --> 02:35.980
+to use in your code, you need to understand this if you're going to write efficient code.
+
+33
+02:36.250 --> 02:38.080
+So that's reason number two.
+
+34
+02:38.080 --> 02:40.630
+But there is a third really big reason.
+
+35
+02:40.630 --> 02:47.770
+There's 100% chance, when you go into a coding interview that they will ask you questions about big
+
+36
+02:47.770 --> 02:48.430
+O.
+
+37
+02:48.730 --> 02:53.590
+And now this next topic here, classes and pointers is very short.
+
+38
+02:53.590 --> 02:55.750
+It only has two videos in it.
+
+39
+02:55.750 --> 03:00.400
+One is an introduction to classes and the other one is on pointers.
+
+40
+03:00.400 --> 03:03.190
+So first let's talk about classes.
+
+41
+03:03.190 --> 03:08.770
+Every data structure we create in this course will be using a class.
+
+42
+03:08.770 --> 03:16.450
+So when we write the code for a linked list for example we're actually creating a linked list class.
+
+43
+03:16.810 --> 03:21.010
+So it's important to know the basics of how classes work.
+
+44
+03:21.400 --> 03:26.680
+But the other video pointers this is something that trips up a lot of students.
+
+45
+03:27.040 --> 03:33.160
+So for example, if I ask a lot of students to show me where head and tail are in this diagram, they
+
+46
+03:33.160 --> 03:39.700
+will say, this is head and this is tail, and that is actually incorrect.
+
+47
+03:39.700 --> 03:44.320
+And the reason is that neither head nor tail are nodes.
+
+48
+03:44.710 --> 03:51.130
+Head and tail are both variables that are pointers that can point to a node.
+
+49
+03:51.430 --> 03:54.250
+So head is this pointer.
+
+50
+03:54.250 --> 03:57.910
+Now it just so happens that it is pointing at this node.
+
+51
+03:57.910 --> 04:03.100
+But head is that variable that points to that node.
+
+52
+04:03.100 --> 04:07.930
+And when you have a variable that's a pointer, it has some characteristics that are different than
+
+53
+04:07.960 --> 04:10.660
+variables that are say like an integer.
+
+54
+04:10.900 --> 04:14.620
+And it will be important to understand those differences.
+
+55
+04:14.980 --> 04:18.010
+So now let's move to the final topic in this video.
+
+56
+04:18.010 --> 04:20.710
+And that is the coding exercises.
+
+57
+04:21.040 --> 04:23.500
+So I'm going to come up here to the linked list section.
+
+58
+04:23.500 --> 04:25.240
+And I'm going to open this.
+
+59
+04:25.450 --> 04:28.930
+And then we're going to come down here to the constructor.
+
+60
+04:29.170 --> 04:36.100
+And as I mentioned earlier, this would be the first place where we are really writing code in the course.
+
+61
+04:36.400 --> 04:39.700
+And I'm going to click on this resources tab.
+
+62
+04:39.700 --> 04:43.720
+And you can see that we have an exercise and solution file.
+
+63
+04:44.050 --> 04:46.600
+And if you click on these these will download.
+
+64
+04:46.600 --> 04:51.460
+And then you can import those into whatever coding environment that you're using.
+
+65
+04:51.700 --> 04:56.050
+So this is one way to access the coding exercises.
+
+66
+04:56.050 --> 04:58.840
+But I do have some students that don't want to.
+
+67
+04:58.960 --> 05:00.850
+A download a file and import it.
+
+68
+05:00.850 --> 05:04.270
+They just want to do it in the browser in the course.
+
+69
+05:04.570 --> 05:09.400
+And if that's the way you want to do it, just scroll all the way to the bottom.
+
+70
+05:09.400 --> 05:13.720
+And at the bottom there's a section called Coding Exercises.
+
+71
+05:14.050 --> 05:15.940
+So I'll open this.
+
+72
+05:15.940 --> 05:23.590
+And then you can see up here that same coding exercise for the linked list constructor is down in this
+
+73
+05:23.590 --> 05:24.940
+section as well.
+
+74
+05:25.270 --> 05:31.450
+So for the coding exercise you either download the exercise from the video under the resources tab,
+
+75
+05:31.450 --> 05:33.010
+or you do it down here.
+
+76
+05:33.010 --> 05:34.660
+You don't do both.
+
+77
+05:34.990 --> 05:39.730
+And the reason is these will both be the same exercise either way.
+
+78
+05:40.060 --> 05:45.640
+So if you want to get the most out of this course, as soon as we get done with a video where we're
+
+79
+05:45.640 --> 05:52.390
+going through code, immediately do the coding exercise and reinforce that learning.
+
+80
+05:52.660 --> 06:00.010
+So I took a lot of time in creating these coding exercises, and they are designed to give you an opportunity
+
+81
+06:00.010 --> 06:04.330
+to write the code for each topic as quickly as possible.
+
+82
+06:04.630 --> 06:10.810
+And I think you will find these to be more efficient than writing all of the code from scratch.
+
+83
+06:11.110 --> 06:15.910
+And with that, that is our quick course overview.

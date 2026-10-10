@@ -10,6 +10,12 @@ pub struct Lecture {
     pub absolute_path: String,
     pub duration_seconds: u64,
     pub order: usize,
+    #[serde(default = "default_item_type")]
+    pub item_type: String,
+}
+
+fn default_item_type() -> String {
+    "video".to_string()
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

@@ -11,6 +11,7 @@
     Search,
     X,
     FolderKanban,
+    Code,
   } from 'lucide-svelte';
   import { slide } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
@@ -183,6 +184,13 @@
                 {#each filteredLectures as lec (lec.id)}
                   {@const isCompleted = progress?.completed_lecture_ids?.includes(lec.id) ?? false}
                   {@const isActive = activeLecture?.id === lec.id}
+                  {@const isHtml = lec.item_type === 'html' ||
+                    lec.file_name?.toLowerCase().endsWith('.html') ||
+                    lec.file_name?.toLowerCase().endsWith('.htm') ||
+                    lec.relative_path?.toLowerCase().endsWith('.html') ||
+                    lec.relative_path?.toLowerCase().endsWith('.htm') ||
+                    lec.absolute_path?.toLowerCase().endsWith('.html') ||
+                    lec.absolute_path?.toLowerCase().endsWith('.htm')}
 
                   <div
                     class="group flex items-start gap-3 px-4 py-2.5 cursor-pointer transition-colors relative {isActive
@@ -211,14 +219,19 @@
                       {/if}
                     </button>
 
-                    <!-- Title & Duration -->
+                    <!-- Title & Duration / Type Badge -->
                     <div class="flex-1 min-w-0">
                       <div class="text-xs leading-snug font-medium truncate mb-1 {isActive ? 'text-white font-semibold' : 'group-hover:text-foreground text-[#d8d5e8]'}">
                         {lec.title}
                       </div>
                       <div class="flex items-center gap-1.5 text-[10px] {isActive ? 'text-[#c0b8f0]' : 'text-muted-foreground'}">
-                        <Play class="w-2.5 h-2.5 fill-current {isActive ? 'text-[#c0b8f0]' : ''}" />
-                        <span>{formatTime(lec.duration_seconds)}</span>
+                        {#if isHtml}
+                          <Code class="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                          <span class="text-amber-400 font-medium">Code</span>
+                        {:else}
+                          <Play class="w-2.5 h-2.5 fill-current {isActive ? 'text-[#c0b8f0]' : ''}" />
+                          <span>{formatTime(lec.duration_seconds)}</span>
+                        {/if}
                       </div>
                     </div>
                   </div>

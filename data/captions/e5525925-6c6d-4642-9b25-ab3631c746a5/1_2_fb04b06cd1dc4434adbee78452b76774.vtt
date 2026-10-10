@@ -1,0 +1,689 @@
+WEBVTT
+
+1
+00:01.140 --> 00:09.030
+So in this video, I'm going to walk through how to set up your coding environment to be just like my
+
+2
+00:09.030 --> 00:11.700
+coding environment is in the course.
+
+3
+00:11.820 --> 00:15.750
+And what I will be using is VS code.
+
+4
+00:15.750 --> 00:20.640
+And now having said that, and this is probably going to surprise you.
+
+5
+00:20.640 --> 00:25.320
+I recommend that you not install VS code.
+
+6
+00:25.320 --> 00:31.950
+And the reason for that is Udemy has made a massive upgrade to their coding exercises.
+
+7
+00:31.950 --> 00:38.580
+So I would recommend that you do the coding exercises that are built in to the course.
+
+8
+00:38.580 --> 00:44.970
+So I'm going to flip over to the course and show you what these coding exercises look like.
+
+9
+00:44.970 --> 00:49.110
+So this is the video for the linked list constructor.
+
+10
+00:49.110 --> 00:53.100
+That video is contained in this section.
+
+11
+00:53.100 --> 00:59.850
+And you can see right below that section there's a section called Linked List Coding exercises.
+
+12
+00:59.850 --> 01:06.120
+So I'm going to come up here and open this section for the coding exercises like this.
+
+13
+01:06.120 --> 01:11.130
+And there is the coding exercise that goes with that video.
+
+14
+01:11.130 --> 01:13.050
+So I'm going to click on this.
+
+15
+01:13.050 --> 01:16.830
+And it brings up this coding exercise.
+
+16
+01:16.830 --> 01:21.450
+Now the first thing I'm going to do is come up to this corner and click on this x.
+
+17
+01:21.450 --> 01:23.460
+And that closes that side panel.
+
+18
+01:23.460 --> 01:25.440
+That gives us a little bit more room.
+
+19
+01:25.440 --> 01:29.250
+And then I'll come down here and click on this button.
+
+20
+01:29.250 --> 01:32.310
+And this makes this full screen.
+
+21
+01:32.310 --> 01:35.310
+So now I want to point a few things out here.
+
+22
+01:35.310 --> 01:41.850
+When you write your code in these coding exercises there are these very detailed instructions in this
+
+23
+01:41.850 --> 01:43.440
+pane on the left.
+
+24
+01:43.440 --> 01:49.320
+I have also in the coding exercise itself, you can see these boxes that I've created.
+
+25
+01:49.320 --> 01:52.800
+So you know exactly where you're supposed to write your code.
+
+26
+01:52.800 --> 01:58.170
+So I'm going to highlight these and paste in the actual solution code.
+
+27
+01:58.170 --> 02:03.720
+And once you have written this you come down and click on this run test button.
+
+28
+02:03.720 --> 02:09.300
+So I'll click on this and you can see that this has passed all of the tests.
+
+29
+02:09.300 --> 02:12.420
+Then I'm going to come over here to user logs.
+
+30
+02:12.420 --> 02:13.620
+I'm going to click on this.
+
+31
+02:13.620 --> 02:17.160
+And this is just like printing out to the console.
+
+32
+02:17.160 --> 02:20.580
+So this is very similar to using an IDE.
+
+33
+02:20.880 --> 02:24.930
+So now I'm going to come up here to the top and click on hints.
+
+34
+02:24.930 --> 02:33.450
+What I've done is put pseudo code very detailed outlined pseudo code for each one of these coding exercises.
+
+35
+02:33.450 --> 02:37.860
+And then I'm going to come up to solution explanation and click on this.
+
+36
+02:37.860 --> 02:42.180
+And this is the solution code for this particular exercise.
+
+37
+02:42.180 --> 02:47.790
+And you can see that there's a very detailed explanation for all of the code.
+
+38
+02:47.790 --> 02:50.430
+And then I'm going to scroll up again.
+
+39
+02:50.430 --> 02:54.720
+And at the bottom we have code with inline comments.
+
+40
+02:54.720 --> 03:02.730
+So by doing the coding exercises in the course you have access to all of these resources that you're
+
+41
+03:02.730 --> 03:07.140
+not going to have if you write the code in VS code.
+
+42
+03:07.140 --> 03:13.350
+So I recommend that you at least try writing your code here and see how you like this.
+
+43
+03:13.350 --> 03:19.620
+So now that we've talked about this, now I'm going to talk about how to install VS code.
+
+44
+03:19.620 --> 03:27.240
+Once again, I recommend that you not install VS code and skip the rest of the video.
+
+45
+03:27.240 --> 03:32.610
+Okay, so now we're going to flip over and install VS code.
+
+46
+03:33.480 --> 03:39.300
+And so we'll do a Google search here and we'll just say download vs code.
+
+47
+03:39.750 --> 03:42.840
+So I'll click on this and that'll do our search.
+
+48
+03:42.990 --> 03:49.710
+And then our top hit here is to download Visual Studio Code for Mac, Linux or Windows.
+
+49
+03:49.710 --> 03:51.330
+So I'm going to click on this.
+
+50
+03:52.140 --> 03:53.910
+And it brings us to this page.
+
+51
+03:53.910 --> 03:56.880
+Now remember these pages change.
+
+52
+03:56.880 --> 04:00.360
+So it might look a little different when you come to this page.
+
+53
+04:00.360 --> 04:02.400
+So I am on a mac.
+
+54
+04:02.400 --> 04:05.160
+So I'm going to come down here and click on this.
+
+55
+04:06.000 --> 04:10.050
+And you can see that is starting the download here.
+
+56
+04:10.440 --> 04:17.340
+And it doesn't matter if you're using Windows or Linux or a mac, you can just accept all of the defaults
+
+57
+04:17.340 --> 04:19.350
+when you install this.
+
+58
+04:19.350 --> 04:24.570
+And of course, we start the process by just clicking on this or going to the downloads folder and double
+
+59
+04:24.570 --> 04:27.240
+clicking on the item that was downloaded.
+
+60
+04:27.510 --> 04:30.810
+So I'm not going to go through all of those steps.
+
+61
+04:30.810 --> 04:37.230
+Being able to install a program is pretty straightforward, but once you install that and you launch
+
+62
+04:37.230 --> 04:41.070
+it, you'll get something that looks like this.
+
+63
+04:41.370 --> 04:47.700
+So now that this is up, we need to install Python into VS code.
+
+64
+04:47.700 --> 04:55.980
+So we do that by going to this button here I'll click on this and the side pane changes.
+
+65
+04:55.980 --> 04:59.550
+And this is what we use to download extensions.
+
+66
+04:59.550 --> 05:02.220
+So you can see up here it says popular.
+
+67
+05:02.220 --> 05:04.890
+And the very first item here is Python.
+
+68
+05:04.890 --> 05:08.490
+And this is probably going to be the case for you as well.
+
+69
+05:08.730 --> 05:16.710
+If it isn't or it's not on this list, you can come up to this search box up here where it says Search
+
+70
+05:16.710 --> 05:21.330
+Extensions in Marketplace and just do a search for Python.
+
+71
+05:21.330 --> 05:24.000
+And this should be the first item that comes up.
+
+72
+05:24.500 --> 05:28.100
+So then we'll click on this install button right here.
+
+73
+05:28.100 --> 05:30.050
+I'll come up here and click on this.
+
+74
+05:30.050 --> 05:33.290
+And that will install Python.
+
+75
+05:33.620 --> 05:36.110
+So I'm going to come down here to where it says popular.
+
+76
+05:36.110 --> 05:38.780
+I'm going to collapse this arrow here.
+
+77
+05:39.080 --> 05:43.730
+And I'm going to do the same for where it says recommended right here.
+
+78
+05:44.720 --> 05:48.050
+So now we can just look at the items that are installed.
+
+79
+05:48.350 --> 05:53.240
+So I have these three that were installed when we installed Python.
+
+80
+05:53.600 --> 05:58.130
+So I'm going to come up here to where it says explorer.
+
+81
+05:58.160 --> 06:00.110
+That's going to change this side panel.
+
+82
+06:00.110 --> 06:02.780
+To be like this I'm going to click on Open Folder.
+
+83
+06:02.930 --> 06:08.060
+You can also do this in the menu file open.
+
+84
+06:08.060 --> 06:12.080
+This will all be very similar on Windows or Linux.
+
+85
+06:12.500 --> 06:15.650
+So I can do this either place I'll just click it here.
+
+86
+06:15.650 --> 06:21.350
+I have a folder already set up here called Python and I'll open this.
+
+87
+06:21.410 --> 06:24.530
+And now this is all of our code for the course.
+
+88
+06:24.530 --> 06:27.290
+So I'm going to click on this hello World here.
+
+89
+06:27.410 --> 06:30.830
+And this just says print hello world.
+
+90
+06:30.830 --> 06:35.090
+Simple I just want to make sure that Python is working correctly.
+
+91
+06:35.090 --> 06:39.260
+And I'll do that by coming up here and clicking on this play button here.
+
+92
+06:39.260 --> 06:40.910
+So I'll click on this.
+
+93
+06:42.100 --> 06:44.830
+And then you can see down here it's output.
+
+94
+06:44.830 --> 06:45.640
+Hello world.
+
+95
+06:45.640 --> 06:48.190
+So Python is working correctly.
+
+96
+06:48.640 --> 06:51.130
+So make sure you do something like this.
+
+97
+06:51.130 --> 06:58.150
+Make sure that your file ends in a.py for Python like I have over here for Hello world.
+
+98
+06:58.480 --> 07:04.570
+And then just write a line of code to print something to the terminal, and then run the code to make
+
+99
+07:04.570 --> 07:06.040
+sure that this is working.
+
+100
+07:06.220 --> 07:11.590
+So this is really all you need to do to be ready to move forward with the course.
+
+101
+07:11.590 --> 07:17.320
+But I'm going to show you a few cosmetic changes that I made to my VS code environment.
+
+102
+07:17.320 --> 07:19.480
+And you can either do this or not.
+
+103
+07:19.480 --> 07:21.130
+This is completely optional.
+
+104
+07:21.130 --> 07:25.210
+It's just cosmetic and doesn't really make any difference.
+
+105
+07:25.450 --> 07:28.060
+So first I'll show you the color scheme that I used.
+
+106
+07:28.060 --> 07:31.390
+We'll do that by coming down to this gear in the lower left.
+
+107
+07:32.000 --> 07:38.180
+We'll click on this, we get a menu and I'm going to come up to here where it says color theme.
+
+108
+07:39.230 --> 07:42.980
+I'll click on this and then we get this up here.
+
+109
+07:43.630 --> 07:47.410
+I'm using dark plus default dark.
+
+110
+07:47.410 --> 07:52.750
+So if you want your code to match mine color wise, click on that.
+
+111
+07:53.510 --> 07:55.850
+And of course that is completely optional.
+
+112
+07:56.270 --> 07:58.220
+And a couple of other changes that I made.
+
+113
+07:58.220 --> 08:01.310
+First is that I took the terminal and moved it to the right.
+
+114
+08:01.310 --> 08:06.950
+You just come to the terminal bar here, you right click, you get this menu and say move panel right.
+
+115
+08:07.740 --> 08:10.920
+Now that's going to move our hello world over here.
+
+116
+08:11.370 --> 08:14.040
+And then I installed another extension.
+
+117
+08:14.040 --> 08:16.890
+This is also completely optional.
+
+118
+08:16.890 --> 08:23.580
+You may want to skip this step just to make things a little easier on your end, but I wanted the output
+
+119
+08:23.670 --> 08:25.620
+for the course to look nicer.
+
+120
+08:25.620 --> 08:31.890
+So instead of having all of this extra information that is printed every time that I run something,
+
+121
+08:32.130 --> 08:33.450
+I want that removed.
+
+122
+08:33.450 --> 08:40.920
+And also what I want is I don't want this to print Hello World over and over on the screen.
+
+123
+08:40.920 --> 08:43.710
+What I want this to do is clear the console every time.
+
+124
+08:43.710 --> 08:45.570
+So this stays really clean.
+
+125
+08:45.570 --> 08:50.160
+That'll make it a lot easier for you to follow along and be able to learn the material.
+
+126
+08:50.160 --> 08:53.250
+So I'm going to come over here to extensions.
+
+127
+08:54.280 --> 08:57.340
+And I'm going to do a search for Code Runner.
+
+128
+08:57.610 --> 09:00.520
+Like I said, this is completely optional.
+
+129
+09:00.730 --> 09:04.510
+I'll click install and I'll clear this search.
+
+130
+09:04.840 --> 09:12.670
+And you can see that we now have four items installed, our original three which were part of the Python
+
+131
+09:12.670 --> 09:15.490
+install, and then for Code Runner.
+
+132
+09:15.910 --> 09:18.550
+So I'm going to close this tab here.
+
+133
+09:18.880 --> 09:20.890
+And now when I go up here.
+
+134
+09:21.840 --> 09:29.190
+Instead of just running this at the terminal, I get a menu run code that is code runner or run Python
+
+135
+09:29.190 --> 09:29.910
+from the terminal.
+
+136
+09:29.910 --> 09:32.580
+So from the terminal is what we've been doing.
+
+137
+09:32.580 --> 09:34.590
+So I want to do run code.
+
+138
+09:34.590 --> 09:36.570
+So that's going to look like this.
+
+139
+09:36.810 --> 09:39.030
+So that does look a little nicer.
+
+140
+09:39.030 --> 09:43.710
+But we still have the problem of this printing multiple times.
+
+141
+09:43.710 --> 09:46.770
+When I run these things again I want to fix that.
+
+142
+09:46.770 --> 09:51.450
+And I don't want this big directory to be printed every time.
+
+143
+09:52.090 --> 09:56.290
+So what I'm going to do is I'm going to come down here to the gear.
+
+144
+09:57.020 --> 09:58.550
+I'm going to click on this.
+
+145
+09:59.160 --> 10:02.310
+And then I'm going to click on settings.
+
+146
+10:02.910 --> 10:06.720
+So what I'll need to do here is shrink a couple of these windows on each side.
+
+147
+10:06.720 --> 10:10.290
+So we have more room for this window in the center.
+
+148
+10:10.830 --> 10:13.110
+So right here where it says extensions.
+
+149
+10:13.110 --> 10:14.970
+I'm going to open this up.
+
+150
+10:15.530 --> 10:21.470
+And I'm going to scroll down to where it says run code right here.
+
+151
+10:21.470 --> 10:23.180
+That is Code Runner.
+
+152
+10:23.180 --> 10:30.980
+So I click on this and a couple of changes I'll make here is do I want to clear the previous output
+
+153
+10:30.980 --> 10:32.180
+each time I do.
+
+154
+10:32.180 --> 10:34.250
+So I'm going to check this box.
+
+155
+10:34.250 --> 10:43.340
+So now when I come over to our Hello World and I run this, it clears the console before executing the
+
+156
+10:43.340 --> 10:45.080
+code each time.
+
+157
+10:45.080 --> 10:49.040
+So the other thing I want to do is remove that big directory.
+
+158
+10:49.220 --> 10:51.560
+So I'll go back to our settings here.
+
+159
+10:52.300 --> 10:54.880
+And we'll scroll down a bit.
+
+160
+10:56.570 --> 11:02.810
+And then I want to uncheck this box where it says Show execution message.
+
+161
+11:03.410 --> 11:06.110
+I'll uncheck this and what that's going to do.
+
+162
+11:06.110 --> 11:08.870
+We'll come back over here to the Hello World.
+
+163
+11:09.790 --> 11:14.830
+When we run this, we don't have any of that directory information.
+
+164
+11:14.830 --> 11:16.840
+It just says hello world.
+
+165
+11:17.470 --> 11:23.650
+So that's all that Code Runner does is cleans up that output, which I thought was important for me
+
+166
+11:23.650 --> 11:27.760
+to do to make everything easier to watch in the videos.
+
+167
+11:28.280 --> 11:29.450
+But you don't need that.
+
+168
+11:29.450 --> 11:35.600
+You could just run this in the terminal and have Hello World show up here.
+
+169
+11:36.050 --> 11:41.330
+So for most of the course, I'll have the side window on the left closed like this.
+
+170
+11:41.910 --> 11:46.050
+And then we'll have the output looking like.
+
+171
+11:47.030 --> 11:50.030
+This so we can keep that pretty clean.
+
+172
+11:50.930 --> 11:54.890
+But that is how we're going to set up VS code.
