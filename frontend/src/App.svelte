@@ -402,7 +402,7 @@
       activeCourseId={currentCourse?.id ?? null}
       {isImporting}
       {rescanningCourseId}
-      onSelectCourse={(id) => loadCourse(id, true)}
+      onSelectCourse={(id) => loadCourse(id, false)}
       onImportCourse={handleImportCourse}
       onRescanCourse={handleRescanCourse}
       onDeleteCourse={handleDeleteCourse}

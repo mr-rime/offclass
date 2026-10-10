@@ -52,12 +52,16 @@
     return `http://127.0.0.1:${streamingPort}/html/${currentCourse.id}/${activeLecture.id}`;
   });
 
+  let currentLoadedUrl = $state('');
+
   $effect(() => {
-    if (activeLecture) {
+    if (htmlUrl && htmlUrl !== currentLoadedUrl) {
+      currentLoadedUrl = htmlUrl;
       isLoading = true;
-      if (!isCompleted && onToggleCompleted) {
-        onToggleCompleted(new MouseEvent('click'));
-      }
+      const timer = setTimeout(() => {
+        isLoading = false;
+      }, 1000);
+      return () => clearTimeout(timer);
     }
   });
 
