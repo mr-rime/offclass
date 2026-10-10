@@ -167,6 +167,16 @@
       currentProgress.last_played_lecture_id = lecture.id;
       const existingPos = currentProgress.playback_positions[lecture.id] || 0;
       api.updatePosition(currentCourse.id, lecture.id, existingPos).catch(() => {});
+
+      const isHtml = lecture.item_type === 'html' ||
+        lecture.file_name?.toLowerCase().endsWith('.html') ||
+        lecture.file_name?.toLowerCase().endsWith('.htm') ||
+        lecture.relative_path?.toLowerCase().endsWith('.html') ||
+        lecture.relative_path?.toLowerCase().endsWith('.htm');
+
+      if (isHtml && !currentProgress.completed_lecture_ids?.includes(lecture.id)) {
+        handleToggleCompleted(lecture.id, new MouseEvent('click'));
+      }
     }
   }
 

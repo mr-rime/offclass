@@ -134,10 +134,22 @@
   <div class="flex-1 overflow-y-auto divide-y divide-border/80 bg-[#161528]">
     {#if course && course.sections.length > 0}
       {#each course.sections as sec (sec.id)}
-        {@const completedInSec = sec.lectures.filter((l) =>
+        {@const videoLectures = sec.lectures.filter((l) =>
+          l.item_type !== 'html' &&
+          !l.file_name?.toLowerCase().endsWith('.html') &&
+          !l.file_name?.toLowerCase().endsWith('.htm') &&
+          !l.relative_path?.toLowerCase().endsWith('.html') &&
+          !l.relative_path?.toLowerCase().endsWith('.htm')
+        )}
+        {@const hasVideos = videoLectures.length > 0}
+        {@const completedVideosInSec = videoLectures.filter((l) =>
           progress?.completed_lecture_ids?.includes(l.id)
         ).length}
-        {@const secTotalDuration = sec.lectures.reduce(
+        {@const displayCompleted = hasVideos
+          ? completedVideosInSec
+          : sec.lectures.filter((l) => progress?.completed_lecture_ids?.includes(l.id)).length}
+        {@const displayTotal = hasVideos ? videoLectures.length : sec.lectures.length}
+        {@const secTotalDuration = videoLectures.reduce(
           (acc, l) => acc + (l.duration_seconds || 0),
           0
         )}
@@ -163,7 +175,7 @@
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-[#161528] text-muted-foreground border border-border">
-                    {completedInSec}/{sec.lectures.length} completed
+                    {displayCompleted}/{displayTotal} completed
                   </span>
                   <span class="text-[11px] text-muted-foreground font-medium">
                     • {formatTotalDuration(secTotalDuration)}

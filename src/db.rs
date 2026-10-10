@@ -102,6 +102,27 @@ impl AppDatabase {
             }
         }
 
+        // Auto-check all HTML files in progress
+        for course in schema.courses.values() {
+            let progress = schema
+                .progress
+                .entry(course.id.clone())
+                .or_insert_with(|| CourseProgress {
+                    course_id: course.id.clone(),
+                    ..Default::default()
+                });
+            for sec in &course.sections {
+                for lec in &sec.lectures {
+                    let is_html = lec.item_type == "html"
+                        || crate::scanner::is_html_file(Path::new(&lec.file_name))
+                        || crate::scanner::is_html_file(Path::new(&lec.relative_path));
+                    if is_html && progress.completed_lecture_ids.insert(lec.id.clone()) {
+                        repaired = true;
+                    }
+                }
+            }
+        }
+
         let db = Self {
             file_path: db_path,
             data: schema,
@@ -136,17 +157,47 @@ impl AppDatabase {
 
     pub fn compute_stats(&self, course: &Course, progress: &CourseProgress) -> CourseStats {
         let total_sections = course.sections.len();
-        let mut total_lectures = 0;
+        let mut total_videos = 0;
         let mut total_duration_seconds = 0;
 
         for sec in &course.sections {
-            total_lectures += sec.lectures.len();
             for lec in &sec.lectures {
-                total_duration_seconds += lec.duration_seconds;
+                let is_html = lec.item_type == "html"
+                    || crate::scanner::is_html_file(Path::new(&lec.file_name))
+                    || crate::scanner::is_html_file(Path::new(&lec.relative_path));
+                if !is_html {
+                    total_videos += 1;
+                    total_duration_seconds += lec.duration_seconds;
+                }
             }
         }
 
-        let completed_lectures = progress.completed_lecture_ids.len();
+        // Exclude HTML files from total lecture count; fall back to total items if course has no videos
+        let total_lectures = if total_videos > 0 {
+            total_videos
+        } else {
+            course.sections.iter().map(|s| s.lectures.len()).sum()
+        };
+
+        let completed_lectures = if total_videos > 0 {
+            progress
+                .completed_lecture_ids
+                .iter()
+                .filter(|id| {
+                    course.sections.iter().any(|sec| {
+                        sec.lectures.iter().any(|lec| {
+                            &lec.id == *id
+                                && lec.item_type != "html"
+                                && !crate::scanner::is_html_file(Path::new(&lec.file_name))
+                                && !crate::scanner::is_html_file(Path::new(&lec.relative_path))
+                        })
+                    })
+                })
+                .count()
+        } else {
+            progress.completed_lecture_ids.len()
+        };
+
         let progress_percent = if total_lectures > 0 {
             (completed_lectures as f32 / total_lectures as f32) * 100.0
         } else {
@@ -173,9 +224,21 @@ impl AppDatabase {
             .or_insert_with(|| CourseProgress {
                 course_id: course_id.clone(),
                 ..Default::default()
-            })
-            .clone();
+            });
 
+        // Automatically check all HTML files
+        for sec in &course.sections {
+            for lec in &sec.lectures {
+                let is_html = lec.item_type == "html"
+                    || crate::scanner::is_html_file(Path::new(&lec.file_name))
+                    || crate::scanner::is_html_file(Path::new(&lec.relative_path));
+                if is_html {
+                    progress.completed_lecture_ids.insert(lec.id.clone());
+                }
+            }
+        }
+
+        let progress = progress.clone();
         let stats = self.compute_stats(&course, &progress);
         self.data.courses.insert(course_id.clone(), course.clone());
         self.save()?;

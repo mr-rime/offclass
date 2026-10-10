@@ -55,6 +55,9 @@
   $effect(() => {
     if (activeLecture) {
       isLoading = true;
+      if (!isCompleted && onToggleCompleted) {
+        onToggleCompleted(new MouseEvent('click'));
+      }
     }
   });
 

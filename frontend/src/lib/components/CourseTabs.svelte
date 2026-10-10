@@ -40,10 +40,14 @@
   let activeTab = $state<'overview' | 'notes' | 'shortcuts'>('overview');
   let noteText = $state('');
 
-  let completedCount = $derived(progress?.completed_lecture_ids?.length ?? 0);
+  let completedCount = $derived(stats?.completed_lectures ?? progress?.completed_lecture_ids?.length ?? 0);
   let totalCount = $derived(stats?.total_lectures ?? 0);
   let progressPct = $derived(
-    totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0
+    stats?.progress_percent != null
+      ? Math.round(stats.progress_percent)
+      : totalCount > 0
+      ? Math.round((completedCount / totalCount) * 100)
+      : 0
   );
 
   function handleSaveNote() {
@@ -137,7 +141,7 @@
 
         <Card class="p-4 bg-card border-border flex flex-col gap-1">
           <span class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-            Lectures & Docs
+            Total Videos
           </span>
           <span class="text-2xl font-bold text-foreground">
             {stats?.total_lectures ?? 0}

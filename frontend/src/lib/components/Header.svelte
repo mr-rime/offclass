@@ -41,11 +41,15 @@
   }: Props = $props();
 
   let completedCount = $derived(
-    progress?.completed_lecture_ids ? progress.completed_lecture_ids.length : 0
+    stats?.completed_lectures ?? (progress?.completed_lecture_ids ? progress.completed_lecture_ids.length : 0)
   );
   let totalCount = $derived(stats?.total_lectures ?? 0);
   let progressPct = $derived(
-    totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0
+    stats?.progress_percent != null
+      ? Math.round(stats.progress_percent)
+      : totalCount > 0
+      ? Math.round((completedCount / totalCount) * 100)
+      : 0
   );
 </script>
 

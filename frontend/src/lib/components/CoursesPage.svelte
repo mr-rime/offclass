@@ -119,7 +119,7 @@
             <Layers class="w-5 h-5" />
           </div>
           <div>
-            <div class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Lessons</div>
+            <div class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Videos</div>
             <div class="text-xl font-bold text-foreground">{totalLectures}</div>
           </div>
         </Card>
