@@ -325,7 +325,23 @@ impl AppDatabase {
                 ..Default::default()
             });
 
-        if completed {
+        // HTML files are always checked and cannot be modified
+        let is_html_lecture = if let Some(course) = self.data.courses.get(course_id) {
+            course.sections.iter().any(|sec| {
+                sec.lectures.iter().any(|lec| {
+                    lec.id == lecture_id
+                        && (lec.item_type == "html"
+                            || crate::scanner::is_html_file(Path::new(&lec.file_name))
+                            || crate::scanner::is_html_file(Path::new(&lec.relative_path)))
+                })
+            })
+        } else {
+            false
+        };
+
+        if is_html_lecture {
+            progress.completed_lecture_ids.insert(lecture_id.to_string());
+        } else if completed {
             progress.completed_lecture_ids.insert(lecture_id.to_string());
         } else {
             progress.completed_lecture_ids.remove(lecture_id);

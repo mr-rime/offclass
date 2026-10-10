@@ -218,18 +218,27 @@
                     {/if}
 
                     <!-- Checkbox Button with distinct visible background -->
-                    <button
-                      class="w-[18px] h-[18px] rounded-[4px] mt-0.5 flex items-center justify-center shrink-0 transition-all cursor-pointer shadow-sm {isCompleted
-                        ? 'bg-primary border border-primary text-white shadow-primary/25'
-                        : 'bg-[#282548] border border-[#4a4576] hover:bg-[#34305c] hover:border-primary text-transparent'}"
-                      onclick={(e) => onToggleCompleted(lec.id, e)}
-                      title={isCompleted ? 'Mark incomplete' : 'Mark complete'}
-                      aria-label={isCompleted ? 'Mark lecture as incomplete' : 'Mark lecture as completed'}
-                    >
-                      {#if isCompleted}
+                    {#if isHtml}
+                      <div
+                        class="w-[18px] h-[18px] rounded-[4px] mt-0.5 flex items-center justify-center shrink-0 shadow-sm bg-primary border border-primary text-white cursor-default select-none shadow-primary/25"
+                        title="HTML document (always completed)"
+                      >
                         <Check class="w-3.5 h-3.5 stroke-[2.8]" />
-                      {/if}
-                    </button>
+                      </div>
+                    {:else}
+                      <button
+                        class="w-[18px] h-[18px] rounded-[4px] mt-0.5 flex items-center justify-center shrink-0 transition-all cursor-pointer shadow-sm {isCompleted
+                          ? 'bg-primary border border-primary text-white shadow-primary/25'
+                          : 'bg-[#282548] border border-[#4a4576] hover:bg-[#34305c] hover:border-primary text-transparent'}"
+                        onclick={(e) => onToggleCompleted(lec.id, e)}
+                        title={isCompleted ? 'Mark incomplete' : 'Mark complete'}
+                        aria-label={isCompleted ? 'Mark lecture as incomplete' : 'Mark lecture as completed'}
+                      >
+                        {#if isCompleted}
+                          <Check class="w-3.5 h-3.5 stroke-[2.8]" />
+                        {/if}
+                      </button>
+                    {/if}
 
                     <!-- Title & Duration / Type Badge -->
                     <div class="flex-1 min-w-0">

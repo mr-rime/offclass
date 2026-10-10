@@ -136,18 +136,11 @@
 
     <!-- Right: Actions Toolbar -->
     <div class="flex items-center gap-1.5 shrink-0">
-      {#if onToggleCompleted && activeLecture}
-        <Button
-          variant={isCompleted ? 'purple' : 'secondary'}
-          size="sm"
-          class="h-7 px-2.5 text-xs gap-1.5 font-medium"
-          onclick={(e) => onToggleCompleted(e)}
-          title={isCompleted ? 'Mark as incomplete' : 'Mark as completed'}
-        >
-          <Check class="w-3.5 h-3.5 {isCompleted ? 'stroke-[3]' : ''}" />
-          <span>{isCompleted ? 'Completed' : 'Mark Complete'}</span>
-        </Button>
-      {/if}
+      <!-- HTML documents are always completed and cannot be modified -->
+      <div class="h-7 px-2.5 rounded-md text-xs gap-1.5 font-medium inline-flex items-center bg-primary/20 text-primary border border-primary/30 select-none">
+        <Check class="w-3.5 h-3.5 stroke-[2.8]" />
+        <span>Completed</span>
+      </div>
 
       {#if onNextLecture}
         <Button

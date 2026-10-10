@@ -184,6 +184,21 @@
     event.stopPropagation();
     if (!currentCourse || !currentProgress) return;
 
+    // HTML files are always checked and cannot be modified
+    for (const sec of currentCourse.sections) {
+      for (const lec of sec.lectures) {
+        if (lec.id === lectureId) {
+          const isHtml = lec.item_type === 'html' ||
+            lec.file_name?.toLowerCase().endsWith('.html') ||
+            lec.file_name?.toLowerCase().endsWith('.htm') ||
+            lec.relative_path?.toLowerCase().endsWith('.html') ||
+            lec.relative_path?.toLowerCase().endsWith('.htm');
+          if (isHtml) return;
+          break;
+        }
+      }
+    }
+
     const isCompleted = currentProgress.completed_lecture_ids?.includes(lectureId) ?? false;
     const nextStatus = !isCompleted;
 
