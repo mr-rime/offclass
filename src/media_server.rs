@@ -46,6 +46,7 @@ pub async fn stream_video_file(file_path: &Path, headers: &HeaderMap) -> Respons
         }
     }
 
+    let is_pdf = mime_type == "application/pdf";
     let range_header = headers.get(RANGE).and_then(|h| h.to_str().ok());
 
     if let Some(range_str) = range_header {
@@ -62,12 +63,18 @@ pub async fn stream_video_file(file_path: &Path, headers: &HeaderMap) -> Respons
 
             let content_range = format!("bytes {}-{}/{}", start, end, total_size);
 
-            return Response::builder()
+            let mut builder = Response::builder()
                 .status(StatusCode::PARTIAL_CONTENT)
                 .header(CONTENT_TYPE, mime_type)
                 .header(ACCEPT_RANGES, "bytes")
                 .header(CONTENT_RANGE, content_range)
-                .header(CONTENT_LENGTH, length.to_string())
+                .header(CONTENT_LENGTH, length.to_string());
+
+            if is_pdf {
+                builder = builder.header("Content-Disposition", "inline");
+            }
+
+            return builder
                 .body(body)
                 .unwrap_or_else(|_| (StatusCode::INTERNAL_SERVER_ERROR, "Response error").into_response());
         }
@@ -77,11 +84,17 @@ pub async fn stream_video_file(file_path: &Path, headers: &HeaderMap) -> Respons
     let stream = ReaderStream::new(file);
     let body = Body::from_stream(stream);
 
-    Response::builder()
+    let mut builder = Response::builder()
         .status(StatusCode::OK)
         .header(CONTENT_TYPE, mime_type)
         .header(ACCEPT_RANGES, "bytes")
-        .header(CONTENT_LENGTH, total_size.to_string())
+        .header(CONTENT_LENGTH, total_size.to_string());
+
+    if is_pdf {
+        builder = builder.header("Content-Disposition", "inline");
+    }
+
+    builder
         .body(body)
         .unwrap_or_else(|_| (StatusCode::INTERNAL_SERVER_ERROR, "Response error").into_response())
 }

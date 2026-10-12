@@ -5,6 +5,7 @@
   import Header from './lib/components/Header.svelte';
   import VideoPlayer from './lib/components/VideoPlayer.svelte';
   import HtmlViewer from './lib/components/HtmlViewer.svelte';
+  import PdfViewer from './lib/components/PdfViewer.svelte';
   import CourseContentSidebar from './lib/components/CourseContentSidebar.svelte';
   import CourseTabs from './lib/components/CourseTabs.svelte';
   import CoursesPage from './lib/components/CoursesPage.svelte';
@@ -45,6 +46,15 @@
         activeLecture.relative_path?.toLowerCase().endsWith('.htm') ||
         activeLecture.absolute_path?.toLowerCase().endsWith('.html') ||
         activeLecture.absolute_path?.toLowerCase().endsWith('.htm')
+      : false
+  );
+
+  let isPdfLecture = $derived(
+    activeLecture
+      ? activeLecture.item_type === 'pdf' ||
+        activeLecture.file_name?.toLowerCase().endsWith('.pdf') ||
+        activeLecture.relative_path?.toLowerCase().endsWith('.pdf') ||
+        activeLecture.absolute_path?.toLowerCase().endsWith('.pdf')
       : false
   );
 
@@ -168,13 +178,16 @@
       const existingPos = currentProgress.playback_positions[lecture.id] || 0;
       api.updatePosition(currentCourse.id, lecture.id, existingPos).catch(() => {});
 
-      const isHtml = lecture.item_type === 'html' ||
+      const isDoc = lecture.item_type === 'html' ||
+        lecture.item_type === 'pdf' ||
         lecture.file_name?.toLowerCase().endsWith('.html') ||
         lecture.file_name?.toLowerCase().endsWith('.htm') ||
+        lecture.file_name?.toLowerCase().endsWith('.pdf') ||
         lecture.relative_path?.toLowerCase().endsWith('.html') ||
-        lecture.relative_path?.toLowerCase().endsWith('.htm');
+        lecture.relative_path?.toLowerCase().endsWith('.htm') ||
+        lecture.relative_path?.toLowerCase().endsWith('.pdf');
 
-      if (isHtml && !currentProgress.completed_lecture_ids?.includes(lecture.id)) {
+      if (isDoc && !currentProgress.completed_lecture_ids?.includes(lecture.id)) {
         handleToggleCompleted(lecture.id, new MouseEvent('click'));
       }
     }
@@ -184,16 +197,19 @@
     event.stopPropagation();
     if (!currentCourse || !currentProgress) return;
 
-    // HTML files are always checked and cannot be modified
+    // HTML & PDF documents are always checked and cannot be modified
     for (const sec of currentCourse.sections) {
       for (const lec of sec.lectures) {
         if (lec.id === lectureId) {
-          const isHtml = lec.item_type === 'html' ||
+          const isDoc = lec.item_type === 'html' ||
+            lec.item_type === 'pdf' ||
             lec.file_name?.toLowerCase().endsWith('.html') ||
             lec.file_name?.toLowerCase().endsWith('.htm') ||
+            lec.file_name?.toLowerCase().endsWith('.pdf') ||
             lec.relative_path?.toLowerCase().endsWith('.html') ||
-            lec.relative_path?.toLowerCase().endsWith('.htm');
-          if (isHtml) return;
+            lec.relative_path?.toLowerCase().endsWith('.htm') ||
+            lec.relative_path?.toLowerCase().endsWith('.pdf');
+          if (isDoc) return;
           break;
         }
       }
@@ -427,7 +443,17 @@
     <div class="flex-1 flex overflow-hidden">
       <!-- Left / Center Player & Details Scrollable Area -->
       <main class="flex-1 flex flex-col overflow-y-auto bg-background">
-        {#if isHtmlLecture}
+        {#if isPdfLecture}
+          <PdfViewer
+            {currentCourse}
+            {activeLecture}
+            {activeSection}
+            {streamingPort}
+            isCompleted={activeLecture ? currentProgress?.completed_lecture_ids?.includes(activeLecture.id) : false}
+            onToggleCompleted={(e) => activeLecture && handleToggleCompleted(activeLecture.id, e)}
+            onNextLecture={playNextLecture}
+          />
+        {:else if isHtmlLecture}
           <HtmlViewer
             {currentCourse}
             {activeLecture}

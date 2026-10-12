@@ -11,6 +11,7 @@ const VIDEO_EXTENSIONS: &[&str] = &[
 ];
 
 const HTML_EXTENSIONS: &[&str] = &["html", "htm"];
+const PDF_EXTENSIONS: &[&str] = &["pdf"];
 
 /// Smart natural sort comparator for alphanumeric strings (e.g. "1", "2", "10", "01 - intro.mp4", "1. Arrays")
 pub fn natural_compare(a: &str, b: &str) -> Ordering {
@@ -83,8 +84,16 @@ pub fn is_html_file(path: &Path) -> bool {
     }
 }
 
+pub fn is_pdf_file(path: &Path) -> bool {
+    if let Some(ext) = path.extension().and_then(|e| e.to_str()) {
+        PDF_EXTENSIONS.contains(&ext.to_lowercase().as_str())
+    } else {
+        false
+    }
+}
+
 pub fn is_supported_course_file(path: &Path) -> bool {
-    is_video_file(path) || is_html_file(path)
+    is_video_file(path) || is_html_file(path) || is_pdf_file(path)
 }
 
 pub fn clean_section_title(raw_folder_name: &str) -> String {
@@ -103,8 +112,8 @@ pub fn clean_section_title(raw_folder_name: &str) -> String {
 pub fn clean_lecture_title(file_name: &str) -> String {
     let mut title = file_name.trim();
 
-    // Strip known video & HTML extensions (.mp4, .mkv, .webm, .html, .htm, etc.)
-    for ext in VIDEO_EXTENSIONS.iter().chain(HTML_EXTENSIONS.iter()) {
+    // Strip known video, HTML & PDF extensions (.mp4, .mkv, .webm, .html, .htm, .pdf, etc.)
+    for ext in VIDEO_EXTENSIONS.iter().chain(HTML_EXTENSIONS.iter()).chain(PDF_EXTENSIONS.iter()) {
         let suffix = format!(".{}", ext);
         if title.to_lowercase().ends_with(&suffix) {
             title = &title[..title.len() - suffix.len()];
@@ -201,10 +210,11 @@ where
 
     if sections_map.is_empty() {
         return Err(format!(
-            "No video or HTML files found in directory: {}. Supported formats: {}, {}",
+            "No video, HTML, or PDF files found in directory: {}. Supported formats: {}, {}, {}",
             dir_path.display(),
             VIDEO_EXTENSIONS.join(", "),
-            HTML_EXTENSIONS.join(", ")
+            HTML_EXTENSIONS.join(", "),
+            PDF_EXTENSIONS.join(", ")
         ));
     }
 
@@ -214,7 +224,7 @@ where
         cb(crate::models::ScanProgress {
             current: 0,
             total: total_items,
-            current_file: "Discovered media and HTML files. Analyzing metadata...".to_string(),
+            current_file: "Discovered media, HTML, and PDF files. Analyzing metadata...".to_string(),
             phase: "discovering".to_string(),
         });
     }
@@ -261,8 +271,15 @@ where
                 .unwrap_or("lecture")
                 .to_string();
 
+            let is_pdf = is_pdf_file(&file_path);
             let is_html = is_html_file(&file_path);
-            let item_type = if is_html { "html" } else { "video" };
+            let item_type = if is_pdf {
+                "pdf"
+            } else if is_html {
+                "html"
+            } else {
+                "video"
+            };
 
             if let Some(ref cb) = on_progress {
                 cb(crate::models::ScanProgress {
@@ -281,7 +298,7 @@ where
 
             let abs_path = file_path.to_string_lossy().to_string();
             let title = clean_lecture_title(&file_name);
-            let duration = if is_html {
+            let duration = if is_pdf || is_html {
                 0
             } else {
                 probe_video_duration(&file_path)
@@ -347,6 +364,7 @@ mod tests {
             "20. Lesson 20.mp4",
             "03. Lesson 3.mp4",
             "04. Quiz.html",
+            "05. Cheatsheet.pdf",
         ];
 
         list.sort_by(|a, b| natural_compare(a, b));
@@ -358,6 +376,7 @@ mod tests {
                 "2. Lesson 2.mp4",
                 "03. Lesson 3.mp4",
                 "04. Quiz.html",
+                "05. Cheatsheet.pdf",
                 "10. Lesson 10.mp4",
                 "20. Lesson 20.mp4",
             ]
@@ -379,6 +398,7 @@ mod tests {
         assert_eq!(clean_lecture_title("02_Memory_Management.mkv"), "02 Memory Management");
         assert_eq!(clean_lecture_title("03_Cheat_Sheet.html"), "03 Cheat Sheet");
         assert_eq!(clean_lecture_title("index.htm"), "index");
+        assert_eq!(clean_lecture_title("04_Slides_Notes.pdf"), "04 Slides Notes");
     }
 
     #[test]
@@ -386,5 +406,14 @@ mod tests {
         assert!(is_html_file(Path::new("lesson.html")));
         assert!(is_html_file(Path::new("index.htm")));
         assert!(!is_html_file(Path::new("video.mp4")));
+        assert!(!is_html_file(Path::new("document.pdf")));
+    }
+
+    #[test]
+    fn test_is_pdf_file() {
+        assert!(is_pdf_file(Path::new("document.pdf")));
+        assert!(is_pdf_file(Path::new("notes.PDF")));
+        assert!(!is_pdf_file(Path::new("lesson.html")));
+        assert!(!is_pdf_file(Path::new("video.mp4")));
     }
 }

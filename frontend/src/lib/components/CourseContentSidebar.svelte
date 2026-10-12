@@ -12,6 +12,7 @@
     X,
     FolderKanban,
     Code,
+    FileText,
   } from 'lucide-svelte';
   import { slide } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
@@ -136,10 +137,13 @@
       {#each course.sections as sec (sec.id)}
         {@const videoLectures = sec.lectures.filter((l) =>
           l.item_type !== 'html' &&
+          l.item_type !== 'pdf' &&
           !l.file_name?.toLowerCase().endsWith('.html') &&
           !l.file_name?.toLowerCase().endsWith('.htm') &&
+          !l.file_name?.toLowerCase().endsWith('.pdf') &&
           !l.relative_path?.toLowerCase().endsWith('.html') &&
-          !l.relative_path?.toLowerCase().endsWith('.htm')
+          !l.relative_path?.toLowerCase().endsWith('.htm') &&
+          !l.relative_path?.toLowerCase().endsWith('.pdf')
         )}
         {@const hasVideos = videoLectures.length > 0}
         {@const completedVideosInSec = videoLectures.filter((l) =>
@@ -196,6 +200,10 @@
                 {#each filteredLectures as lec (lec.id)}
                   {@const isCompleted = progress?.completed_lecture_ids?.includes(lec.id) ?? false}
                   {@const isActive = activeLecture?.id === lec.id}
+                  {@const isPdf = lec.item_type === 'pdf' ||
+                    lec.file_name?.toLowerCase().endsWith('.pdf') ||
+                    lec.relative_path?.toLowerCase().endsWith('.pdf') ||
+                    lec.absolute_path?.toLowerCase().endsWith('.pdf')}
                   {@const isHtml = lec.item_type === 'html' ||
                     lec.file_name?.toLowerCase().endsWith('.html') ||
                     lec.file_name?.toLowerCase().endsWith('.htm') ||
@@ -203,6 +211,7 @@
                     lec.relative_path?.toLowerCase().endsWith('.htm') ||
                     lec.absolute_path?.toLowerCase().endsWith('.html') ||
                     lec.absolute_path?.toLowerCase().endsWith('.htm')}
+                  {@const isDoc = isHtml || isPdf}
 
                   <div
                     class="group flex items-start gap-3 px-4 py-2.5 cursor-pointer transition-colors relative {isActive
@@ -218,10 +227,10 @@
                     {/if}
 
                     <!-- Checkbox Button with distinct visible background -->
-                    {#if isHtml}
+                    {#if isDoc}
                       <div
                         class="w-[18px] h-[18px] rounded-[4px] mt-0.5 flex items-center justify-center shrink-0 shadow-sm bg-primary border border-primary text-white cursor-default select-none shadow-primary/25"
-                        title="HTML document (always completed)"
+                        title={isPdf ? "PDF document (always completed)" : "HTML document (always completed)"}
                       >
                         <Check class="w-3.5 h-3.5 stroke-[2.8]" />
                       </div>
@@ -246,7 +255,10 @@
                         {lec.title}
                       </div>
                       <div class="flex items-center gap-1.5 text-[10px] {isActive ? 'text-[#c0b8f0]' : 'text-muted-foreground'}">
-                        {#if isHtml}
+                        {#if isPdf}
+                          <FileText class="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                          <span class="text-rose-400 font-medium">PDF</span>
+                        {:else if isHtml}
                           <Code class="w-3.5 h-3.5 text-amber-400 shrink-0" />
                           <span class="text-amber-400 font-medium">Code</span>
                         {:else}

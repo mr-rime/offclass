@@ -15,6 +15,7 @@ pub async fn start_streaming_server(db: SharedDb) -> Result<u16, String> {
     let app = Router::new()
         .route("/stream/{course_id}/{lecture_id}", get(stream_video_handler))
         .route("/html/{course_id}/{lecture_id}", get(html_lecture_handler))
+        .route("/pdf/{course_id}/{lecture_id}", get(pdf_lecture_handler))
         .route("/content/{course_id}/{*file_path}", get(course_content_handler))
         .route("/subtitle/{course_id}/{lecture_id}", get(subtitle_handler))
         .layer(CorsLayer::permissive())
@@ -119,10 +120,12 @@ async fn subtitle_handler(
     }
 }
 
-async fn html_lecture_handler(
-    State(db): State<SharedDb>,
-    AxPath((course_id, lecture_id)): AxPath<(String, String)>,
+async fn document_lecture_handler(
+    db: SharedDb,
+    course_id: String,
+    lecture_id: String,
     headers: HeaderMap,
+    not_found_msg: &'static str,
 ) -> Response {
     let target_file_path = {
         let db_read = db.read().await;
@@ -158,8 +161,24 @@ async fn html_lecture_handler(
 
     match target_file_path {
         Some(path_buf) => stream_video_file(&path_buf, &headers).await,
-        None => (StatusCode::NOT_FOUND, "HTML document not found").into_response(),
+        None => (StatusCode::NOT_FOUND, not_found_msg).into_response(),
     }
+}
+
+async fn html_lecture_handler(
+    State(db): State<SharedDb>,
+    AxPath((course_id, lecture_id)): AxPath<(String, String)>,
+    headers: HeaderMap,
+) -> Response {
+    document_lecture_handler(db, course_id, lecture_id, headers, "HTML document not found").await
+}
+
+async fn pdf_lecture_handler(
+    State(db): State<SharedDb>,
+    AxPath((course_id, lecture_id)): AxPath<(String, String)>,
+    headers: HeaderMap,
+) -> Response {
+    document_lecture_handler(db, course_id, lecture_id, headers, "PDF document not found").await
 }
 
 fn percent_decode_str(input: &str) -> String {

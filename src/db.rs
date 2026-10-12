@@ -24,6 +24,15 @@ pub struct AppDatabase {
 
 pub type SharedDb = Arc<RwLock<AppDatabase>>;
 
+fn is_doc_item(lec: &crate::models::Lecture) -> bool {
+    lec.item_type == "html"
+        || lec.item_type == "pdf"
+        || crate::scanner::is_html_file(Path::new(&lec.file_name))
+        || crate::scanner::is_html_file(Path::new(&lec.relative_path))
+        || crate::scanner::is_pdf_file(Path::new(&lec.file_name))
+        || crate::scanner::is_pdf_file(Path::new(&lec.relative_path))
+}
+
 impl AppDatabase {
     pub fn init() -> Self {
         let db_path = Self::get_db_path();
@@ -68,11 +77,20 @@ impl AppDatabase {
                     let path = Path::new(&lec.absolute_path);
                     let rel_path = Path::new(&lec.relative_path);
                     let file_name_path = Path::new(&lec.file_name);
+                    let is_pdf = crate::scanner::is_pdf_file(path)
+                        || crate::scanner::is_pdf_file(rel_path)
+                        || crate::scanner::is_pdf_file(file_name_path);
                     let is_html = crate::scanner::is_html_file(path)
                         || crate::scanner::is_html_file(rel_path)
                         || crate::scanner::is_html_file(file_name_path);
 
-                    if is_html {
+                    if is_pdf {
+                        if lec.item_type != "pdf" || lec.duration_seconds != 0 {
+                            lec.item_type = "pdf".to_string();
+                            lec.duration_seconds = 0;
+                            repaired = true;
+                        }
+                    } else if is_html {
                         if lec.item_type != "html" || lec.duration_seconds != 0 {
                             lec.item_type = "html".to_string();
                             lec.duration_seconds = 0;
@@ -102,7 +120,7 @@ impl AppDatabase {
             }
         }
 
-        // Auto-check all HTML files in progress
+        // Auto-check all HTML & PDF documents in progress
         for course in schema.courses.values() {
             let progress = schema
                 .progress
@@ -113,10 +131,7 @@ impl AppDatabase {
                 });
             for sec in &course.sections {
                 for lec in &sec.lectures {
-                    let is_html = lec.item_type == "html"
-                        || crate::scanner::is_html_file(Path::new(&lec.file_name))
-                        || crate::scanner::is_html_file(Path::new(&lec.relative_path));
-                    if is_html && progress.completed_lecture_ids.insert(lec.id.clone()) {
+                    if is_doc_item(lec) && progress.completed_lecture_ids.insert(lec.id.clone()) {
                         repaired = true;
                     }
                 }
@@ -162,17 +177,14 @@ impl AppDatabase {
 
         for sec in &course.sections {
             for lec in &sec.lectures {
-                let is_html = lec.item_type == "html"
-                    || crate::scanner::is_html_file(Path::new(&lec.file_name))
-                    || crate::scanner::is_html_file(Path::new(&lec.relative_path));
-                if !is_html {
+                if !is_doc_item(lec) {
                     total_videos += 1;
                     total_duration_seconds += lec.duration_seconds;
                 }
             }
         }
 
-        // Exclude HTML files from total lecture count; fall back to total items if course has no videos
+        // Exclude document files (HTML & PDF) from total lecture count; fall back to total items if course has no videos
         let total_lectures = if total_videos > 0 {
             total_videos
         } else {
@@ -186,10 +198,7 @@ impl AppDatabase {
                 .filter(|id| {
                     course.sections.iter().any(|sec| {
                         sec.lectures.iter().any(|lec| {
-                            &lec.id == *id
-                                && lec.item_type != "html"
-                                && !crate::scanner::is_html_file(Path::new(&lec.file_name))
-                                && !crate::scanner::is_html_file(Path::new(&lec.relative_path))
+                            &lec.id == *id && !is_doc_item(lec)
                         })
                     })
                 })
@@ -226,13 +235,10 @@ impl AppDatabase {
                 ..Default::default()
             });
 
-        // Automatically check all HTML files
+        // Automatically check all HTML and PDF document files
         for sec in &course.sections {
             for lec in &sec.lectures {
-                let is_html = lec.item_type == "html"
-                    || crate::scanner::is_html_file(Path::new(&lec.file_name))
-                    || crate::scanner::is_html_file(Path::new(&lec.relative_path));
-                if is_html {
+                if is_doc_item(lec) {
                     progress.completed_lecture_ids.insert(lec.id.clone());
                 }
             }
@@ -325,21 +331,18 @@ impl AppDatabase {
                 ..Default::default()
             });
 
-        // HTML files are always checked and cannot be modified
-        let is_html_lecture = if let Some(course) = self.data.courses.get(course_id) {
+        // Document files (HTML & PDF) are always checked and cannot be modified
+        let is_doc_lecture = if let Some(course) = self.data.courses.get(course_id) {
             course.sections.iter().any(|sec| {
                 sec.lectures.iter().any(|lec| {
-                    lec.id == lecture_id
-                        && (lec.item_type == "html"
-                            || crate::scanner::is_html_file(Path::new(&lec.file_name))
-                            || crate::scanner::is_html_file(Path::new(&lec.relative_path)))
+                    lec.id == lecture_id && is_doc_item(lec)
                 })
             })
         } else {
             false
         };
 
-        if is_html_lecture {
+        if is_doc_lecture {
             progress.completed_lecture_ids.insert(lecture_id.to_string());
         } else if completed {
             progress.completed_lecture_ids.insert(lecture_id.to_string());
