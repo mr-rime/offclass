@@ -38,12 +38,19 @@ async fn main() {
     let navigation_plugin = tauri::plugin::Builder::<tauri::Wry>::new("navigation_guard")
         .on_navigation(|_webview, url| {
             let scheme = url.scheme();
-            let host = url.host_str();
+            let host = url.host_str().unwrap_or("");
+            let url_str = url.as_str();
+
             let is_internal = scheme == "tauri"
                 || scheme == "asset"
                 || scheme == "ipc"
-                || host == Some("localhost")
-                || host == Some("127.0.0.1");
+                || scheme == "about"
+                || scheme == "data"
+                || host == "localhost"
+                || host.ends_with(".localhost")
+                || host == "127.0.0.1"
+                || url_str.starts_with("http://tauri.localhost")
+                || url_str.starts_with("https://tauri.localhost");
 
             if !is_internal {
                 let _ = commands::open_url_in_browser(url.as_str());
