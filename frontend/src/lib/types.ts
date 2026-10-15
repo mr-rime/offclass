@@ -81,3 +81,12 @@ export interface ScanProgress {
   phase: string;
 }
 
+export interface CourseTab {
+  id: string;
+  title: string;
+  type: 'video' | 'html' | 'pdf';
+  lecture: Lecture;
+  section: Section;
+  closeable: boolean;
+}
+

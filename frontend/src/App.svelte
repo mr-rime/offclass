@@ -8,9 +8,10 @@
   import PdfViewer from './lib/components/PdfViewer.svelte';
   import CourseContentSidebar from './lib/components/CourseContentSidebar.svelte';
   import CourseTabs from './lib/components/CourseTabs.svelte';
+  import TabBar from './lib/components/TabBar.svelte';
   import CoursesPage from './lib/components/CoursesPage.svelte';
   import { api, listenToEvent } from './lib/tauri';
-  import type { Course, CourseProgress, CourseStats, CourseSummary, Lecture, Section, UserSettings, ScanProgress } from './lib/types';
+  import type { Course, CourseProgress, CourseStats, CourseSummary, CourseTab, Lecture, Section, UserSettings, ScanProgress } from './lib/types';
 
   // App Navigation & State
   let activeView = $state<'player' | 'library'>('library');
@@ -18,8 +19,12 @@
   let currentCourse: Course | null = $state(null);
   let currentProgress: CourseProgress | null = $state(null);
   let currentStats: CourseStats | null = $state(null);
+  let activeVideoLecture: Lecture | null = $state(null);
+  let activeVideoSection: Section | null = $state(null);
   let activeLecture: Lecture | null = $state(null);
   let activeSection: Section | null = $state(null);
+  let openTabs: CourseTab[] = $state([]);
+  let activeTabId = $state<string>('video');
   let streamingPort = $state(0);
   let userSettings: UserSettings = $state({
     theme: 'dark',
@@ -37,26 +42,50 @@
   let rescanningCourseId = $state<string | null>(null);
   let scanProgress = $state<ScanProgress | null>(null);
 
-  let isHtmlLecture = $derived(
-    activeLecture
-      ? activeLecture.item_type === 'html' ||
-        activeLecture.file_name?.toLowerCase().endsWith('.html') ||
-        activeLecture.file_name?.toLowerCase().endsWith('.htm') ||
-        activeLecture.relative_path?.toLowerCase().endsWith('.html') ||
-        activeLecture.relative_path?.toLowerCase().endsWith('.htm') ||
-        activeLecture.absolute_path?.toLowerCase().endsWith('.html') ||
-        activeLecture.absolute_path?.toLowerCase().endsWith('.htm')
-      : false
-  );
+  let activeTab = $derived(openTabs.find((t) => t.id === activeTabId) ?? openTabs[0] ?? null);
+  let currentDisplayLecture = $derived(activeTab?.lecture ?? activeVideoLecture ?? activeLecture);
+  let currentDisplaySection = $derived(activeTab?.section ?? activeVideoSection ?? activeSection);
 
-  let isPdfLecture = $derived(
-    activeLecture
-      ? activeLecture.item_type === 'pdf' ||
-        activeLecture.file_name?.toLowerCase().endsWith('.pdf') ||
-        activeLecture.relative_path?.toLowerCase().endsWith('.pdf') ||
-        activeLecture.absolute_path?.toLowerCase().endsWith('.pdf')
-      : false
-  );
+  function isDocumentLecture(lec: Lecture | null | undefined): boolean {
+    if (!lec) return false;
+    return (
+      lec.item_type === 'html' ||
+      lec.item_type === 'pdf' ||
+      lec.file_name?.toLowerCase().endsWith('.html') ||
+      lec.file_name?.toLowerCase().endsWith('.htm') ||
+      lec.file_name?.toLowerCase().endsWith('.pdf') ||
+      lec.relative_path?.toLowerCase().endsWith('.html') ||
+      lec.relative_path?.toLowerCase().endsWith('.htm') ||
+      lec.relative_path?.toLowerCase().endsWith('.pdf') ||
+      lec.absolute_path?.toLowerCase().endsWith('.html') ||
+      lec.absolute_path?.toLowerCase().endsWith('.htm') ||
+      lec.absolute_path?.toLowerCase().endsWith('.pdf')
+    );
+  }
+
+  function getLectureType(lec: Lecture | null | undefined): 'video' | 'html' | 'pdf' {
+    if (!lec) return 'video';
+    if (
+      lec.item_type === 'pdf' ||
+      lec.file_name?.toLowerCase().endsWith('.pdf') ||
+      lec.relative_path?.toLowerCase().endsWith('.pdf') ||
+      lec.absolute_path?.toLowerCase().endsWith('.pdf')
+    ) {
+      return 'pdf';
+    }
+    if (
+      lec.item_type === 'html' ||
+      lec.file_name?.toLowerCase().endsWith('.html') ||
+      lec.file_name?.toLowerCase().endsWith('.htm') ||
+      lec.relative_path?.toLowerCase().endsWith('.html') ||
+      lec.relative_path?.toLowerCase().endsWith('.htm') ||
+      lec.absolute_path?.toLowerCase().endsWith('.html') ||
+      lec.absolute_path?.toLowerCase().endsWith('.htm')
+    ) {
+      return 'html';
+    }
+    return 'video';
+  }
 
   onMount(async () => {
     try {
@@ -116,6 +145,9 @@
         userSettings.active_course_id = currentCourse.id;
         api.updateSettings(userSettings).catch(() => {});
 
+        // Reset tabs for new course
+        openTabs = [];
+
         // Select last played lecture or first lecture
         let targetLecture: Lecture | null = null;
         let targetSection: Section | null = null;
@@ -138,8 +170,72 @@
           targetLecture = currentCourse.sections[0].lectures[0];
         }
 
+        // Find primary video lecture in course
+        let firstVideoLecture: Lecture | null = null;
+        let firstVideoSection: Section | null = null;
+        for (const s of currentCourse.sections) {
+          for (const l of s.lectures) {
+            if (!isDocumentLecture(l)) {
+              firstVideoLecture = l;
+              firstVideoSection = s;
+              break;
+            }
+          }
+          if (firstVideoLecture) break;
+        }
+
         if (targetLecture && targetSection) {
-          selectLecture(targetLecture, targetSection, autoPlay);
+          const isDoc = isDocumentLecture(targetLecture);
+          if (!isDoc) {
+            activeVideoLecture = targetLecture;
+            activeVideoSection = targetSection;
+            activeLecture = targetLecture;
+            activeSection = targetSection;
+            const videoTab: CourseTab = {
+              id: 'video',
+              title: targetLecture.title,
+              type: 'video',
+              lecture: targetLecture,
+              section: targetSection,
+              closeable: false,
+            };
+            openTabs = [videoTab];
+            activeTabId = 'video';
+            shouldAutoPlay = autoPlay;
+          } else {
+            const docTab: CourseTab = {
+              id: targetLecture.id,
+              title: targetLecture.title,
+              type: getLectureType(targetLecture),
+              lecture: targetLecture,
+              section: targetSection,
+              closeable: true,
+            };
+            if (firstVideoLecture && firstVideoSection) {
+              activeVideoLecture = firstVideoLecture;
+              activeVideoSection = firstVideoSection;
+              const videoTab: CourseTab = {
+                id: 'video',
+                title: firstVideoLecture.title,
+                type: 'video',
+                lecture: firstVideoLecture,
+                section: firstVideoSection,
+                closeable: false,
+              };
+              openTabs = [videoTab, docTab];
+            } else {
+              docTab.closeable = false;
+              openTabs = [docTab];
+            }
+            activeTabId = targetLecture.id;
+            activeLecture = targetLecture;
+            activeSection = targetSection;
+            shouldAutoPlay = false;
+
+            if (!currentProgress.completed_lecture_ids?.includes(targetLecture.id)) {
+              handleToggleCompleted(targetLecture.id, new MouseEvent('click'));
+            }
+          }
         }
 
         // Navigate to player
@@ -153,42 +249,129 @@
   }
 
   function selectLecture(lecture: Lecture, section: Section, autoPlay: boolean = false) {
-    if (currentCourse && activeLecture && videoPlayerRef) {
-      const cur = videoPlayerRef.getCurrentTime();
-      if (cur > 0) {
-        handlePositionUpdated(cur);
+    const isDoc = isDocumentLecture(lecture);
+
+    if (!isDoc) {
+      // VIDEO lecture
+      if (currentCourse && activeVideoLecture && videoPlayerRef) {
+        const cur = videoPlayerRef.getCurrentTime();
+        if (cur > 0) {
+          handlePositionUpdated(cur);
+        }
+      }
+
+      shouldAutoPlay = autoPlay;
+      activeVideoLecture = lecture;
+      activeVideoSection = section;
+      activeLecture = lecture;
+      activeSection = section;
+
+      const videoTabIdx = openTabs.findIndex((t) => t.id === 'video' || t.type === 'video');
+      const videoTab: CourseTab = {
+        id: 'video',
+        title: lecture.title,
+        type: 'video',
+        lecture,
+        section,
+        closeable: false,
+      };
+
+      if (videoTabIdx >= 0) {
+        openTabs[videoTabIdx] = videoTab;
+      } else {
+        openTabs = [videoTab, ...openTabs];
+      }
+
+      activeTabId = 'video';
+
+      if (currentCourse) {
+        if (!currentProgress) {
+          currentProgress = {
+            course_id: currentCourse.id,
+            completed_lecture_ids: [],
+            last_played_lecture_id: lecture.id,
+            playback_positions: {},
+            notes: [],
+          };
+        }
+        currentProgress.last_played_lecture_id = lecture.id;
+        const existingPos = currentProgress.playback_positions[lecture.id] || 0;
+        api.updatePosition(currentCourse.id, lecture.id, existingPos).catch(() => {});
+      }
+    } else {
+      // DOCUMENT lecture (HTML or PDF)
+      activeLecture = lecture;
+      activeSection = section;
+
+      const existingTab = openTabs.find((t) => t.id === lecture.id);
+      if (existingTab) {
+        activeTabId = existingTab.id;
+      } else {
+        const docTab: CourseTab = {
+          id: lecture.id,
+          title: lecture.title,
+          type: getLectureType(lecture),
+          lecture,
+          section,
+          closeable: true,
+        };
+        openTabs = [...openTabs, docTab];
+        activeTabId = docTab.id;
+      }
+
+      if (currentCourse) {
+        if (!currentProgress) {
+          currentProgress = {
+            course_id: currentCourse.id,
+            completed_lecture_ids: [],
+            last_played_lecture_id: lecture.id,
+            playback_positions: {},
+            notes: [],
+          };
+        }
+        currentProgress.last_played_lecture_id = lecture.id;
+
+        if (!currentProgress.completed_lecture_ids?.includes(lecture.id)) {
+          handleToggleCompleted(lecture.id, new MouseEvent('click'));
+        }
       }
     }
+  }
 
-    shouldAutoPlay = autoPlay;
-    activeLecture = lecture;
-    activeSection = section;
-
-    if (currentCourse) {
-      if (!currentProgress) {
-        currentProgress = {
-          course_id: currentCourse.id,
-          completed_lecture_ids: [],
-          last_played_lecture_id: lecture.id,
-          playback_positions: {},
-          notes: [],
-        };
+  function selectTab(tabId: string) {
+    activeTabId = tabId;
+    const tab = openTabs.find((t) => t.id === tabId);
+    if (tab) {
+      activeLecture = tab.lecture;
+      activeSection = tab.section;
+      if (currentProgress && currentCourse) {
+        currentProgress.last_played_lecture_id = tab.lecture.id;
+        api.updateSettings({ ...userSettings, active_course_id: currentCourse.id }).catch(() => {});
       }
-      currentProgress.last_played_lecture_id = lecture.id;
-      const existingPos = currentProgress.playback_positions[lecture.id] || 0;
-      api.updatePosition(currentCourse.id, lecture.id, existingPos).catch(() => {});
+    }
+  }
 
-      const isDoc = lecture.item_type === 'html' ||
-        lecture.item_type === 'pdf' ||
-        lecture.file_name?.toLowerCase().endsWith('.html') ||
-        lecture.file_name?.toLowerCase().endsWith('.htm') ||
-        lecture.file_name?.toLowerCase().endsWith('.pdf') ||
-        lecture.relative_path?.toLowerCase().endsWith('.html') ||
-        lecture.relative_path?.toLowerCase().endsWith('.htm') ||
-        lecture.relative_path?.toLowerCase().endsWith('.pdf');
+  function closeTab(tabId: string) {
+    const index = openTabs.findIndex((t) => t.id === tabId);
+    if (index === -1) return;
+    const tabToClose = openTabs[index];
+    if (!tabToClose.closeable) return;
 
-      if (isDoc && !currentProgress.completed_lecture_ids?.includes(lecture.id)) {
-        handleToggleCompleted(lecture.id, new MouseEvent('click'));
+    const remainingTabs = openTabs.filter((t) => t.id !== tabId);
+    openTabs = remainingTabs;
+
+    if (activeTabId === tabId) {
+      let nextTab: CourseTab | undefined;
+      if (index > 0 && remainingTabs[index - 1]) {
+        nextTab = remainingTabs[index - 1];
+      } else if (remainingTabs.length > 0) {
+        nextTab = remainingTabs[0];
+      }
+
+      if (nextTab) {
+        selectTab(nextTab.id);
+      } else {
+        activeTabId = 'video';
       }
     }
   }
@@ -201,15 +384,7 @@
     for (const sec of currentCourse.sections) {
       for (const lec of sec.lectures) {
         if (lec.id === lectureId) {
-          const isDoc = lec.item_type === 'html' ||
-            lec.item_type === 'pdf' ||
-            lec.file_name?.toLowerCase().endsWith('.html') ||
-            lec.file_name?.toLowerCase().endsWith('.htm') ||
-            lec.file_name?.toLowerCase().endsWith('.pdf') ||
-            lec.relative_path?.toLowerCase().endsWith('.html') ||
-            lec.relative_path?.toLowerCase().endsWith('.htm') ||
-            lec.relative_path?.toLowerCase().endsWith('.pdf');
-          if (isDoc) return;
+          if (isDocumentLecture(lec)) return;
           break;
         }
       }
@@ -230,7 +405,6 @@
       if (detail) {
         currentProgress = detail.progress;
         currentStats = detail.stats;
-        // Also update summary list
         courses = await api.listCourses();
       }
     } catch (e) {
@@ -240,52 +414,55 @@
 
   function handlePositionUpdated(posSec: number) {
     currentVideoTime = posSec;
-    if (currentCourse && activeLecture) {
+    if (currentCourse && activeVideoLecture) {
       if (!currentProgress) {
         currentProgress = {
           course_id: currentCourse.id,
           completed_lecture_ids: [],
-          last_played_lecture_id: activeLecture.id,
+          last_played_lecture_id: activeVideoLecture.id,
           playback_positions: {},
           notes: [],
         };
       }
-      currentProgress.playback_positions[activeLecture.id] = posSec;
-      currentProgress.last_played_lecture_id = activeLecture.id;
+      currentProgress.playback_positions[activeVideoLecture.id] = posSec;
+      currentProgress.last_played_lecture_id = activeVideoLecture.id;
 
-      api.updatePosition(currentCourse.id, activeLecture.id, posSec).catch(() => {});
+      api.updatePosition(currentCourse.id, activeVideoLecture.id, posSec).catch(() => {});
     }
   }
 
   function handleDurationUpdated(durSec: number) {
-    if (currentCourse && activeLecture && durSec > 0) {
-      activeLecture.duration_seconds = durSec;
-      if (activeSection) {
-        activeSection.duration_seconds = activeSection.lectures.reduce(
+    if (currentCourse && activeVideoLecture && durSec > 0) {
+      activeVideoLecture.duration_seconds = durSec;
+      if (activeVideoSection) {
+        activeVideoSection.duration_seconds = activeVideoSection.lectures.reduce(
           (acc, l) => acc + (l.duration_seconds || 0),
           0
         );
       }
-      api.updateDuration(currentCourse.id, activeLecture.id, durSec).catch(() => {});
+      api.updateDuration(currentCourse.id, activeVideoLecture.id, durSec).catch(() => {});
     }
   }
 
   function handleVideoEnded() {
-    if (activeLecture && currentProgress && currentCourse) {
-      if (!currentProgress.completed_lecture_ids.includes(activeLecture.id)) {
-        handleToggleCompleted(activeLecture.id, new MouseEvent('click'));
+    if (activeVideoLecture && currentProgress && currentCourse) {
+      if (!currentProgress.completed_lecture_ids.includes(activeVideoLecture.id)) {
+        handleToggleCompleted(activeVideoLecture.id, new MouseEvent('click'));
       }
-      if (activeLecture.duration_seconds > 0) {
-        handlePositionUpdated(activeLecture.duration_seconds);
+      if (activeVideoLecture.duration_seconds > 0) {
+        handlePositionUpdated(activeVideoLecture.duration_seconds);
       }
       if (userSettings.auto_play_next) {
-        playNextLecture();
+        playNextLecture(activeVideoLecture);
       }
     }
   }
 
-  function playNextLecture() {
-    if (!currentCourse || !activeLecture) return;
+  function playNextLecture(fromLecture?: Lecture | null) {
+    if (!currentCourse) return;
+    const baseLecture = fromLecture ?? currentDisplayLecture;
+    if (!baseLecture) return;
+
     let found = false;
     for (const s of currentCourse.sections) {
       for (const l of s.lectures) {
@@ -293,7 +470,7 @@
           selectLecture(l, s, true);
           return;
         }
-        if (l.id === activeLecture.id) {
+        if (l.id === baseLecture.id) {
           found = true;
         }
       }
@@ -301,13 +478,17 @@
   }
 
   async function handleSaveNote(text: string, timestamp: number) {
-    if (!currentCourse || !activeLecture) return;
+    if (!currentCourse || !currentDisplayLecture) return;
+    const exactTime =
+      (activeTabId === 'video' || openTabs.length === 0) && videoPlayerRef
+        ? videoPlayerRef.getCurrentTime()
+        : timestamp;
     try {
       const notes = await api.addNote(
         currentCourse.id,
-        activeLecture.id,
-        activeLecture.title,
-        timestamp,
+        currentDisplayLecture.id,
+        currentDisplayLecture.title,
+        exactTime,
         text
       );
       if (currentProgress) {
@@ -331,7 +512,8 @@
   }
 
   function handleSeekToNote(lectureId: string, timestamp: number) {
-    if (activeLecture?.id === lectureId) {
+    if (activeVideoLecture?.id === lectureId) {
+      activeTabId = 'video';
       videoPlayerRef?.seekTo(timestamp);
     } else if (currentCourse) {
       for (const s of currentCourse.sections) {
@@ -403,6 +585,10 @@
           currentStats = null;
           activeLecture = null;
           activeSection = null;
+          activeVideoLecture = null;
+          activeVideoSection = null;
+          openTabs = [];
+          activeTabId = 'video';
           activeView = 'library';
         }
       }
@@ -442,68 +628,91 @@
     <!-- Course Player View -->
     <div class="flex-1 flex overflow-hidden">
       <!-- Left / Center Player & Details Scrollable Area -->
-      <main class="flex-1 flex flex-col overflow-y-auto bg-background">
-        {#if isPdfLecture}
-          <PdfViewer
-            {currentCourse}
-            {activeLecture}
-            {activeSection}
-            {streamingPort}
-            isCompleted={activeLecture ? currentProgress?.completed_lecture_ids?.includes(activeLecture.id) : false}
-            onToggleCompleted={(e) => activeLecture && handleToggleCompleted(activeLecture.id, e)}
-            onNextLecture={playNextLecture}
-          />
-        {:else if isHtmlLecture}
-          <HtmlViewer
-            {currentCourse}
-            {activeLecture}
-            {activeSection}
-            {streamingPort}
-            isCompleted={activeLecture ? currentProgress?.completed_lecture_ids?.includes(activeLecture.id) : false}
-            onToggleCompleted={(e) => activeLecture && handleToggleCompleted(activeLecture.id, e)}
-            onNextLecture={playNextLecture}
-          />
-        {:else}
-          <VideoPlayer
-            bind:this={videoPlayerRef}
-            {currentCourse}
-            {activeLecture}
-            {activeSection}
-            {streamingPort}
-            {isImporting}
-            autoPlay={shouldAutoPlay}
-            savedPosition={(activeLecture && currentProgress?.playback_positions?.[activeLecture.id]) || 0}
-            notes={currentProgress?.notes?.filter((n) => n.lecture_id === activeLecture?.id) ?? []}
-            onPositionUpdated={handlePositionUpdated}
-            onDurationUpdated={handleDurationUpdated}
-            onVideoEnded={handleVideoEnded}
-            onNextLecture={playNextLecture}
-            onImportCourse={handleImportCourse}
-          />
-        {/if}
+      <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-background">
+        <!-- Sleek Horizontal Tab Bar -->
+        <TabBar
+          tabs={openTabs}
+          {activeTabId}
+          onSelectTab={selectTab}
+          onCloseTab={closeTab}
+        />
 
-        <!-- Tabs & Information Below Video -->
-        {#if currentCourse && activeLecture}
-          <CourseTabs
-            course={currentCourse}
-            stats={currentStats}
-            progress={currentProgress}
-            {activeLecture}
-            {activeSection}
-            currentTime={currentVideoTime}
-            onSaveNote={handleSaveNote}
-            onDeleteNote={handleDeleteNote}
-            onSeekToNote={handleSeekToNote}
-          />
-        {/if}
-      </main>
+        <main class="flex-1 flex flex-col overflow-y-auto">
+          <!-- Video Player Container: stays mounted in DOM so playback position and running state are NOT lost -->
+          {#if activeVideoLecture || openTabs.length === 0}
+            <div class="w-full flex-col {activeTabId === 'video' || openTabs.length === 0 ? 'flex' : 'hidden'}">
+              <VideoPlayer
+                bind:this={videoPlayerRef}
+                {currentCourse}
+                activeLecture={activeVideoLecture}
+                activeSection={activeVideoSection}
+                {streamingPort}
+                {isImporting}
+                autoPlay={shouldAutoPlay}
+                savedPosition={(activeVideoLecture && currentProgress?.playback_positions?.[activeVideoLecture.id]) || 0}
+                notes={currentProgress?.notes?.filter((n) => n.lecture_id === activeVideoLecture?.id) ?? []}
+                onTimeUpdate={(t) => (currentVideoTime = t)}
+                onPositionUpdated={handlePositionUpdated}
+                onDurationUpdated={handleDurationUpdated}
+                onVideoEnded={handleVideoEnded}
+                onNextLecture={() => playNextLecture(activeVideoLecture)}
+                onImportCourse={handleImportCourse}
+              />
+            </div>
+          {/if}
+
+          <!-- Open Document Tabs (HTML & PDF viewers) -->
+          {#each openTabs as tab (tab.id)}
+            {#if tab.type === 'pdf'}
+              <div class="w-full flex-col {activeTabId === tab.id ? 'flex' : 'hidden'}">
+                <PdfViewer
+                  {currentCourse}
+                  activeLecture={tab.lecture}
+                  activeSection={tab.section}
+                  {streamingPort}
+                  isCompleted={currentProgress?.completed_lecture_ids?.includes(tab.lecture.id) ?? false}
+                  onToggleCompleted={(e) => handleToggleCompleted(tab.lecture.id, e)}
+                  onNextLecture={() => playNextLecture(tab.lecture)}
+                />
+              </div>
+            {:else if tab.type === 'html'}
+              <div class="w-full flex-col {activeTabId === tab.id ? 'flex' : 'hidden'}">
+                <HtmlViewer
+                  {currentCourse}
+                  activeLecture={tab.lecture}
+                  activeSection={tab.section}
+                  {streamingPort}
+                  isCompleted={currentProgress?.completed_lecture_ids?.includes(tab.lecture.id) ?? false}
+                  onToggleCompleted={(e) => handleToggleCompleted(tab.lecture.id, e)}
+                  onNextLecture={() => playNextLecture(tab.lecture)}
+                />
+              </div>
+            {/if}
+          {/each}
+
+          <!-- Tabs & Information Below Video / Document Viewer -->
+          {#if currentCourse && currentDisplayLecture}
+            <CourseTabs
+              course={currentCourse}
+              stats={currentStats}
+              progress={currentProgress}
+              activeLecture={currentDisplayLecture}
+              activeSection={currentDisplaySection}
+              currentTime={currentVideoTime}
+              onSaveNote={handleSaveNote}
+              onDeleteNote={handleDeleteNote}
+              onSeekToNote={handleSeekToNote}
+            />
+          {/if}
+        </main>
+      </div>
 
       <!-- Right Sidebar Drawer -->
       <CourseContentSidebar
         course={currentCourse}
         stats={currentStats}
         progress={currentProgress}
-        {activeLecture}
+        activeLecture={currentDisplayLecture}
         isOpen={sidebarOpen}
         onSelectLecture={(lec, sec) => selectLecture(lec, sec, true)}
         onToggleCompleted={handleToggleCompleted}
@@ -511,6 +720,7 @@
       />
     </div>
   {/if}
+
 
   <!-- Sleek Course Importing Backdrop Modal -->
   {#if isImporting}
