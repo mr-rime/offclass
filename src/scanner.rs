@@ -189,8 +189,7 @@ pub fn probe_video_duration(path: &Path) -> u64 {
 
 pub fn scan_course_directory<F>(
     dir_path: &Path,
-    existing_course_id: Option<String>,
-    existing_lecture_ids: Option<&std::collections::HashMap<String, String>>,
+    existing_course: Option<&Course>,
     on_progress: Option<F>,
 ) -> Result<Course, String>
 where
@@ -208,15 +207,19 @@ where
         .ok_or_else(|| "Invalid UTF-8 in directory path".to_string())?
         .to_string();
 
-    let course_title = dir_path
-        .file_name()
-        .and_then(|f| f.to_str())
-        .map(clean_section_title)
-        .unwrap_or_else(|| "Imported Course".to_string());
+    let course_title = if let Some(ec) = existing_course {
+        ec.title.clone()
+    } else {
+        dir_path
+            .file_name()
+            .and_then(|f| f.to_str())
+            .map(clean_section_title)
+            .unwrap_or_else(|| "Imported Course".to_string())
+    };
 
-    // Group media & HTML files by section folder
-    // Map: Section relative path -> Vec of files
+    // Group media & HTML files by top-level section folder
     let mut sections_map: BTreeMap<String, Vec<PathBuf>> = BTreeMap::new();
+    let mut seen_paths: std::collections::HashSet<PathBuf> = std::collections::HashSet::new();
 
     for entry in WalkDir::new(dir_path)
         .follow_links(true)
@@ -225,13 +228,17 @@ where
     {
         let path = entry.path();
         if path.is_file() && is_supported_course_file(path) {
-            let rel_path = path.strip_prefix(dir_path).unwrap_or(path);
-            let parent = rel_path.parent();
+            let canon = path.canonicalize().unwrap_or_else(|_| path.to_path_buf());
+            if !seen_paths.insert(canon) {
+                continue; // Avoid duplicate files from symlinks/junctions
+            }
 
-            let section_key = match parent {
-                Some(p) if p.as_os_str().is_empty() => "General / Root".to_string(),
-                Some(p) => p.to_string_lossy().replace('\\', "/"),
-                None => "General / Root".to_string(),
+            let rel_path = path.strip_prefix(dir_path).unwrap_or(path);
+            let section_key = match rel_path.components().next() {
+                Some(std::path::Component::Normal(c)) if rel_path.components().count() > 1 => {
+                    c.to_string_lossy().replace('\\', "/")
+                }
+                _ => "General / Root".to_string(),
             };
 
             sections_map
@@ -262,110 +269,314 @@ where
         });
     }
 
-    // Sort sections naturally
-    let mut section_keys: Vec<String> = sections_map.keys().cloned().collect();
-    section_keys.sort_by(|a, b| {
-        // Keep root/general at the start if present
-        if a == "General / Root" {
-            Ordering::Less
-        } else if b == "General / Root" {
-            Ordering::Greater
-        } else {
-            natural_compare(a, b)
-        }
-    });
+    let course_id = existing_course
+        .map(|c| c.id.clone())
+        .unwrap_or_else(|| generate_deterministic_course_id(dir_path));
 
-    let course_id = existing_course_id.unwrap_or_else(|| generate_deterministic_course_id(dir_path));
-    let mut final_sections = Vec::new();
     let mut current_item_idx = 0;
+    let mut final_sections: Vec<Section> = Vec::new();
 
-    for (sec_idx, sec_key) in section_keys.into_iter().enumerate() {
-        let mut file_paths = sections_map.remove(&sec_key).unwrap_or_default();
+    if let Some(prev) = existing_course {
+        // SMART MERGE:
+        // 1. Walk existing sections, keeping all valid existing lectures and their user progress.
+        // 2. Append only NEW lectures discovered on disk to their matching section.
+        // 3. Append any completely NEW sections discovered on disk.
+        let mut matched_section_keys: std::collections::HashSet<String> = std::collections::HashSet::new();
 
-        // Sort files naturally by filename
-        file_paths.sort_by(|a, b| {
-            let name_a = a.file_name().and_then(|f| f.to_str()).unwrap_or("");
-            let name_b = b.file_name().and_then(|f| f.to_str()).unwrap_or("");
-            natural_compare(name_a, name_b)
-        });
+        for prev_sec in &prev.sections {
+            let matching_key = sections_map.keys().find(|k| {
+                let clean_k = if *k == "General / Root" {
+                    "Introduction".to_string()
+                } else {
+                    clean_section_title(k)
+                };
+                clean_k.eq_ignore_ascii_case(&prev_sec.title)
+                    || prev_sec.lectures.iter().any(|l| {
+                        let norm_l = normalize_rel_path(&l.relative_path);
+                        let norm_k = normalize_rel_path(k);
+                        norm_l.starts_with(&norm_k)
+                    })
+            }).cloned();
 
-        let sec_title = if sec_key == "General / Root" {
-            "Introduction".to_string()
-        } else {
-            clean_section_title(&sec_key)
-        };
+            let mut merged_lectures: Vec<Lecture> = Vec::new();
+            let mut existing_norm_rels: std::collections::HashSet<String> = std::collections::HashSet::new();
 
-        let mut lectures = Vec::new();
-        for (lec_idx, file_path) in file_paths.into_iter().enumerate() {
-            current_item_idx += 1;
-            let file_name = file_path
-                .file_name()
-                .and_then(|f| f.to_str())
-                .unwrap_or("lecture")
-                .to_string();
+            // Retain all existing lectures in this section
+            for lec in &prev_sec.lectures {
+                let norm = normalize_rel_path(&lec.relative_path);
+                existing_norm_rels.insert(norm.clone());
 
-            let is_pdf = is_pdf_file(&file_path);
-            let is_html = is_html_file(&file_path);
-            let item_type = if is_pdf {
-                "pdf"
-            } else if is_html {
-                "html"
-            } else {
-                "video"
-            };
-
-            if let Some(ref cb) = on_progress {
-                cb(crate::models::ScanProgress {
-                    current: current_item_idx,
-                    total: total_items,
-                    current_file: file_name.clone(),
-                    phase: "indexing".to_string(),
-                });
+                // Retain as long as file still exists on disk or relative path exists
+                let abs_p = Path::new(&lec.absolute_path);
+                if abs_p.exists() || dir_path.join(&lec.relative_path).exists() {
+                    merged_lectures.push(lec.clone());
+                }
             }
 
-            let rel_path = file_path
-                .strip_prefix(dir_path)
-                .unwrap_or(&file_path)
-                .to_string_lossy()
-                .replace('\\', "/");
+            // If files on disk exist for this section, add only the NEW lectures
+            if let Some(ref sec_key) = matching_key {
+                matched_section_keys.insert(sec_key.clone());
+                if let Some(disk_files) = sections_map.get(sec_key) {
+                    let mut sorted_disk_files = disk_files.clone();
+                    sorted_disk_files.sort_by(|a, b| {
+                        let name_a = a.file_name().and_then(|f| f.to_str()).unwrap_or("");
+                        let name_b = b.file_name().and_then(|f| f.to_str()).unwrap_or("");
+                        natural_compare(name_a, name_b)
+                    });
 
-            let abs_path = file_path.to_string_lossy().to_string();
-            let title = clean_lecture_title(&file_name);
-            let duration = if is_pdf || is_html {
-                0
-            } else {
-                probe_video_duration(&file_path)
-            };
+                    for file_path in sorted_disk_files {
+                        current_item_idx += 1;
+                        let rel_path = file_path
+                            .strip_prefix(dir_path)
+                            .unwrap_or(&file_path)
+                            .to_string_lossy()
+                            .replace('\\', "/");
+                        let norm_rel = normalize_rel_path(&rel_path);
 
-            // Match existing lecture ID by relative path, or generate deterministic ID
-            let norm_rel = normalize_rel_path(&rel_path);
-            let lec_id = if let Some(existing_id) = existing_lecture_ids.and_then(|m| m.get(&norm_rel)) {
-                existing_id.clone()
-            } else {
-                generate_deterministic_lecture_id(&rel_path)
-            };
+                        if existing_norm_rels.contains(&norm_rel) {
+                            continue; // Already exists, never duplicate!
+                        }
 
-            lectures.push(Lecture {
-                id: lec_id,
-                title,
-                file_name,
-                relative_path: rel_path,
-                absolute_path: abs_path,
-                duration_seconds: duration,
-                order: lec_idx + 1,
-                item_type: item_type.to_string(),
+                        let file_name = file_path
+                            .file_name()
+                            .and_then(|f| f.to_str())
+                            .unwrap_or("lecture")
+                            .to_string();
+
+                        if let Some(ref cb) = on_progress {
+                            cb(crate::models::ScanProgress {
+                                current: current_item_idx,
+                                total: total_items,
+                                current_file: file_name.clone(),
+                                phase: "indexing".to_string(),
+                            });
+                        }
+
+                        let is_pdf = is_pdf_file(&file_path);
+                        let is_html = is_html_file(&file_path);
+                        let item_type = if is_pdf {
+                            "pdf"
+                        } else if is_html {
+                            "html"
+                        } else {
+                            "video"
+                        };
+
+                        let duration = if is_pdf || is_html {
+                            0
+                        } else {
+                            probe_video_duration(&file_path)
+                        };
+
+                        let new_lec = Lecture {
+                            id: generate_deterministic_lecture_id(&rel_path),
+                            title: clean_lecture_title(&file_name),
+                            file_name,
+                            relative_path: rel_path,
+                            absolute_path: file_path.to_string_lossy().to_string(),
+                            duration_seconds: duration,
+                            order: merged_lectures.len() + 1,
+                            item_type: item_type.to_string(),
+                        };
+                        merged_lectures.push(new_lec);
+                        existing_norm_rels.insert(norm_rel);
+                    }
+                }
+            }
+
+            // Ensure orders in section are sequential
+            for (idx, l) in merged_lectures.iter_mut().enumerate() {
+                l.order = idx + 1;
+            }
+
+            let sec_dur: u64 = merged_lectures.iter().map(|l| l.duration_seconds).sum();
+            final_sections.push(Section {
+                id: prev_sec.id.clone(),
+                title: prev_sec.title.clone(),
+                order: prev_sec.order,
+                lectures: merged_lectures,
+                duration_seconds: sec_dur,
             });
         }
 
-        let sec_duration: u64 = lectures.iter().map(|l| l.duration_seconds).sum();
+        // Handle BRAND NEW sections on disk
+        let mut unmatched_keys: Vec<String> = sections_map
+            .keys()
+            .filter(|k| !matched_section_keys.contains(*k))
+            .cloned()
+            .collect();
 
-        final_sections.push(Section {
-            id: format!("sec_{}", sec_idx + 1),
-            title: sec_title,
-            order: sec_idx + 1,
-            lectures,
-            duration_seconds: sec_duration,
+        unmatched_keys.sort_by(|a, b| natural_compare(a, b));
+
+        let mut next_sec_order = final_sections.iter().map(|s| s.order).max().unwrap_or(0);
+
+        for new_key in unmatched_keys {
+            next_sec_order += 1;
+            let mut file_paths = sections_map.remove(&new_key).unwrap_or_default();
+            file_paths.sort_by(|a, b| {
+                let name_a = a.file_name().and_then(|f| f.to_str()).unwrap_or("");
+                let name_b = b.file_name().and_then(|f| f.to_str()).unwrap_or("");
+                natural_compare(name_a, name_b)
+            });
+
+            let sec_title = if new_key == "General / Root" {
+                "Introduction".to_string()
+            } else {
+                clean_section_title(&new_key)
+            };
+
+            let mut new_lectures = Vec::new();
+            for (lec_idx, file_path) in file_paths.into_iter().enumerate() {
+                current_item_idx += 1;
+                let file_name = file_path
+                    .file_name()
+                    .and_then(|f| f.to_str())
+                    .unwrap_or("lecture")
+                    .to_string();
+
+                if let Some(ref cb) = on_progress {
+                    cb(crate::models::ScanProgress {
+                        current: current_item_idx,
+                        total: total_items,
+                        current_file: file_name.clone(),
+                        phase: "indexing".to_string(),
+                    });
+                }
+
+                let is_pdf = is_pdf_file(&file_path);
+                let is_html = is_html_file(&file_path);
+                let item_type = if is_pdf {
+                    "pdf"
+                } else if is_html {
+                    "html"
+                } else {
+                    "video"
+                };
+
+                let rel_path = file_path
+                    .strip_prefix(dir_path)
+                    .unwrap_or(&file_path)
+                    .to_string_lossy()
+                    .replace('\\', "/");
+
+                let duration = if is_pdf || is_html {
+                    0
+                } else {
+                    probe_video_duration(&file_path)
+                };
+
+                new_lectures.push(Lecture {
+                    id: generate_deterministic_lecture_id(&rel_path),
+                    title: clean_lecture_title(&file_name),
+                    file_name,
+                    relative_path: rel_path,
+                    absolute_path: file_path.to_string_lossy().to_string(),
+                    duration_seconds: duration,
+                    order: lec_idx + 1,
+                    item_type: item_type.to_string(),
+                });
+            }
+
+            let sec_dur: u64 = new_lectures.iter().map(|l| l.duration_seconds).sum();
+            final_sections.push(Section {
+                id: format!("sec_{}", next_sec_order),
+                title: sec_title,
+                order: next_sec_order,
+                lectures: new_lectures,
+                duration_seconds: sec_dur,
+            });
+        }
+    } else {
+        // FIRST-TIME SCAN:
+        let mut section_keys: Vec<String> = sections_map.keys().cloned().collect();
+        section_keys.sort_by(|a, b| {
+            if a == "General / Root" {
+                Ordering::Less
+            } else if b == "General / Root" {
+                Ordering::Greater
+            } else {
+                natural_compare(a, b)
+            }
         });
+
+        for (sec_idx, sec_key) in section_keys.into_iter().enumerate() {
+            let mut file_paths = sections_map.remove(&sec_key).unwrap_or_default();
+            file_paths.sort_by(|a, b| {
+                let name_a = a.file_name().and_then(|f| f.to_str()).unwrap_or("");
+                let name_b = b.file_name().and_then(|f| f.to_str()).unwrap_or("");
+                natural_compare(name_a, name_b)
+            });
+
+            let sec_title = if sec_key == "General / Root" {
+                "Introduction".to_string()
+            } else {
+                clean_section_title(&sec_key)
+            };
+
+            let mut lectures = Vec::new();
+            for (lec_idx, file_path) in file_paths.into_iter().enumerate() {
+                current_item_idx += 1;
+                let file_name = file_path
+                    .file_name()
+                    .and_then(|f| f.to_str())
+                    .unwrap_or("lecture")
+                    .to_string();
+
+                if let Some(ref cb) = on_progress {
+                    cb(crate::models::ScanProgress {
+                        current: current_item_idx,
+                        total: total_items,
+                        current_file: file_name.clone(),
+                        phase: "indexing".to_string(),
+                    });
+                }
+
+                let is_pdf = is_pdf_file(&file_path);
+                let is_html = is_html_file(&file_path);
+                let item_type = if is_pdf {
+                    "pdf"
+                } else if is_html {
+                    "html"
+                } else {
+                    "video"
+                };
+
+                let rel_path = file_path
+                    .strip_prefix(dir_path)
+                    .unwrap_or(&file_path)
+                    .to_string_lossy()
+                    .replace('\\', "/");
+
+                let duration = if is_pdf || is_html {
+                    0
+                } else {
+                    probe_video_duration(&file_path)
+                };
+
+                let lec_id = generate_deterministic_lecture_id(&rel_path);
+
+                lectures.push(Lecture {
+                    id: lec_id,
+                    title: clean_lecture_title(&file_name),
+                    file_name,
+                    relative_path: rel_path,
+                    absolute_path: file_path.to_string_lossy().to_string(),
+                    duration_seconds: duration,
+                    order: lec_idx + 1,
+                    item_type: item_type.to_string(),
+                });
+            }
+
+            let sec_duration: u64 = lectures.iter().map(|l| l.duration_seconds).sum();
+
+            final_sections.push(Section {
+                id: format!("sec_{}", sec_idx + 1),
+                title: sec_title,
+                order: sec_idx + 1,
+                lectures,
+                duration_seconds: sec_duration,
+            });
+        }
     }
 
     if let Some(ref cb) = on_progress {
@@ -378,13 +589,14 @@ where
     }
 
     let now = Utc::now().to_rfc3339();
+    let created_at = existing_course.map(|c| c.created_at.clone()).unwrap_or_else(|| now.clone());
 
     Ok(Course {
         id: course_id,
         title: course_title,
         root_path: root_path_str,
         sections: final_sections,
-        created_at: now.clone(),
+        created_at,
         updated_at: now,
     })
 }

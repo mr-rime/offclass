@@ -28,33 +28,20 @@ pub async fn scan_course(
     use tauri::Emitter;
     let path_obj = Path::new(&path);
 
-    // If course already exists with matching canonical path, reuse its id & existing lecture ids
-    let (existing_course_id, existing_lectures, existing_created_at) = {
+    // If course already exists with matching canonical path, reuse its full existing course object for smart merge
+    let existing_course = {
         let db_read = db.read().await;
-        if let Some(existing) = db_read.find_course_by_path(path_obj) {
-            (
-                Some(existing.id.clone()),
-                Some(existing.lecture_map_by_rel_path()),
-                Some(existing.created_at.clone()),
-            )
-        } else {
-            (None, None, None)
-        }
+        db_read.find_course_by_path(path_obj).cloned()
     };
 
     let app_handle = app.clone();
-    let mut course = scan_course_directory(
+    let course = scan_course_directory(
         path_obj,
-        existing_course_id,
-        existing_lectures.as_ref(),
+        existing_course.as_ref(),
         Some(move |p: crate::models::ScanProgress| {
             let _ = app_handle.emit("scan-progress", p);
         }),
     )?;
-
-    if let Some(created) = existing_created_at {
-        course.created_at = created;
-    }
 
     let mut db_write = db.write().await;
     db_write.add_course(course)
@@ -67,32 +54,25 @@ pub async fn rescan_course(
     course_id: String,
 ) -> Result<CourseDetail, String> {
     use tauri::Emitter;
-    let (root_path, existing_lectures, created_at) = {
+    let (root_path, existing_course) = {
         let db_read = db.read().await;
         let c = db_read
             .data
             .courses
             .get(&course_id)
             .ok_or_else(|| "Course not found".to_string())?;
-        (
-            c.root_path.clone(),
-            c.lecture_map_by_rel_path(),
-            c.created_at.clone(),
-        )
+        (c.root_path.clone(), c.clone())
     };
 
     let path_obj = Path::new(&root_path);
     let app_handle = app.clone();
-    let mut scanned_course = scan_course_directory(
+    let scanned_course = scan_course_directory(
         path_obj,
-        Some(course_id.clone()),
-        Some(&existing_lectures),
+        Some(&existing_course),
         Some(move |p: crate::models::ScanProgress| {
             let _ = app_handle.emit("scan-progress", p);
         }),
     )?;
-    scanned_course.id = course_id.clone();
-    scanned_course.created_at = created_at;
 
     let mut db_write = db.write().await;
     db_write.add_course(scanned_course)

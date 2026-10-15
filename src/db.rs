@@ -272,6 +272,13 @@ impl AppDatabase {
 
         let progress = progress.clone();
         let stats = self.compute_stats(&course, &progress);
+
+        // Remove any other course entry with matching root path to avoid duplicate course cards
+        let norm_root = crate::scanner::normalize_path(Path::new(&course.root_path));
+        self.data.courses.retain(|k, c| {
+            k == &course_id || crate::scanner::normalize_path(Path::new(&c.root_path)) != norm_root
+        });
+
         self.data.courses.insert(course_id.clone(), course.clone());
         self.save()?;
 

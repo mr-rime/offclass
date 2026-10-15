@@ -44,11 +44,13 @@
   let allExpanded = $state(false);
 
   let lastCourseId = $state<string | null>(null);
+  let lastActiveLectureId = $state<string | null>(null);
 
   $effect(() => {
     if (course) {
       if (course.id !== lastCourseId) {
         lastCourseId = course.id;
+        lastActiveLectureId = activeLecture?.id ?? null;
         const initial: Record<string, boolean> = {};
         course.sections.forEach((s) => {
           // Expand only the section that contains the currently active lecture
@@ -56,9 +58,11 @@
           initial[s.id] = containsActive;
         });
         expandedSections = initial;
-      } else if (activeLecture) {
+      } else if (activeLecture && activeLecture.id !== lastActiveLectureId) {
+        // Only auto-expand when switching to a different lecture
+        lastActiveLectureId = activeLecture.id;
         const secWithActive = course.sections.find((s) => s.lectures.some((l) => l.id === activeLecture.id));
-        if (secWithActive && !expandedSections[secWithActive.id]) {
+        if (secWithActive) {
           expandedSections = { ...expandedSections, [secWithActive.id]: true };
         }
       }

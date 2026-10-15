@@ -66,6 +66,7 @@ pub struct Course {
 }
 
 impl Course {
+    #[allow(dead_code)]
     pub fn lecture_map_by_rel_path(&self) -> HashMap<String, String> {
         let mut map = HashMap::new();
         for sec in &self.sections {
