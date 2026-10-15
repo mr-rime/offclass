@@ -39,6 +39,7 @@
     onVideoEnded: () => void;
     onNextLecture?: () => void;
     onImportCourse: () => void;
+    onTimeUpdate?: (sec: number) => void;
   }
 
   let {
@@ -55,6 +56,7 @@
     onVideoEnded,
     onNextLecture,
     onImportCourse,
+    onTimeUpdate,
   }: Props = $props();
 
   // Elements & State
@@ -150,6 +152,7 @@
     } else {
       currentTime = videoElement.currentTime || 0;
     }
+    onTimeUpdate?.(currentTime);
 
     if (videoElement.duration && !isNaN(videoElement.duration) && videoElement.duration > 0) {
       const exact = Math.round(videoElement.duration);
@@ -181,6 +184,7 @@
   function handleTimeUpdate() {
     if (!videoElement || isScrubbing) return;
     currentTime = videoElement.currentTime;
+    onTimeUpdate?.(currentTime);
 
     // Calculate buffer
     if (videoElement.buffered.length > 0) {
@@ -233,6 +237,7 @@
     const target = Math.max(0, Math.min(duration, videoElement.currentTime + seconds));
     videoElement.currentTime = target;
     currentTime = target;
+    onTimeUpdate?.(target);
     flushPosition();
     triggerFlash(seconds > 0 ? 'forward' : 'rewind', `${seconds > 0 ? '+' : ''}${seconds}s`);
     showControlsTemporarily();
@@ -338,6 +343,7 @@
     isScrubbing = true;
     const targetTime = getScrubTimeFromEvent(e);
     currentTime = targetTime;
+    onTimeUpdate?.(targetTime);
     if (videoElement) {
       videoElement.currentTime = targetTime;
     }
@@ -346,6 +352,7 @@
       if (isScrubbing) {
         const time = getScrubTimeFromEvent(moveEvent);
         currentTime = time;
+        onTimeUpdate?.(time);
         if (videoElement) {
           videoElement.currentTime = time;
         }
@@ -501,6 +508,7 @@
     if (videoElement) {
       videoElement.currentTime = seconds;
       currentTime = seconds;
+      onTimeUpdate?.(seconds);
       flushPosition();
       videoElement.play().then(() => {
         isPlaying = true;

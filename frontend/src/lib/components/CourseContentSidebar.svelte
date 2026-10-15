@@ -43,15 +43,25 @@
   let expandedSections: Record<string, boolean> = $state({});
   let allExpanded = $state(false);
 
+  let lastCourseId = $state<string | null>(null);
+
   $effect(() => {
     if (course) {
-      const initial: Record<string, boolean> = {};
-      course.sections.forEach((s) => {
-        // Expand only the section that contains the currently active lecture
-        const containsActive = activeLecture ? s.lectures.some((l) => l.id === activeLecture.id) : false;
-        initial[s.id] = containsActive;
-      });
-      expandedSections = initial;
+      if (course.id !== lastCourseId) {
+        lastCourseId = course.id;
+        const initial: Record<string, boolean> = {};
+        course.sections.forEach((s) => {
+          // Expand only the section that contains the currently active lecture
+          const containsActive = activeLecture ? s.lectures.some((l) => l.id === activeLecture.id) : false;
+          initial[s.id] = containsActive;
+        });
+        expandedSections = initial;
+      } else if (activeLecture) {
+        const secWithActive = course.sections.find((s) => s.lectures.some((l) => l.id === activeLecture.id));
+        if (secWithActive && !expandedSections[secWithActive.id]) {
+          expandedSections = { ...expandedSections, [secWithActive.id]: true };
+        }
+      }
     }
   });
 

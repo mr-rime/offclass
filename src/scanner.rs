@@ -125,6 +125,37 @@ pub fn clean_lecture_title(file_name: &str) -> String {
     with_spaces.trim().to_string()
 }
 
+pub fn normalize_path(path: &Path) -> String {
+    let path_buf = if let Ok(canon) = path.canonicalize() {
+        canon
+    } else {
+        path.to_path_buf()
+    };
+    let s = path_buf.to_string_lossy().to_string();
+    let s_clean = s.strip_prefix(r"\\?\").unwrap_or(&s);
+    s_clean
+        .replace('\\', "/")
+        .trim_end_matches('/')
+        .to_lowercase()
+}
+
+pub fn normalize_rel_path(rel_path: &str) -> String {
+    rel_path
+        .replace('\\', "/")
+        .trim_matches('/')
+        .to_lowercase()
+}
+
+pub fn generate_deterministic_course_id(root_path: &Path) -> String {
+    let norm = normalize_path(root_path);
+    Uuid::new_v5(&Uuid::NAMESPACE_URL, norm.as_bytes()).to_string()
+}
+
+pub fn generate_deterministic_lecture_id(rel_path: &str) -> String {
+    let norm = normalize_rel_path(rel_path);
+    format!("lec_{}", Uuid::new_v5(&Uuid::NAMESPACE_OID, norm.as_bytes()).simple())
+}
+
 pub fn probe_video_duration(path: &Path) -> u64 {
     #[cfg(target_os = "windows")]
     use std::os::windows::process::CommandExt;
@@ -158,6 +189,8 @@ pub fn probe_video_duration(path: &Path) -> u64 {
 
 pub fn scan_course_directory<F>(
     dir_path: &Path,
+    existing_course_id: Option<String>,
+    existing_lecture_ids: Option<&std::collections::HashMap<String, String>>,
     on_progress: Option<F>,
 ) -> Result<Course, String>
 where
@@ -242,7 +275,7 @@ where
         }
     });
 
-    let course_id = Uuid::new_v4().to_string();
+    let course_id = existing_course_id.unwrap_or_else(|| generate_deterministic_course_id(dir_path));
     let mut final_sections = Vec::new();
     let mut current_item_idx = 0;
 
@@ -304,8 +337,13 @@ where
                 probe_video_duration(&file_path)
             };
 
-            // Generate deterministic ID from relative path
-            let lec_id = format!("{}_{}_{}", sec_idx + 1, lec_idx + 1, Uuid::new_v4().simple());
+            // Match existing lecture ID by relative path, or generate deterministic ID
+            let norm_rel = normalize_rel_path(&rel_path);
+            let lec_id = if let Some(existing_id) = existing_lecture_ids.and_then(|m| m.get(&norm_rel)) {
+                existing_id.clone()
+            } else {
+                generate_deterministic_lecture_id(&rel_path)
+            };
 
             lectures.push(Lecture {
                 id: lec_id,
@@ -415,5 +453,34 @@ mod tests {
         assert!(is_pdf_file(Path::new("notes.PDF")));
         assert!(!is_pdf_file(Path::new("lesson.html")));
         assert!(!is_pdf_file(Path::new("video.mp4")));
+    }
+
+    #[test]
+    fn test_normalize_rel_path() {
+        assert_eq!(
+            normalize_rel_path(r"1 - Intro\01. Overview.mp4"),
+            "1 - intro/01. overview.mp4"
+        );
+        assert_eq!(
+            normalize_rel_path("1 - Intro/01. Overview.mp4"),
+            "1 - intro/01. overview.mp4"
+        );
+    }
+
+    #[test]
+    fn test_deterministic_lecture_id_is_stable() {
+        let id1 = generate_deterministic_lecture_id(r"Section 1\Lesson 1.mp4");
+        let id2 = generate_deterministic_lecture_id("Section 1/Lesson 1.mp4");
+        let id3 = generate_deterministic_lecture_id("section 1/lesson 1.mp4");
+        assert_eq!(id1, id2);
+        assert_eq!(id1, id3);
+        assert!(id1.starts_with("lec_"));
+    }
+
+    #[test]
+    fn test_deterministic_course_id_is_stable() {
+        let id1 = generate_deterministic_course_id(Path::new("D:/courses/my_course"));
+        let id2 = generate_deterministic_course_id(Path::new(r"d:\courses\my_course\"));
+        assert_eq!(id1, id2);
     }
 }

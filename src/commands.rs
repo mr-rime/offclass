@@ -27,13 +27,35 @@ pub async fn scan_course(
 ) -> Result<CourseDetail, String> {
     use tauri::Emitter;
     let path_obj = Path::new(&path);
+
+    // If course already exists with matching canonical path, reuse its id & existing lecture ids
+    let (existing_course_id, existing_lectures, existing_created_at) = {
+        let db_read = db.read().await;
+        if let Some(existing) = db_read.find_course_by_path(path_obj) {
+            (
+                Some(existing.id.clone()),
+                Some(existing.lecture_map_by_rel_path()),
+                Some(existing.created_at.clone()),
+            )
+        } else {
+            (None, None, None)
+        }
+    };
+
     let app_handle = app.clone();
-    let course = scan_course_directory(
+    let mut course = scan_course_directory(
         path_obj,
+        existing_course_id,
+        existing_lectures.as_ref(),
         Some(move |p: crate::models::ScanProgress| {
             let _ = app_handle.emit("scan-progress", p);
         }),
     )?;
+
+    if let Some(created) = existing_created_at {
+        course.created_at = created;
+    }
+
     let mut db_write = db.write().await;
     db_write.add_course(course)
 }
@@ -45,25 +67,32 @@ pub async fn rescan_course(
     course_id: String,
 ) -> Result<CourseDetail, String> {
     use tauri::Emitter;
-    let root_path = {
+    let (root_path, existing_lectures, created_at) = {
         let db_read = db.read().await;
-        db_read
+        let c = db_read
             .data
             .courses
             .get(&course_id)
-            .map(|c| c.root_path.clone())
-            .ok_or_else(|| "Course not found".to_string())?
+            .ok_or_else(|| "Course not found".to_string())?;
+        (
+            c.root_path.clone(),
+            c.lecture_map_by_rel_path(),
+            c.created_at.clone(),
+        )
     };
 
     let path_obj = Path::new(&root_path);
     let app_handle = app.clone();
     let mut scanned_course = scan_course_directory(
         path_obj,
+        Some(course_id.clone()),
+        Some(&existing_lectures),
         Some(move |p: crate::models::ScanProgress| {
             let _ = app_handle.emit("scan-progress", p);
         }),
     )?;
     scanned_course.id = course_id.clone();
+    scanned_course.created_at = created_at;
 
     let mut db_write = db.write().await;
     db_write.add_course(scanned_course)
@@ -177,4 +206,30 @@ pub async fn pick_folder() -> Result<Option<String>, String> {
     .map_err(|e| format!("Dialog error: {}", e))?;
 
     Ok(picked.map(|p| p.to_string_lossy().to_string()))
+}
+
+#[tauri::command]
+pub async fn open_external_url(url: String) -> Result<(), String> {
+    open_url_in_browser(&url)
+}
+
+pub fn open_url_in_browser(url: &str) -> Result<(), String> {
+    #[cfg(target_os = "windows")]
+    {
+        use std::os::windows::process::CommandExt;
+        let mut cmd = std::process::Command::new("cmd");
+        cmd.creation_flags(0x08000000); // CREATE_NO_WINDOW
+        cmd.args(["/c", "start", "", url]);
+        cmd.spawn().map_err(|e| format!("Failed to open URL in browser: {}", e))?;
+        Ok(())
+    }
+    #[cfg(not(target_os = "windows"))]
+    {
+        let cmd_name = if cfg!(target_os = "macos") { "open" } else { "xdg-open" };
+        std::process::Command::new(cmd_name)
+            .arg(url)
+            .spawn()
+            .map_err(|e| format!("Failed to open URL in browser: {}", e))?;
+        Ok(())
+    }
 }

@@ -56,7 +56,10 @@ export const api = {
   updateSettings: (settings: UserSettings) =>
     invoke<UserSettings>('update_settings', { settings }),
   pickFolder: () => invoke<string | null>('pick_folder'),
+  openExternalUrl: (url: string) => invoke<void>('open_external_url', { url }),
 };
+
+export const openExternalUrl = (url: string) => api.openExternalUrl(url);
 
 export async function listenToEvent<T>(
   event: string,

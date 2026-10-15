@@ -13,6 +13,7 @@
   } from 'lucide-svelte';
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
+  import { openExternalUrl } from '../tauri';
 
   interface Props {
     currentCourse: Course | null;
@@ -74,6 +75,40 @@
 
   function handleIframeLoad() {
     isLoading = false;
+    try {
+      if (!iframeElement) return;
+      const doc = iframeElement.contentDocument || iframeElement.contentWindow?.document;
+      if (!doc) return;
+
+      const links = doc.querySelectorAll('a');
+      links.forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const href = a.getAttribute('href');
+          if (!href) return;
+
+          // Check if link points to external website or mailto
+          if (
+            href.startsWith('http://') ||
+            href.startsWith('https://') ||
+            href.startsWith('mailto:') ||
+            href.startsWith('//')
+          ) {
+            const isLocal =
+              href.includes(`127.0.0.1:${streamingPort}`) ||
+              href.includes(`localhost:${streamingPort}`);
+
+            if (!isLocal) {
+              e.preventDefault();
+              e.stopPropagation();
+              const fullUrl = href.startsWith('//') ? `https:${href}` : href;
+              openExternalUrl(fullUrl).catch(console.error);
+            }
+          }
+        });
+      });
+    } catch (err) {
+      console.warn('Cannot attach iframe link interceptor:', err);
+    }
   }
 
   async function toggleFullscreen() {
@@ -93,7 +128,9 @@
 
   function openInBrowser() {
     if (htmlUrl) {
-      window.open(htmlUrl, '_blank');
+      openExternalUrl(htmlUrl).catch((e) => {
+        console.warn('Failed to open external url:', e);
+      });
     }
   }
 

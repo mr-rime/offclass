@@ -222,10 +222,33 @@ impl AppDatabase {
         }
     }
 
-    pub fn add_course(&mut self, course: Course) -> Result<CourseDetail, String> {
-        let course_id = course.id.clone();
+    pub fn find_course_by_path(&self, root_path: &Path) -> Option<&Course> {
+        let norm = crate::scanner::normalize_path(root_path);
+        self.data.courses.values().find(|c| {
+            crate::scanner::normalize_path(Path::new(&c.root_path)) == norm
+        })
+    }
+
+    pub fn add_course(&mut self, mut course: Course) -> Result<CourseDetail, String> {
+        // Find existing course by id or matching normalized root path
+        let existing = self.data.courses.values().find(|c| {
+            c.id == course.id
+                || crate::scanner::normalize_path(Path::new(&c.root_path))
+                    == crate::scanner::normalize_path(Path::new(&course.root_path))
+        }).cloned();
+
+        let course_id = if let Some(ref prev) = existing {
+            // Reuse existing course id and preserve created_at
+            course.id = prev.id.clone();
+            course.created_at = prev.created_at.clone();
+            prev.id.clone()
+        } else {
+            course.id.clone()
+        };
+
         self.data.settings.active_course_id = Some(course_id.clone());
 
+        // Get or initialize progress for this course, ensuring existing progress is never cleared
         let progress = self
             .data
             .progress
@@ -235,7 +258,10 @@ impl AppDatabase {
                 ..Default::default()
             });
 
-        // Automatically check all HTML and PDF document files
+        // Ensure course_id in progress matches
+        progress.course_id = course_id.clone();
+
+        // Automatically mark all HTML and PDF document files as completed
         for sec in &course.sections {
             for lec in &sec.lectures {
                 if is_doc_item(lec) {

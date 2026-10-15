@@ -65,6 +65,19 @@ pub struct Course {
     pub updated_at: String,
 }
 
+impl Course {
+    pub fn lecture_map_by_rel_path(&self) -> HashMap<String, String> {
+        let mut map = HashMap::new();
+        for sec in &self.sections {
+            for lec in &sec.lectures {
+                let norm = crate::scanner::normalize_rel_path(&lec.relative_path);
+                map.insert(norm, lec.id.clone());
+            }
+        }
+        map
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CourseDetail {
     pub course: Course,

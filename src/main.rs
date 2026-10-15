@@ -35,12 +35,33 @@ async fn main() {
         .await
         .expect("Failed to start video streaming server");
 
+    let navigation_plugin = tauri::plugin::Builder::<tauri::Wry>::new("navigation_guard")
+        .on_navigation(|_webview, url| {
+            let scheme = url.scheme();
+            let host = url.host_str();
+            let is_internal = scheme == "tauri"
+                || scheme == "asset"
+                || scheme == "ipc"
+                || host == Some("localhost")
+                || host == Some("127.0.0.1");
+
+            if !is_internal {
+                let _ = commands::open_url_in_browser(url.as_str());
+                false
+            } else {
+                true
+            }
+        })
+        .build();
+
     tauri::Builder::default()
+        .plugin(navigation_plugin)
         .setup(|app| {
-            #[cfg(target_os = "windows")]
-            {
-                use tauri::Manager;
-                if let Some(window) = app.get_webview_window("main") {
+            use tauri::Manager;
+            if let Some(window) = app.get_webview_window("main") {
+
+                #[cfg(target_os = "windows")]
+                {
                     if let Ok(hwnd) = window.hwnd() {
                         unsafe {
                             #[link(name = "dwmapi")]
@@ -111,7 +132,8 @@ async fn main() {
             delete_note,
             get_settings,
             update_settings,
-            pick_folder
+            pick_folder,
+            open_external_url
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
